@@ -36,7 +36,7 @@ namespace MiniSAAS
         {
             try
             {
-                
+                MessageBox.Show(orgid.ToString());
             }
             catch (Exception ex)
             {

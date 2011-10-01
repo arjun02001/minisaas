@@ -38,7 +38,7 @@ namespace MiniSAAS.ChildWindows
                 }
                 DataServiceClient client = new DataServiceClient();
                 client.RegisterTenantCompleted += new EventHandler<RegisterTenantCompletedEventArgs>(client_RegisterTenantCompleted);
-                client.RegisterTenantAsync(uiEmail.Text, uiPassword.Password);
+                client.RegisterTenantAsync(uiEmail.Text.ToLower(), uiPassword.Password);
             }
             catch (Exception ex)
             {
@@ -53,6 +53,10 @@ namespace MiniSAAS.ChildWindows
                 if (e.Result == true)
                 {
                     this.DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Email already exists");
                 }
             }
             catch (Exception ex)

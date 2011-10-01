@@ -33,6 +33,7 @@ namespace MiniSAAS.ChildWindows
             {
                 if(!Utility.ValidateEmail(uiEmail.Text) || (!uiPassword.Password.Equals(uiReTypePassword.Password)))
                 {
+                    MessageBox.Show("Verify EmailID and Password");
                     return;
                 }
                 DataServiceClient client = new DataServiceClient();

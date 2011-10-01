@@ -12,6 +12,8 @@ namespace MiniSAAS.Back
     public interface IDataService
     {
         [OperationContract]
-        double DoWork();
+        bool RegisterTenant(string emailid, string password);
+        [OperationContract]
+        int LoginTenant(string emailid, string password);
     }
 }

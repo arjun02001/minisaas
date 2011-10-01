@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniSAAS", "MiniSAAS\MiniSAAS.csproj", "{0DA7CCBB-6055-4642-940B-8839DC54110E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BEF4D04F-C997-4889-93E8-8AD5407AC56C} = {BEF4D04F-C997-4889-93E8-8AD5407AC56C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniSAAS.Web", "MiniSAAS.Web\MiniSAAS.Web.csproj", "{AB3E7DD6-081B-45EF-B844-F8393224E63C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniSAAS.Back", "MiniSAAS.Back\MiniSAAS.Back.csproj", "{BEF4D04F-C997-4889-93E8-8AD5407AC56C}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DA7CCBB-6055-4642-940B-8839DC54110E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DA7CCBB-6055-4642-940B-8839DC54110E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DA7CCBB-6055-4642-940B-8839DC54110E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DA7CCBB-6055-4642-940B-8839DC54110E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB3E7DD6-081B-45EF-B844-F8393224E63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB3E7DD6-081B-45EF-B844-F8393224E63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB3E7DD6-081B-45EF-B844-F8393224E63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB3E7DD6-081B-45EF-B844-F8393224E63C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEF4D04F-C997-4889-93E8-8AD5407AC56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEF4D04F-C997-4889-93E8-8AD5407AC56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEF4D04F-C997-4889-93E8-8AD5407AC56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEF4D04F-C997-4889-93E8-8AD5407AC56C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

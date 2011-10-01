@@ -57,6 +57,7 @@ namespace MiniSAAS.ChildWindows
             {
                 if (!Utility.ValidateEmail(uiEmail.Text))
                 {
+                    MessageBox.Show("Verify EmailID and Password");
                     return;
                 }
                 DataServiceClient client = new DataServiceClient();
@@ -80,6 +81,10 @@ namespace MiniSAAS.ChildWindows
                         LoginSuccess(e.Result);
                     }
                     this.DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Verify EmailID and Password");
                 }
             }
             catch (Exception ex)

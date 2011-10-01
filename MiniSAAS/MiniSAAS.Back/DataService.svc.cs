@@ -12,9 +12,14 @@ namespace MiniSAAS.Back
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "DataService" in code, svc and config file together.
     public class DataService : IDataService
     {
-        public double DoWork()
+        public bool RegisterTenant(string emailid, string tenant)
         {
-            return 12;
+            return true;
+        }
+
+        public int LoginTenant(string emailid, string password)
+        {
+            return 1;
         }
     }
 }

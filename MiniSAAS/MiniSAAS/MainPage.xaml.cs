@@ -23,7 +23,20 @@ namespace MiniSAAS
             try
             {
                 Login login = new Login();
+                login.LoginSuccess += new Login.LoginSuccessHandler(login_LoginSuccess);
                 login.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void login_LoginSuccess(int orgid)
+        {
+            try
+            {
+                
             }
             catch (Exception ex)
             {

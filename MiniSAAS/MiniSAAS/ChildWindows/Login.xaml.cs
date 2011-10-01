@@ -9,21 +9,34 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using MiniSAAS.DataServiceReference;
 using System.Diagnostics;
-using MiniSAAS.ChildWindows;
 
-namespace MiniSAAS
+namespace MiniSAAS.ChildWindows
 {
-    public partial class MainPage : UserControl
+    public partial class Login : ChildWindow
     {
-        public MainPage()
+        public Login()
         {
             InitializeComponent();
+        }
+
+        private void uiRegister_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
-                Login login = new Login();
-                login.Show();
+                this.DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        private void uiLogin_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.DialogResult = true;
             }
             catch (Exception ex)
             {
@@ -32,3 +45,4 @@ namespace MiniSAAS
         }
     }
 }
+

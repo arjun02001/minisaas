@@ -62,7 +62,7 @@ namespace MiniSAAS.ChildWindows
                 }
                 DataServiceClient client = new DataServiceClient();
                 client.LoginTenantCompleted += new EventHandler<LoginTenantCompletedEventArgs>(client_LoginTenantCompleted);
-                client.LoginTenantAsync(uiEmail.Text, uiPassword.Password);
+                client.LoginTenantAsync(uiEmail.Text.ToLower(), uiPassword.Password);
             }
             catch (Exception ex)
             {

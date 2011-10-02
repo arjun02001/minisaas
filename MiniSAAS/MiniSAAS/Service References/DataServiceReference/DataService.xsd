@@ -87,4 +87,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ViewData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="od" nillable="true" type="q5:ObjectDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="ViewDataResult" nillable="true" type="q6:DataDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -41,12 +41,28 @@ namespace MiniSAAS
                 //CreateObject(orgid);
                 //ViewObject(orgid);
                 //InsertData(orgid);
+                ViewData(orgid);
                 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
+        }
+
+        private void ViewData(int orgid)
+        {
+            ObjectDescription od = new ObjectDescription();
+            od.OrgID = 1;
+            od.ObjName = "laptop";
+            DataServiceClient client = new DataServiceClient();
+            client.ViewDataCompleted += new EventHandler<ViewDataCompletedEventArgs>(client_ViewDataCompleted);
+            client.ViewDataAsync(od);
+        }
+
+        void client_ViewDataCompleted(object sender, ViewDataCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void InsertData(int orgid)

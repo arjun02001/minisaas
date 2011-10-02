@@ -227,5 +227,65 @@ namespace MiniSAAS.Back
             }
             return numrowsinserted;
         }
+
+        public DataDescription ViewData(ObjectDescription od)
+        {
+            DataDescription dd = new DataDescription();
+            List<string> row = null;
+            List<string> fields = new List<string>();
+            List<List<string>> data = new List<List<string>>();
+            int objid = 0;
+            string column = string.Empty;
+            List<string> heapcolumns = new List<string>();
+
+            try
+            {
+                string sql = string.Format("select objid from dbo.objects where orgid = '{0}' and objname = '{1}'", od.OrgID, od.ObjName.ToLower());
+                DataTable dt = DataManager.GetData(sql);
+                if (dt.Rows.Count == 0)
+                {
+                    return dd;
+                }
+
+                objid = Convert.ToInt32(dt.Rows[0][0]);
+                sql = string.Format("select fieldname, datatype, fieldnumber from dbo.fields where orgid = '{0}' and objid = '{1}'", od.OrgID, objid);
+                dt = DataManager.GetData(sql);
+                if (dt.Rows.Count == 0)
+                {
+                    return dd;
+                }
+
+                fields.Add("guid");
+                foreach (DataRow dr in dt.Rows)
+                {
+                    fields.Add(dr["fieldname"].ToString());
+                    column += "[" + dr["fieldnumber"].ToString() + "], ";
+                    heapcolumns.Add(dr["fieldnumber"].ToString());
+                }
+                column = column.Substring(0, column.LastIndexOf(','));
+
+                sql = string.Format("select guid, {0} from dbo.heap", column);
+                dt = DataManager.GetData(sql);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    row = new List<string>();
+                    row.Add(dr["guid"].ToString());
+                    foreach (string hp in heapcolumns)
+                    {
+                        row.Add((dr[hp] != DBNull.Value) ? dr[hp].ToString() : null);
+                    }
+                    data.Add(row);
+                }
+
+                dd.Fields = fields;
+                dd.Data = data;
+                dd.ObjName = od.ObjName;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return dd;
+        }
     }
 }

@@ -174,7 +174,7 @@ namespace MiniSAAS.Back
             string column = string.Empty, value = string.Empty;
             try
             {
-                string sql = string.Format("select objid from dbo.objects where orgid = '{0}' and objname = '{1}'", dd.OrgID, dd.ObjName);
+                string sql = string.Format("select objid from dbo.objects where orgid = '{0}' and objname = '{1}'", dd.OrgID, dd.ObjName.ToLower());
                 DataTable dt = DataManager.GetData(sql);
                 StringBuilder sb = new StringBuilder();
                 sb.Append(string.Format("select fieldname, fieldnumber, datatype, isprimary from dbo.fields where objid = '{0}' and fieldname in (", dt.Rows[0][0].ToString()));
@@ -188,7 +188,7 @@ namespace MiniSAAS.Back
                 dt.Columns.Add("datafieldindex");
                 for (i = 0; i < dt.Rows.Count; i++)
                 {
-                    dt.Rows[i]["dataindexfield"] = dd.Fields.IndexOf(dt.Rows[i]["fieldname"].ToString());
+                    dt.Rows[i]["datafieldindex"] = dd.Fields.IndexOf(dt.Rows[i]["fieldname"].ToString());
                 }
 
                 foreach (List<string> row in dd.Data)
@@ -196,6 +196,8 @@ namespace MiniSAAS.Back
                     column = value = string.Empty;
                     foreach (DataRow dr in dt.Rows)
                     {
+                        column += "[" + dr["fieldnumber"].ToString() + "], ";
+                        value += string.Format("'{0}'", row[Convert.ToInt32(dr["datafieldindex"])]);
                     }
                 }
 

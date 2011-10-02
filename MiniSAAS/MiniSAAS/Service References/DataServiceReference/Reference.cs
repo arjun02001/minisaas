@@ -95,16 +95,16 @@ namespace MiniSAAS.DataServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="DataDescription", Namespace="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes")]
     public partial class DataDescription : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Collections.ObjectModel.ObservableCollection<System.Collections.ObjectModel.ObservableCollection<string>> DataField;
+        private System.Collections.Generic.List<System.Collections.Generic.List<string>> DataField;
         
-        private System.Collections.ObjectModel.ObservableCollection<string> FieldsField;
+        private System.Collections.Generic.List<string> FieldsField;
         
         private string ObjNameField;
         
         private int OrgIDField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<System.Collections.ObjectModel.ObservableCollection<string>> Data {
+        public System.Collections.Generic.List<System.Collections.Generic.List<string>> Data {
             get {
                 return this.DataField;
             }
@@ -117,7 +117,7 @@ namespace MiniSAAS.DataServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<string> Fields {
+        public System.Collections.Generic.List<string> Fields {
             get {
                 return this.FieldsField;
             }
@@ -192,7 +192,7 @@ namespace MiniSAAS.DataServiceReference {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/GetObjectCollection", ReplyAction="http://tempuri.org/IDataService/GetObjectCollectionResponse")]
         System.IAsyncResult BeginGetObjectCollection(int orgid, System.AsyncCallback callback, object asyncState);
         
-        System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result);
+        System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/InsertData", ReplyAction="http://tempuri.org/IDataService/InsertDataResponse")]
         System.IAsyncResult BeginInsertData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState);
@@ -291,10 +291,10 @@ namespace MiniSAAS.DataServiceReference {
             this.results = results;
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> Result {
+        public System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription> Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription>)(this.results[0]));
+                return ((System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription>)(this.results[0]));
             }
         }
     }
@@ -621,7 +621,7 @@ namespace MiniSAAS.DataServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> MiniSAAS.DataServiceReference.IDataService.EndGetObjectCollection(System.IAsyncResult result) {
+        System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription> MiniSAAS.DataServiceReference.IDataService.EndGetObjectCollection(System.IAsyncResult result) {
             return base.Channel.EndGetObjectCollection(result);
         }
         
@@ -631,7 +631,7 @@ namespace MiniSAAS.DataServiceReference {
         }
         
         private object[] OnEndGetObjectCollection(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndGetObjectCollection(result);
+            System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription> retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndGetObjectCollection(result);
             return new object[] {
                     retVal};
         }
@@ -844,9 +844,9 @@ namespace MiniSAAS.DataServiceReference {
                 return _result;
             }
             
-            public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result) {
+            public System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> _result = ((System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription>)(base.EndInvoke("GetObjectCollection", _args, result)));
+                System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription> _result = ((System.Collections.Generic.List<MiniSAAS.DataServiceReference.ObjectDescription>)(base.EndInvoke("GetObjectCollection", _args, result)));
                 return _result;
             }
             

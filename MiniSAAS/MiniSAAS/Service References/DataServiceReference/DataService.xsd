@@ -31,17 +31,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateTable">
+  <xs:element name="CreateObject">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="od" nillable="true" type="q1:ObjectDescription" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateTableResponse">
+  <xs:element name="CreateObjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CreateTableResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="CreateObjectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="od" nillable="true" type="q2:ObjectDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteObjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteObjectResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

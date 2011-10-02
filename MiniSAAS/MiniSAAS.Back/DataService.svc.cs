@@ -63,7 +63,7 @@ namespace MiniSAAS.Back
             }
         }
 
-        public bool CreateTable(ObjectDescription od)
+        public bool CreateObject(ObjectDescription od)
         {
             try
             {
@@ -98,6 +98,35 @@ namespace MiniSAAS.Back
             catch (Exception ex)
             {
                 return false;
+            }
+            return true;
+        }
+
+        public bool DeleteObject(ObjectDescription od)
+        {
+            try
+            {
+                string sql = string.Format("select objid from dbo.objects where orgid = '{0}' and objname = '{1}'", od.OrgID, od.ObjName.ToLower());
+                DataTable dt = DataManager.GetData(sql);
+                if (dt.Rows.Count == 0)
+                {
+                    return false;
+                }
+                int objid = Convert.ToInt32(dt.Rows[0][0]);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    sql = string.Format("delete from dbo.heap where orgid = '{0}' and objid = '{1}'", od.OrgID, objid);
+                    DataManager.SetData(sql);
+                    sql = string.Format("delete from dbo.fields where orgid = '{0}' and objid = '{1}'", od.OrgID, objid);
+                    DataManager.SetData(sql);
+                    sql = string.Format("delete from dbo.objects where orgid = '{0}' and objid = '{1}'", od.OrgID, objid);
+                    DataManager.SetData(sql);
+                    scope.Complete();
+                }
+            }
+            catch (Exception)
+            {
+                return false;                
             }
             return true;
         }

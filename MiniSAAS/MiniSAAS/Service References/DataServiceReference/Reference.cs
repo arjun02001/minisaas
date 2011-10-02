@@ -104,10 +104,15 @@ namespace MiniSAAS.DataServiceReference {
         
         int EndLoginTenant(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/CreateTable", ReplyAction="http://tempuri.org/IDataService/CreateTableResponse")]
-        System.IAsyncResult BeginCreateTable(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/CreateObject", ReplyAction="http://tempuri.org/IDataService/CreateObjectResponse")]
+        System.IAsyncResult BeginCreateObject(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState);
         
-        bool EndCreateTable(System.IAsyncResult result);
+        bool EndCreateObject(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/DeleteObject", ReplyAction="http://tempuri.org/IDataService/DeleteObjectResponse")]
+        System.IAsyncResult BeginDeleteObject(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState);
+        
+        bool EndDeleteObject(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -154,11 +159,30 @@ namespace MiniSAAS.DataServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CreateTableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class CreateObjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public CreateTableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public CreateObjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeleteObjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public DeleteObjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -187,11 +211,17 @@ namespace MiniSAAS.DataServiceReference {
         
         private System.Threading.SendOrPostCallback onLoginTenantCompletedDelegate;
         
-        private BeginOperationDelegate onBeginCreateTableDelegate;
+        private BeginOperationDelegate onBeginCreateObjectDelegate;
         
-        private EndOperationDelegate onEndCreateTableDelegate;
+        private EndOperationDelegate onEndCreateObjectDelegate;
         
-        private System.Threading.SendOrPostCallback onCreateTableCompletedDelegate;
+        private System.Threading.SendOrPostCallback onCreateObjectCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginDeleteObjectDelegate;
+        
+        private EndOperationDelegate onEndDeleteObjectDelegate;
+        
+        private System.Threading.SendOrPostCallback onDeleteObjectCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -250,7 +280,9 @@ namespace MiniSAAS.DataServiceReference {
         
         public event System.EventHandler<LoginTenantCompletedEventArgs> LoginTenantCompleted;
         
-        public event System.EventHandler<CreateTableCompletedEventArgs> CreateTableCompleted;
+        public event System.EventHandler<CreateObjectCompletedEventArgs> CreateObjectCompleted;
+        
+        public event System.EventHandler<DeleteObjectCompletedEventArgs> DeleteObjectCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -353,49 +385,95 @@ namespace MiniSAAS.DataServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MiniSAAS.DataServiceReference.IDataService.BeginCreateTable(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginCreateTable(od, callback, asyncState);
+        System.IAsyncResult MiniSAAS.DataServiceReference.IDataService.BeginCreateObject(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginCreateObject(od, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        bool MiniSAAS.DataServiceReference.IDataService.EndCreateTable(System.IAsyncResult result) {
-            return base.Channel.EndCreateTable(result);
+        bool MiniSAAS.DataServiceReference.IDataService.EndCreateObject(System.IAsyncResult result) {
+            return base.Channel.EndCreateObject(result);
         }
         
-        private System.IAsyncResult OnBeginCreateTable(object[] inValues, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult OnBeginCreateObject(object[] inValues, System.AsyncCallback callback, object asyncState) {
             MiniSAAS.DataServiceReference.ObjectDescription od = ((MiniSAAS.DataServiceReference.ObjectDescription)(inValues[0]));
-            return ((MiniSAAS.DataServiceReference.IDataService)(this)).BeginCreateTable(od, callback, asyncState);
+            return ((MiniSAAS.DataServiceReference.IDataService)(this)).BeginCreateObject(od, callback, asyncState);
         }
         
-        private object[] OnEndCreateTable(System.IAsyncResult result) {
-            bool retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndCreateTable(result);
+        private object[] OnEndCreateObject(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndCreateObject(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnCreateTableCompleted(object state) {
-            if ((this.CreateTableCompleted != null)) {
+        private void OnCreateObjectCompleted(object state) {
+            if ((this.CreateObjectCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.CreateTableCompleted(this, new CreateTableCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.CreateObjectCompleted(this, new CreateObjectCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void CreateTableAsync(MiniSAAS.DataServiceReference.ObjectDescription od) {
-            this.CreateTableAsync(od, null);
+        public void CreateObjectAsync(MiniSAAS.DataServiceReference.ObjectDescription od) {
+            this.CreateObjectAsync(od, null);
         }
         
-        public void CreateTableAsync(MiniSAAS.DataServiceReference.ObjectDescription od, object userState) {
-            if ((this.onBeginCreateTableDelegate == null)) {
-                this.onBeginCreateTableDelegate = new BeginOperationDelegate(this.OnBeginCreateTable);
+        public void CreateObjectAsync(MiniSAAS.DataServiceReference.ObjectDescription od, object userState) {
+            if ((this.onBeginCreateObjectDelegate == null)) {
+                this.onBeginCreateObjectDelegate = new BeginOperationDelegate(this.OnBeginCreateObject);
             }
-            if ((this.onEndCreateTableDelegate == null)) {
-                this.onEndCreateTableDelegate = new EndOperationDelegate(this.OnEndCreateTable);
+            if ((this.onEndCreateObjectDelegate == null)) {
+                this.onEndCreateObjectDelegate = new EndOperationDelegate(this.OnEndCreateObject);
             }
-            if ((this.onCreateTableCompletedDelegate == null)) {
-                this.onCreateTableCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCreateTableCompleted);
+            if ((this.onCreateObjectCompletedDelegate == null)) {
+                this.onCreateObjectCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCreateObjectCompleted);
             }
-            base.InvokeAsync(this.onBeginCreateTableDelegate, new object[] {
-                        od}, this.onEndCreateTableDelegate, this.onCreateTableCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginCreateObjectDelegate, new object[] {
+                        od}, this.onEndCreateObjectDelegate, this.onCreateObjectCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.DataServiceReference.IDataService.BeginDeleteObject(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteObject(od, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool MiniSAAS.DataServiceReference.IDataService.EndDeleteObject(System.IAsyncResult result) {
+            return base.Channel.EndDeleteObject(result);
+        }
+        
+        private System.IAsyncResult OnBeginDeleteObject(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MiniSAAS.DataServiceReference.ObjectDescription od = ((MiniSAAS.DataServiceReference.ObjectDescription)(inValues[0]));
+            return ((MiniSAAS.DataServiceReference.IDataService)(this)).BeginDeleteObject(od, callback, asyncState);
+        }
+        
+        private object[] OnEndDeleteObject(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndDeleteObject(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDeleteObjectCompleted(object state) {
+            if ((this.DeleteObjectCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DeleteObjectCompleted(this, new DeleteObjectCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DeleteObjectAsync(MiniSAAS.DataServiceReference.ObjectDescription od) {
+            this.DeleteObjectAsync(od, null);
+        }
+        
+        public void DeleteObjectAsync(MiniSAAS.DataServiceReference.ObjectDescription od, object userState) {
+            if ((this.onBeginDeleteObjectDelegate == null)) {
+                this.onBeginDeleteObjectDelegate = new BeginOperationDelegate(this.OnBeginDeleteObject);
+            }
+            if ((this.onEndDeleteObjectDelegate == null)) {
+                this.onEndDeleteObjectDelegate = new EndOperationDelegate(this.OnEndDeleteObject);
+            }
+            if ((this.onDeleteObjectCompletedDelegate == null)) {
+                this.onDeleteObjectCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteObjectCompleted);
+            }
+            base.InvokeAsync(this.onBeginDeleteObjectDelegate, new object[] {
+                        od}, this.onEndDeleteObjectDelegate, this.onDeleteObjectCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -502,16 +580,29 @@ namespace MiniSAAS.DataServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginCreateTable(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginCreateObject(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = od;
-                System.IAsyncResult _result = base.BeginInvoke("CreateTable", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("CreateObject", _args, callback, asyncState);
                 return _result;
             }
             
-            public bool EndCreateTable(System.IAsyncResult result) {
+            public bool EndCreateObject(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                bool _result = ((bool)(base.EndInvoke("CreateTable", _args, result)));
+                bool _result = ((bool)(base.EndInvoke("CreateObject", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginDeleteObject(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = od;
+                System.IAsyncResult _result = base.BeginInvoke("DeleteObject", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndDeleteObject(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("DeleteObject", _args, result)));
                 return _result;
             }
         }

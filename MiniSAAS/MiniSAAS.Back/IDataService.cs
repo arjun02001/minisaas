@@ -17,6 +17,8 @@ namespace MiniSAAS.Back
         [OperationContract]
         int LoginTenant(string emailid, string password);
         [OperationContract]
-        bool CreateTable(ObjectDescription od);
+        bool CreateObject(ObjectDescription od);
+        [OperationContract]
+        bool DeleteObject(ObjectDescription od);
     }
 }

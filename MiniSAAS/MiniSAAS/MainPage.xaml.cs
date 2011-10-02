@@ -40,7 +40,7 @@ namespace MiniSAAS
                 //DeleteObject(orgid);
                 //CreateObject(orgid);
                 //ViewObject(orgid);
-                InsertData(orgid);
+                //InsertData(orgid);
                 
             }
             catch (Exception ex)
@@ -55,19 +55,19 @@ namespace MiniSAAS
             dd.ObjName = "laptop";
             dd.OrgID = orgid;
             List<String> fields = new List<string>();
-            fields.Add("laptopid");
             fields.Add("model");
+            fields.Add("laptopid");
 
             List<List<String>> data = new List<List<string>>();
             
             List<String> row1 = new List<string>();
-            row1.Add("11");
-            row1.Add("model1");
+            row1.Add("model3");
+            row1.Add("31");
             data.Add(row1);
 
             List<String> row2 = new List<string>();
-            row2.Add("21");
-            row2.Add("model2");
+            row2.Add(null);
+            row2.Add("41");
             data.Add(row2);
             dd.Fields = fields;
             dd.Data = data;
@@ -78,7 +78,7 @@ namespace MiniSAAS
 
         void client_InsertDataCompleted(object sender, InsertDataCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(e.Result + " rows inserted");
         }
 
         void ViewObject(int orgid)

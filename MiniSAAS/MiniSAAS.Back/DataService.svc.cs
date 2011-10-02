@@ -170,20 +170,29 @@ namespace MiniSAAS.Back
         }
         public int InsertData(DataDescription dd)
         {
-            int numrowsinserted = 0, i = 0;
+            int numrowsinserted = 0, i = 0, objid = 0;
             string column = string.Empty, value = string.Empty;
             try
             {
                 string sql = string.Format("select objid from dbo.objects where orgid = '{0}' and objname = '{1}'", dd.OrgID, dd.ObjName.ToLower());
                 DataTable dt = DataManager.GetData(sql);
+                if (dt.Rows.Count == 0)
+                {
+                    return 0;
+                }
+                objid = Convert.ToInt32(dt.Rows[0][0]);
                 StringBuilder sb = new StringBuilder();
-                sb.Append(string.Format("select fieldname, fieldnumber, datatype, isprimary from dbo.fields where objid = '{0}' and fieldname in (", dt.Rows[0][0].ToString()));
+                sb.Append(string.Format("select fieldname, fieldnumber, datatype, isprimary from dbo.fields where objid = '{0}' and fieldname in (", objid.ToString()));
                 for (i = 0; i < dd.Fields.Count - 1; i++)
                 {
                     sb.Append(string.Format(" '{0}', ", dd.Fields[i]));
                 }
                 sb.Append(string.Format(" '{0}' )", dd.Fields[i]));
                 dt = DataManager.GetData(sb.ToString());
+                if (dt.Rows.Count == 0)
+                {
+                    return 0;
+                }
 
                 dt.Columns.Add("datafieldindex");
                 for (i = 0; i < dt.Rows.Count; i++)
@@ -191,31 +200,30 @@ namespace MiniSAAS.Back
                     dt.Rows[i]["datafieldindex"] = dd.Fields.IndexOf(dt.Rows[i]["fieldname"].ToString());
                 }
 
-                foreach (List<string> row in dd.Data)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    column = value = string.Empty;
-                    foreach (DataRow dr in dt.Rows)
+                    foreach (List<string> row in dd.Data)
                     {
-                        column += "[" + dr["fieldnumber"].ToString() + "], ";
-                        value += string.Format("'{0}'", row[Convert.ToInt32(dr["datafieldindex"])]);
+                        column = value = string.Empty;
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            if (row[Convert.ToInt32(dr["datafieldindex"])] != null)
+                            {
+                                column += "[" + dr["fieldnumber"].ToString() + "], ";
+                                value += string.Format("'{0}', ", row[Convert.ToInt32(dr["datafieldindex"])]);
+                            }
+                        }
+                        column = column.Substring(0, column.LastIndexOf(','));
+                        value = value.Substring(0, value.LastIndexOf(','));
+                        sql = string.Format("insert into dbo.heap (orgid, objid, {0}) values ('{1}', '{2}', {3})", column, dd.OrgID, objid, value);
+                        numrowsinserted += DataManager.SetData(sql);
                     }
+                    scope.Complete();
                 }
-
-                /*List<string> fields = new List<string>();
-                fields.Add("model");
-                fields.Add("laptopid");
-                DataTable dt = DataManager.GetData("select FieldName ,FieldNumber,datatype,isPrimary from dbo.Fields where ObjID = '18' and FieldName in ('model','laptopid')");
-                dt.Columns.Add("datafieldIndex");
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    dt.Rows[i]["datafieldIndex"] = fields.IndexOf(dt.Rows[i]["fieldname"].ToString());
-                }
-                dt.Select(null, "datafieldIndex");*/
             }
             catch (Exception ex)
             {
-                
-                throw;
+                return 0;
             }
             return numrowsinserted;
         }

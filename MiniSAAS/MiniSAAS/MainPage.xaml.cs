@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using MiniSAAS.DataServiceReference;
 using System.Diagnostics;
 using MiniSAAS.ChildWindows;
+using MiniSAAS.Classes;
 
 namespace MiniSAAS
 {
@@ -36,12 +37,29 @@ namespace MiniSAAS
         {
             try
             {
-                MessageBox.Show("orgid =" + orgid.ToString());
+                ObjectDescription od = new ObjectDescription();
+                Dictionary<string, string> fields = new Dictionary<string, string>();
+                fields.Add("laptopid", DataType.INT);
+                fields.Add("model", DataType.VARCHAR);
+                od.ObjName = "Laptop";
+                od.Fields = fields;
+                od.OrgID = orgid;
+                od.PrimaryKey = "laptopid";
+                DataServiceClient client = new DataServiceClient();
+                client.CreateTableCompleted += new EventHandler<CreateTableCompletedEventArgs>(client_CreateTableCompleted);
+                client.CreateTableAsync(od);
+
+                //MessageBox.Show("orgid =" + orgid.ToString());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
+        }
+
+        void client_CreateTableCompleted(object sender, CreateTableCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

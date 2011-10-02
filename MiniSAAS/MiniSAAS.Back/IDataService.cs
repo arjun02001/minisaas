@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MiniSAAS.Back.Classes;
 
 namespace MiniSAAS.Back
 {
@@ -15,5 +16,7 @@ namespace MiniSAAS.Back
         bool RegisterTenant(string emailid, string password);
         [OperationContract]
         int LoginTenant(string emailid, string password);
+        [OperationContract]
+        bool CreateTable(ObjectDescription od);
     }
 }

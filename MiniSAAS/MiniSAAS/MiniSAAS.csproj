@@ -82,6 +82,7 @@
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\DataType.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -141,6 +142,12 @@
     <None Include="Service References\DataServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\DataServiceReference\DataService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataServiceReference\DataService21.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\DataServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

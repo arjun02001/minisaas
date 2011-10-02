@@ -61,5 +61,18 @@ namespace MiniSAAS.Back
                 return -1;
             }
         }
+
+        public bool CreateTable(ObjectDescription od)
+        {
+            try
+            {
+                
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

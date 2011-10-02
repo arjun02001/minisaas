@@ -4,24 +4,64 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:11180/DataService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:11180/DataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:11180/DataService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" />
+      <xsd:import schemaLocation="http://localhost:11180/DataService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IDataService_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
+  <wsdl:message name="IDataService_RegisterTenant_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTenant" />
   </wsdl:message>
-  <wsdl:message name="IDataService_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  <wsdl:message name="IDataService_RegisterTenant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTenantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_LoginTenant_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginTenant" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_LoginTenant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginTenantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_CreateTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTable" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_CreateTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTableResponse" />
   </wsdl:message>
   <wsdl:portType name="IDataService">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/DoWork" message="tns:IDataService_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/DoWorkResponse" message="tns:IDataService_DoWork_OutputMessage" />
+    <wsdl:operation name="RegisterTenant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/RegisterTenant" message="tns:IDataService_RegisterTenant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/RegisterTenantResponse" message="tns:IDataService_RegisterTenant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginTenant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/LoginTenant" message="tns:IDataService_LoginTenant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/LoginTenantResponse" message="tns:IDataService_LoginTenant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/CreateTable" message="tns:IDataService_CreateTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/CreateTableResponse" message="tns:IDataService_CreateTable_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataService" type="tns:IDataService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="DoWork">
-      <soap:operation soapAction="http://tempuri.org/IDataService/DoWork" style="document" />
+    <wsdl:operation name="RegisterTenant">
+      <soap:operation soapAction="http://tempuri.org/IDataService/RegisterTenant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginTenant">
+      <soap:operation soapAction="http://tempuri.org/IDataService/LoginTenant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTable">
+      <soap:operation soapAction="http://tempuri.org/IDataService/CreateTable" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

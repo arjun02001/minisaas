@@ -148,6 +148,9 @@
     <None Include="Service References\DataServiceReference\DataService21.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\DataServiceReference\MiniSAAS.DataServiceReference.DataDescription.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\DataServiceReference\MiniSAAS.DataServiceReference.ObjectDescription.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

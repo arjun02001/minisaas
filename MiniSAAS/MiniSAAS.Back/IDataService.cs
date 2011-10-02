@@ -24,8 +24,8 @@ namespace MiniSAAS.Back
         List<ObjectDescription> GetObjectCollection(int orgid);
         [OperationContract]
         int InsertData(DataDescription dd);
-        //[OperationContract]
-        //DataDescription RetrieveData(ObjectDescription od);
+        [OperationContract]
+        DataDescription ViewData(ObjectDescription od);
         //[OperationContract]
         //int DeleteData(DataDescription dd);
     }

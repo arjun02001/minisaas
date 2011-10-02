@@ -198,6 +198,11 @@ namespace MiniSAAS.DataServiceReference {
         System.IAsyncResult BeginInsertData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState);
         
         int EndInsertData(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/ViewData", ReplyAction="http://tempuri.org/IDataService/ViewDataResponse")]
+        System.IAsyncResult BeginViewData(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState);
+        
+        MiniSAAS.DataServiceReference.DataDescription EndViewData(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -320,6 +325,25 @@ namespace MiniSAAS.DataServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ViewDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ViewDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MiniSAAS.DataServiceReference.DataDescription Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MiniSAAS.DataServiceReference.DataDescription)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataServiceClient : System.ServiceModel.ClientBase<MiniSAAS.DataServiceReference.IDataService>, MiniSAAS.DataServiceReference.IDataService {
         
         private BeginOperationDelegate onBeginRegisterTenantDelegate;
@@ -357,6 +381,12 @@ namespace MiniSAAS.DataServiceReference {
         private EndOperationDelegate onEndInsertDataDelegate;
         
         private System.Threading.SendOrPostCallback onInsertDataCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginViewDataDelegate;
+        
+        private EndOperationDelegate onEndViewDataDelegate;
+        
+        private System.Threading.SendOrPostCallback onViewDataCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -422,6 +452,8 @@ namespace MiniSAAS.DataServiceReference {
         public event System.EventHandler<GetObjectCollectionCompletedEventArgs> GetObjectCollectionCompleted;
         
         public event System.EventHandler<InsertDataCompletedEventArgs> InsertDataCompleted;
+        
+        public event System.EventHandler<ViewDataCompletedEventArgs> ViewDataCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -707,6 +739,52 @@ namespace MiniSAAS.DataServiceReference {
                         dd}, this.onEndInsertDataDelegate, this.onInsertDataCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.DataServiceReference.IDataService.BeginViewData(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginViewData(od, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MiniSAAS.DataServiceReference.DataDescription MiniSAAS.DataServiceReference.IDataService.EndViewData(System.IAsyncResult result) {
+            return base.Channel.EndViewData(result);
+        }
+        
+        private System.IAsyncResult OnBeginViewData(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MiniSAAS.DataServiceReference.ObjectDescription od = ((MiniSAAS.DataServiceReference.ObjectDescription)(inValues[0]));
+            return ((MiniSAAS.DataServiceReference.IDataService)(this)).BeginViewData(od, callback, asyncState);
+        }
+        
+        private object[] OnEndViewData(System.IAsyncResult result) {
+            MiniSAAS.DataServiceReference.DataDescription retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndViewData(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnViewDataCompleted(object state) {
+            if ((this.ViewDataCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ViewDataCompleted(this, new ViewDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ViewDataAsync(MiniSAAS.DataServiceReference.ObjectDescription od) {
+            this.ViewDataAsync(od, null);
+        }
+        
+        public void ViewDataAsync(MiniSAAS.DataServiceReference.ObjectDescription od, object userState) {
+            if ((this.onBeginViewDataDelegate == null)) {
+                this.onBeginViewDataDelegate = new BeginOperationDelegate(this.OnBeginViewData);
+            }
+            if ((this.onEndViewDataDelegate == null)) {
+                this.onEndViewDataDelegate = new EndOperationDelegate(this.OnEndViewData);
+            }
+            if ((this.onViewDataCompletedDelegate == null)) {
+                this.onViewDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnViewDataCompleted);
+            }
+            base.InvokeAsync(this.onBeginViewDataDelegate, new object[] {
+                        od}, this.onEndViewDataDelegate, this.onViewDataCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -860,6 +938,19 @@ namespace MiniSAAS.DataServiceReference {
             public int EndInsertData(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 int _result = ((int)(base.EndInvoke("InsertData", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginViewData(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = od;
+                System.IAsyncResult _result = base.BeginInvoke("ViewData", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MiniSAAS.DataServiceReference.DataDescription EndViewData(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MiniSAAS.DataServiceReference.DataDescription _result = ((MiniSAAS.DataServiceReference.DataDescription)(base.EndInvoke("ViewData", _args, result)));
                 return _result;
             }
         }

@@ -59,7 +59,14 @@ namespace MiniSAAS
 
         void client_CreateTableCompleted(object sender, CreateTableCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.Result)
+            {
+                MessageBox.Show("Table created successfully");
+            }
+            else
+            {
+                MessageBox.Show("An error occured. Please try again");
+            }
         }
     }
 }

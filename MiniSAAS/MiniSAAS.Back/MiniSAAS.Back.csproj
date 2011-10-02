@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\DataDescription.cs" />
     <Compile Include="Classes\DataManager.cs" />
     <Compile Include="Classes\ObjectDescription.cs" />
     <Compile Include="Classes\Utility.cs" />

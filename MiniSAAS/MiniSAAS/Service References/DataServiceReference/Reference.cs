@@ -90,6 +90,81 @@ namespace MiniSAAS.DataServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataDescription", Namespace="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes")]
+    public partial class DataDescription : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Collections.ObjectModel.ObservableCollection<System.Collections.ObjectModel.ObservableCollection<string>> DataField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<string> FieldsField;
+        
+        private string ObjNameField;
+        
+        private int OrgIDField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<System.Collections.ObjectModel.ObservableCollection<string>> Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<string> Fields {
+            get {
+                return this.FieldsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FieldsField, value) != true)) {
+                    this.FieldsField = value;
+                    this.RaisePropertyChanged("Fields");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ObjName {
+            get {
+                return this.ObjNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ObjNameField, value) != true)) {
+                    this.ObjNameField = value;
+                    this.RaisePropertyChanged("ObjName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrgID {
+            get {
+                return this.OrgIDField;
+            }
+            set {
+                if ((this.OrgIDField.Equals(value) != true)) {
+                    this.OrgIDField = value;
+                    this.RaisePropertyChanged("OrgID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataServiceReference.IDataService")]
     public interface IDataService {
@@ -118,6 +193,11 @@ namespace MiniSAAS.DataServiceReference {
         System.IAsyncResult BeginGetObjectCollection(int orgid, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/InsertData", ReplyAction="http://tempuri.org/IDataService/InsertDataResponse")]
+        System.IAsyncResult BeginInsertData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState);
+        
+        int EndInsertData(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -221,6 +301,25 @@ namespace MiniSAAS.DataServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class InsertDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public InsertDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataServiceClient : System.ServiceModel.ClientBase<MiniSAAS.DataServiceReference.IDataService>, MiniSAAS.DataServiceReference.IDataService {
         
         private BeginOperationDelegate onBeginRegisterTenantDelegate;
@@ -252,6 +351,12 @@ namespace MiniSAAS.DataServiceReference {
         private EndOperationDelegate onEndGetObjectCollectionDelegate;
         
         private System.Threading.SendOrPostCallback onGetObjectCollectionCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginInsertDataDelegate;
+        
+        private EndOperationDelegate onEndInsertDataDelegate;
+        
+        private System.Threading.SendOrPostCallback onInsertDataCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -315,6 +420,8 @@ namespace MiniSAAS.DataServiceReference {
         public event System.EventHandler<DeleteObjectCompletedEventArgs> DeleteObjectCompleted;
         
         public event System.EventHandler<GetObjectCollectionCompletedEventArgs> GetObjectCollectionCompleted;
+        
+        public event System.EventHandler<InsertDataCompletedEventArgs> InsertDataCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -554,6 +661,52 @@ namespace MiniSAAS.DataServiceReference {
                         orgid}, this.onEndGetObjectCollectionDelegate, this.onGetObjectCollectionCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.DataServiceReference.IDataService.BeginInsertData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginInsertData(dd, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        int MiniSAAS.DataServiceReference.IDataService.EndInsertData(System.IAsyncResult result) {
+            return base.Channel.EndInsertData(result);
+        }
+        
+        private System.IAsyncResult OnBeginInsertData(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MiniSAAS.DataServiceReference.DataDescription dd = ((MiniSAAS.DataServiceReference.DataDescription)(inValues[0]));
+            return ((MiniSAAS.DataServiceReference.IDataService)(this)).BeginInsertData(dd, callback, asyncState);
+        }
+        
+        private object[] OnEndInsertData(System.IAsyncResult result) {
+            int retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndInsertData(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnInsertDataCompleted(object state) {
+            if ((this.InsertDataCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.InsertDataCompleted(this, new InsertDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void InsertDataAsync(MiniSAAS.DataServiceReference.DataDescription dd) {
+            this.InsertDataAsync(dd, null);
+        }
+        
+        public void InsertDataAsync(MiniSAAS.DataServiceReference.DataDescription dd, object userState) {
+            if ((this.onBeginInsertDataDelegate == null)) {
+                this.onBeginInsertDataDelegate = new BeginOperationDelegate(this.OnBeginInsertData);
+            }
+            if ((this.onEndInsertDataDelegate == null)) {
+                this.onEndInsertDataDelegate = new EndOperationDelegate(this.OnEndInsertData);
+            }
+            if ((this.onInsertDataCompletedDelegate == null)) {
+                this.onInsertDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnInsertDataCompleted);
+            }
+            base.InvokeAsync(this.onBeginInsertDataDelegate, new object[] {
+                        dd}, this.onEndInsertDataDelegate, this.onInsertDataCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -694,6 +847,19 @@ namespace MiniSAAS.DataServiceReference {
             public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> _result = ((System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription>)(base.EndInvoke("GetObjectCollection", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginInsertData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = dd;
+                System.IAsyncResult _result = base.BeginInvoke("InsertData", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public int EndInsertData(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                int _result = ((int)(base.EndInvoke("InsertData", _args, result)));
                 return _result;
             }
         }

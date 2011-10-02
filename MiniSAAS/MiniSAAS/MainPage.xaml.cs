@@ -39,8 +39,8 @@ namespace MiniSAAS
             {
                 //DeleteObject(orgid);
                 //CreateObject(orgid);
-                ViewObject(orgid);
-                //MessageBox.Show("orgid =" + orgid.ToString());
+                //ViewObject(orgid);
+                
             }
             catch (Exception ex)
             {

@@ -37,14 +37,34 @@ namespace MiniSAAS
         {
             try
             {
-                DeleteObject(orgid);
-
+                //DeleteObject(orgid);
+                //CreateObject(orgid);
+                ViewObject(orgid);
                 //MessageBox.Show("orgid =" + orgid.ToString());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
+        }
+
+        void ViewObject(int orgid)
+        {
+            try
+            {
+                DataServiceClient client = new DataServiceClient();
+                client.GetObjectCollectionCompleted += new EventHandler<GetObjectCollectionCompletedEventArgs>(client_GetObjectCollectionCompleted);
+                client.GetObjectCollectionAsync(12);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        void client_GetObjectCollectionCompleted(object sender, GetObjectCollectionCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         void DeleteObject(int orgid)
@@ -82,12 +102,12 @@ namespace MiniSAAS
             {
                 ObjectDescription od = new ObjectDescription();
                 Dictionary<string, string> fields = new Dictionary<string, string>();
-                fields.Add("laptopid", DataType.INT);
-                fields.Add("model", DataType.VARCHAR);
-                od.ObjName = "Laptop";
+                fields.Add("isbn", DataType.VARCHAR);
+                fields.Add("author", DataType.VARCHAR);
+                od.ObjName = "book";
                 od.Fields = fields;
                 od.OrgID = orgid;
-                od.PrimaryKey = "laptopid";
+                od.PrimaryKey = "isbn";
                 DataServiceClient client = new DataServiceClient();
                 client.CreateObjectCompleted += new EventHandler<CreateObjectCompletedEventArgs>(client_CreateObjectCompleted);
                 client.CreateObjectAsync(od);

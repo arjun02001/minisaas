@@ -32,6 +32,12 @@
   <wsdl:message name="IDataService_DeleteObject_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteObjectResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataService_GetObjectCollection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectCollection" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_GetObjectCollection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectCollectionResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDataService">
     <wsdl:operation name="RegisterTenant">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataService/RegisterTenant" message="tns:IDataService_RegisterTenant_InputMessage" />
@@ -48,6 +54,10 @@
     <wsdl:operation name="DeleteObject">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataService/DeleteObject" message="tns:IDataService_DeleteObject_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataService/DeleteObjectResponse" message="tns:IDataService_DeleteObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectCollection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/GetObjectCollection" message="tns:IDataService_GetObjectCollection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/GetObjectCollectionResponse" message="tns:IDataService_GetObjectCollection_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataService" type="tns:IDataService">
@@ -81,6 +91,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteObject">
       <soap:operation soapAction="http://tempuri.org/IDataService/DeleteObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectCollection">
+      <soap:operation soapAction="http://tempuri.org/IDataService/GetObjectCollection" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -130,5 +130,43 @@ namespace MiniSAAS.Back
             }
             return true;
         }
+
+        public List<ObjectDescription> GetObjectCollection(int orgid)
+        {
+            List<ObjectDescription> objectcollection = new List<ObjectDescription>();
+            int objID = 0;
+            
+            try
+            {
+                String sql = string.Format("select ObjID, objname from dbo.Objects where OrgID='{0}';", orgid);
+                DataTable dt = DataManager.GetData(sql);
+                
+                foreach(DataRow row in dt.Rows) //creating each ObjectDescrition
+                {
+                    ObjectDescription od = new ObjectDescription();
+                    objID = Convert.ToInt32(row[0]);
+                    od.ObjName = row[1].ToString();
+                    od.OrgID = orgid;
+                    sql = string.Format("select fieldname, datatype, isprimary from dbo.fields where orgid = '{0}' and objid = '{1}'", orgid, objID);
+                    DataTable dtobjectdescription = DataManager.GetData(sql);
+                    Dictionary<String, String> fieldCollection = new Dictionary<String, String>();
+                    foreach (DataRow fields in dtobjectdescription.Rows)//creating Fields dictionary for each ObjectDescription
+                    {
+                        fieldCollection.Add(fields[0].ToString(), fields[1].ToString());
+                        if (Convert.ToInt32(fields[2]) == 1)
+                        {
+                            od.PrimaryKey = fields[0].ToString();
+                        }
+                    }
+                    od.Fields = fieldCollection;
+                    objectcollection.Add(od);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return objectcollection;
+        }
     }
 }

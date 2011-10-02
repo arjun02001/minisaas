@@ -66,10 +66,11 @@ namespace MiniSAAS
             data.Add(row1);
 
             List<String> row2 = new List<string>();
-            row1.Add("21");
-            row1.Add("model2");
+            row2.Add("21");
+            row2.Add("model2");
             data.Add(row2);
-
+            dd.Fields = fields;
+            dd.Data = data;
             DataServiceClient client = new DataServiceClient();
             client.InsertDataCompleted += new EventHandler<InsertDataCompletedEventArgs>(client_InsertDataCompleted);
             client.InsertDataAsync(dd);

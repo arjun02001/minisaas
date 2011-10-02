@@ -168,5 +168,54 @@ namespace MiniSAAS.Back
             }
             return objectcollection;
         }
+        public int InsertData(DataDescription dd)
+        {
+            int numrowsinserted = 0, i = 0;
+            string column = string.Empty, value = string.Empty;
+            try
+            {
+                string sql = string.Format("select objid from dbo.objects where orgid = '{0}' and objname = '{1}'", dd.OrgID, dd.ObjName);
+                DataTable dt = DataManager.GetData(sql);
+                StringBuilder sb = new StringBuilder();
+                sb.Append(string.Format("select fieldname, fieldnumber, datatype, isprimary from dbo.fields where objid = '{0}' and fieldname in (", dt.Rows[0][0].ToString()));
+                for (i = 0; i < dd.Fields.Count - 1; i++)
+                {
+                    sb.Append(string.Format(" '{0}', ", dd.Fields[i]));
+                }
+                sb.Append(string.Format(" '{0}' )", dd.Fields[i]));
+                dt = DataManager.GetData(sb.ToString());
+
+                dt.Columns.Add("datafieldindex");
+                for (i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["dataindexfield"] = dd.Fields.IndexOf(dt.Rows[i]["fieldname"].ToString());
+                }
+
+                foreach (List<string> row in dd.Data)
+                {
+                    column = value = string.Empty;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                    }
+                }
+
+                /*List<string> fields = new List<string>();
+                fields.Add("model");
+                fields.Add("laptopid");
+                DataTable dt = DataManager.GetData("select FieldName ,FieldNumber,datatype,isPrimary from dbo.Fields where ObjID = '18' and FieldName in ('model','laptopid')");
+                dt.Columns.Add("datafieldIndex");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["datafieldIndex"] = fields.IndexOf(dt.Rows[i]["fieldname"].ToString());
+                }
+                dt.Select(null, "datafieldIndex");*/
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+            return numrowsinserted;
+        }
     }
 }

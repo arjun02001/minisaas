@@ -16,4 +16,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfObjectDescription" nillable="true" type="tns:ArrayOfObjectDescription" />
+  <xs:complexType name="DataDescription">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Data" nillable="true" type="q2:ArrayOfArrayOfstring" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Fields" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ObjName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrgID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataDescription" nillable="true" type="tns:DataDescription" />
 </xs:schema>

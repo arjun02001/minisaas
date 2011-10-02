@@ -37,17 +37,7 @@ namespace MiniSAAS
         {
             try
             {
-                ObjectDescription od = new ObjectDescription();
-                Dictionary<string, string> fields = new Dictionary<string, string>();
-                fields.Add("laptopid", DataType.INT);
-                fields.Add("model", DataType.VARCHAR);
-                od.ObjName = "Laptop";
-                od.Fields = fields;
-                od.OrgID = orgid;
-                od.PrimaryKey = "laptopid";
-                DataServiceClient client = new DataServiceClient();
-                client.CreateTableCompleted += new EventHandler<CreateTableCompletedEventArgs>(client_CreateTableCompleted);
-                client.CreateTableAsync(od);
+                DeleteObject(orgid);
 
                 //MessageBox.Show("orgid =" + orgid.ToString());
             }
@@ -57,7 +47,58 @@ namespace MiniSAAS
             }
         }
 
-        void client_CreateTableCompleted(object sender, CreateTableCompletedEventArgs e)
+        void DeleteObject(int orgid)
+        {
+            try
+            {
+                DataServiceClient client = new DataServiceClient();
+                client.DeleteObjectCompleted += new EventHandler<DeleteObjectCompletedEventArgs>(client_DeleteObjectCompleted);
+                ObjectDescription od = new ObjectDescription();
+                od.ObjName = "LAPTOP";
+                od.OrgID = orgid;
+                client.DeleteObjectAsync(od);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void client_DeleteObjectCompleted(object sender, DeleteObjectCompletedEventArgs e)
+        {
+            if (e.Result)
+            {
+                MessageBox.Show("Table deleted");
+            }
+            else
+            {
+                MessageBox.Show("An error occurred. Please try again.");
+            }
+        }
+
+        void CreateObject(int orgid)
+        {
+            try
+            {
+                ObjectDescription od = new ObjectDescription();
+                Dictionary<string, string> fields = new Dictionary<string, string>();
+                fields.Add("laptopid", DataType.INT);
+                fields.Add("model", DataType.VARCHAR);
+                od.ObjName = "Laptop";
+                od.Fields = fields;
+                od.OrgID = orgid;
+                od.PrimaryKey = "laptopid";
+                DataServiceClient client = new DataServiceClient();
+                client.CreateObjectCompleted += new EventHandler<CreateObjectCompletedEventArgs>(client_CreateObjectCompleted);
+                client.CreateObjectAsync(od);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void client_CreateObjectCompleted(object sender, CreateObjectCompletedEventArgs e)
         {
             if (e.Result)
             {

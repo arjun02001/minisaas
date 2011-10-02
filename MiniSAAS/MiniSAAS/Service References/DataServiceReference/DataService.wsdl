@@ -20,11 +20,17 @@
   <wsdl:message name="IDataService_LoginTenant_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginTenantResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataService_CreateTable_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateTable" />
+  <wsdl:message name="IDataService_CreateObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObject" />
   </wsdl:message>
-  <wsdl:message name="IDataService_CreateTable_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateTableResponse" />
+  <wsdl:message name="IDataService_CreateObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_DeleteObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteObject" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_DeleteObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteObjectResponse" />
   </wsdl:message>
   <wsdl:portType name="IDataService">
     <wsdl:operation name="RegisterTenant">
@@ -35,9 +41,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDataService/LoginTenant" message="tns:IDataService_LoginTenant_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataService/LoginTenantResponse" message="tns:IDataService_LoginTenant_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CreateTable">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/CreateTable" message="tns:IDataService_CreateTable_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/CreateTableResponse" message="tns:IDataService_CreateTable_OutputMessage" />
+    <wsdl:operation name="CreateObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/CreateObject" message="tns:IDataService_CreateObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/CreateObjectResponse" message="tns:IDataService_CreateObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/DeleteObject" message="tns:IDataService_DeleteObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/DeleteObjectResponse" message="tns:IDataService_DeleteObject_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataService" type="tns:IDataService">
@@ -60,8 +70,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateTable">
-      <soap:operation soapAction="http://tempuri.org/IDataService/CreateTable" style="document" />
+    <wsdl:operation name="CreateObject">
+      <soap:operation soapAction="http://tempuri.org/IDataService/CreateObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteObject">
+      <soap:operation soapAction="http://tempuri.org/IDataService/DeleteObject" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

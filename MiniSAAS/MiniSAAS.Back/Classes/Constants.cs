@@ -7,6 +7,6 @@ namespace MiniSAAS.Back.Classes
 {
     public class Constants
     {
-        public const string CONNECTION_STRING = "Data Source=localhost;Initial Catalog=MiniSAAS;User Id=arjun;Password=arjun";
+        public const string CONNECTION_STRING = "Data Source=ARJUN-PC;Initial Catalog=MiniSAAS;User Id=arjun;Password=arjun";
     }
 }

@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Data;
 using MiniSAAS.Back.Classes;
+using System.Transactions;
 
 namespace MiniSAAS.Back
 {
@@ -66,9 +67,35 @@ namespace MiniSAAS.Back
         {
             try
             {
-                
+                //to check if the the Object exists
+                string sql = "Select ObjID from dbo.Objects where OrgID = '" + od.OrgID + "' and ObjName = '" + od.ObjName.ToLower() + "'";
+                DataTable dt = DataManager.GetData(sql);
+                if (dt.Rows.Count != 0)
+                {
+                    return false;
+                }
+                //to insert
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    sql = string.Format("Insert into dbo.Objects (OrgID, ObjName) values ('{0}','{1}');", od.OrgID, od.ObjName.ToLower());
+                    DataManager.SetData(sql);
+
+                    sql = string.Format("select objid from dbo.objects where orgid = '{0}' and objname = '{1}'", od.OrgID, od.ObjName.ToLower());
+                    dt = DataManager.GetData(sql);
+                    int objectid = Convert.ToInt32(dt.Rows[0][0]);
+
+                    int fieldnumbercounter = 0;
+                    foreach (KeyValuePair<string, string> pair in od.Fields)
+                    {
+                        sql = string.Format("Insert into dbo.Fields(orgid, objid, fieldname, datatype, fieldnumber, isprimary) values" +
+                            " ( '{0}' , '{1}' , '{2}' , '{3}' , '{4}' , '{5}')"
+                            , od.OrgID, objectid, pair.Key.ToLower(), pair.Value, fieldnumbercounter++, od.PrimaryKey.ToLower().Equals(pair.Key.ToLower()) ? 1 : 0);
+                        DataManager.SetData(sql);
+                    }
+                    scope.Complete();
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

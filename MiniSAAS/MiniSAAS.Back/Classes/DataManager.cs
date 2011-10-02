@@ -38,20 +38,25 @@ namespace MiniSAAS.Back.Classes
         {
             SqlConnection con = null;
             SqlCommand com = null;
+            int value = -1;
             try
             {
                 con = new SqlConnection(Constants.CONNECTION_STRING);
                 con.Open();
                 com = new SqlCommand(sql, con);
-                return com.ExecuteNonQuery();
+                value = com.ExecuteNonQuery();
             }
             catch (Exception)
+            {
+                throw;
+            }
+            finally
             {
                 con.Close();
                 con.Dispose();
                 com.Dispose();
-                throw;
             }
+            return value;
         }
     }
 }

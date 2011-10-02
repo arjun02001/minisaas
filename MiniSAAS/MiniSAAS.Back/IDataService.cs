@@ -20,5 +20,7 @@ namespace MiniSAAS.Back
         bool CreateObject(ObjectDescription od);
         [OperationContract]
         bool DeleteObject(ObjectDescription od);
+        [OperationContract]
+        List<ObjectDescription> GetObjectCollection(int orgid);
     }
 }

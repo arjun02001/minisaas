@@ -10,4 +10,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ObjectDescription" nillable="true" type="tns:ObjectDescription" />
+  <xs:complexType name="ArrayOfObjectDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectDescription" nillable="true" type="tns:ObjectDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObjectDescription" nillable="true" type="tns:ArrayOfObjectDescription" />
 </xs:schema>

@@ -113,6 +113,11 @@ namespace MiniSAAS.DataServiceReference {
         System.IAsyncResult BeginDeleteObject(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState);
         
         bool EndDeleteObject(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/GetObjectCollection", ReplyAction="http://tempuri.org/IDataService/GetObjectCollectionResponse")]
+        System.IAsyncResult BeginGetObjectCollection(int orgid, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -197,6 +202,25 @@ namespace MiniSAAS.DataServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetObjectCollectionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetObjectCollectionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataServiceClient : System.ServiceModel.ClientBase<MiniSAAS.DataServiceReference.IDataService>, MiniSAAS.DataServiceReference.IDataService {
         
         private BeginOperationDelegate onBeginRegisterTenantDelegate;
@@ -222,6 +246,12 @@ namespace MiniSAAS.DataServiceReference {
         private EndOperationDelegate onEndDeleteObjectDelegate;
         
         private System.Threading.SendOrPostCallback onDeleteObjectCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetObjectCollectionDelegate;
+        
+        private EndOperationDelegate onEndGetObjectCollectionDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetObjectCollectionCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -283,6 +313,8 @@ namespace MiniSAAS.DataServiceReference {
         public event System.EventHandler<CreateObjectCompletedEventArgs> CreateObjectCompleted;
         
         public event System.EventHandler<DeleteObjectCompletedEventArgs> DeleteObjectCompleted;
+        
+        public event System.EventHandler<GetObjectCollectionCompletedEventArgs> GetObjectCollectionCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -476,6 +508,52 @@ namespace MiniSAAS.DataServiceReference {
                         od}, this.onEndDeleteObjectDelegate, this.onDeleteObjectCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.DataServiceReference.IDataService.BeginGetObjectCollection(int orgid, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetObjectCollection(orgid, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> MiniSAAS.DataServiceReference.IDataService.EndGetObjectCollection(System.IAsyncResult result) {
+            return base.Channel.EndGetObjectCollection(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetObjectCollection(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int orgid = ((int)(inValues[0]));
+            return ((MiniSAAS.DataServiceReference.IDataService)(this)).BeginGetObjectCollection(orgid, callback, asyncState);
+        }
+        
+        private object[] OnEndGetObjectCollection(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndGetObjectCollection(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetObjectCollectionCompleted(object state) {
+            if ((this.GetObjectCollectionCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetObjectCollectionCompleted(this, new GetObjectCollectionCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetObjectCollectionAsync(int orgid) {
+            this.GetObjectCollectionAsync(orgid, null);
+        }
+        
+        public void GetObjectCollectionAsync(int orgid, object userState) {
+            if ((this.onBeginGetObjectCollectionDelegate == null)) {
+                this.onBeginGetObjectCollectionDelegate = new BeginOperationDelegate(this.OnBeginGetObjectCollection);
+            }
+            if ((this.onEndGetObjectCollectionDelegate == null)) {
+                this.onEndGetObjectCollectionDelegate = new EndOperationDelegate(this.OnEndGetObjectCollection);
+            }
+            if ((this.onGetObjectCollectionCompletedDelegate == null)) {
+                this.onGetObjectCollectionCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetObjectCollectionCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetObjectCollectionDelegate, new object[] {
+                        orgid}, this.onEndGetObjectCollectionDelegate, this.onGetObjectCollectionCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -603,6 +681,19 @@ namespace MiniSAAS.DataServiceReference {
             public bool EndDeleteObject(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("DeleteObject", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetObjectCollection(int orgid, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = orgid;
+                System.IAsyncResult _result = base.BeginInvoke("GetObjectCollection", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> EndGetObjectCollection(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription> _result = ((System.Collections.ObjectModel.ObservableCollection<MiniSAAS.DataServiceReference.ObjectDescription>)(base.EndInvoke("GetObjectCollection", _args, result)));
                 return _result;
             }
         }

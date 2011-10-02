@@ -40,12 +40,44 @@ namespace MiniSAAS
                 //DeleteObject(orgid);
                 //CreateObject(orgid);
                 //ViewObject(orgid);
+                InsertData(orgid);
                 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
+        }
+
+        private void InsertData(int orgid)
+        {
+            DataDescription dd = new DataDescription();
+            dd.ObjName = "laptop";
+            dd.OrgID = orgid;
+            List<String> fields = new List<string>();
+            fields.Add("laptopid");
+            fields.Add("model");
+
+            List<List<String>> data = new List<List<string>>();
+            
+            List<String> row1 = new List<string>();
+            row1.Add("11");
+            row1.Add("model1");
+            data.Add(row1);
+
+            List<String> row2 = new List<string>();
+            row1.Add("21");
+            row1.Add("model2");
+            data.Add(row2);
+
+            DataServiceClient client = new DataServiceClient();
+            client.InsertDataCompleted += new EventHandler<InsertDataCompletedEventArgs>(client_InsertDataCompleted);
+            client.InsertDataAsync(dd);
+        }
+
+        void client_InsertDataCompleted(object sender, InsertDataCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         void ViewObject(int orgid)

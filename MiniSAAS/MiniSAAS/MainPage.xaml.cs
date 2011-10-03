@@ -149,6 +149,7 @@ namespace MiniSAAS
             try
             {
                 dd = e.Result;
+                dd.OrgID = orgid;
                 uiDataGrid.ItemsSource = MasterObject.GetMasterObject(dd);
                 uiDataGrid.LayoutUpdated += new EventHandler(uiDataGrid_LayoutUpdated);
             }
@@ -292,6 +293,27 @@ namespace MiniSAAS
         {
             uiBusyIndicator.IsBusy = true;
             MessageBox.Show(e.Result + " Rows deleted");
+            DataRefresh();
+        }
+
+        private void uiUpdateData_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string guid = ((MasterObject)uiDataGrid.SelectedItem).Val0;
+                UpdateData updatedata = new UpdateData(dd, guid);
+                updatedata.DataUpdated += new UpdateData.UpdateDataHandler(updatedata_DataUpdated);
+                updatedata.Show();
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void updatedata_DataUpdated(string status)
+        {
             DataRefresh();
         }
 

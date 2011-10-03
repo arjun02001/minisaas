@@ -303,8 +303,7 @@ namespace MiniSAAS.Back
             }
             catch (Exception)
             {
-                
-                throw;
+                return 0;
             }
             return numrowsdeleted;
         }

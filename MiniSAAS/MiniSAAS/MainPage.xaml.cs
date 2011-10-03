@@ -60,53 +60,6 @@ namespace MiniSAAS
             }
         }
 
-
-        private void DeleteData(int orgid)
-        {
-            try
-            {
-                DataDescription dd = new DataDescription();
-                dd.OrgID = orgid;
-                dd.ObjName = "shirt";
-
-                List<String> fields = new List<string>();
-                fields.Add("id");
-                fields.Add("color");
-                
-                
-                dd.Fields = fields;
-
-                List<List<String>> datacollection = new List<List<string>>();
-                
-                List<String> data1 = new List<string>();
-                data1.Add("1");
-                data1.Add("red");
-                datacollection.Add(data1);
-
-                List<String> data2 = new List<string>();
-                data2.Add("2");
-                data2.Add("blue");
-                datacollection.Add(data2);
-
-                dd.Data = datacollection;
-
-                            
-                DataServiceClient client = new DataServiceClient();
-                client.DeleteDataCompleted += new EventHandler<DeleteDataCompletedEventArgs>(client_DeleteDataCompleted);
-                client.DeleteDataAsync(dd);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
-            }
-        }
-
-        void client_DeleteDataCompleted(object sender, DeleteDataCompletedEventArgs e)
-        {
-            MessageBox.Show(e.Result + " Rows deleted");
-        }
-
-
         void client_GetObjectCollectionCompleted(object sender, GetObjectCollectionCompletedEventArgs e)
         {
             uiBusyIndicator.IsBusy = false;
@@ -129,6 +82,12 @@ namespace MiniSAAS
 
         private void uiListOfObjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            SchemaRefresh();
+            DataRefresh();
+        }
+
+        private void SchemaRefresh()
+        {
             try
             {
                 if (uiListOfObjects.Items.Count == 0)
@@ -148,13 +107,32 @@ namespace MiniSAAS
                 {
                     uiObjectSchema.Items.Add(pair.Key + "  " + pair.Value);
                 }
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
 
-                od = new ObjectDescription();
-                od.OrgID = orgid;
-                od.ObjName = objectname;
+        private void DataRefresh()
+        {
+            try
+            {
+                if (uiListOfObjects.Items.Count == 0)
+                {
+                    return;
+                }
+                if (uiListOfObjects.SelectedItem.ToString().ToLower().Equals("please select"))
+                {
+                    return;
+                }
+                ObjectDescription od = (from p in ods
+                                        where p.ObjName.Equals(uiListOfObjects.SelectedItem.ToString())
+                                        select p).Single();
 
                 DataServiceClient client = new DataServiceClient();
-                client.ViewDataCompleted +=new EventHandler<ViewDataCompletedEventArgs>(client_ViewDataCompleted);
+                client.ViewDataCompleted += new EventHandler<ViewDataCompletedEventArgs>(client_ViewDataCompleted);
                 client.ViewDataAsync(od);
                 uiBusyIndicator.IsBusy = true;
             }
@@ -228,7 +206,34 @@ namespace MiniSAAS
 
         private void uiDeleteObject_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                DataServiceClient client = new DataServiceClient();
+                client.DeleteObjectCompleted += new EventHandler<DeleteObjectCompletedEventArgs>(client_DeleteObjectCompleted);
+                client.DeleteObjectAsync((from p in ods
+                                          where p.ObjName == uiListOfObjects.SelectedItem
+                                          select p).Single());
+                uiBusyIndicator.IsBusy = true;
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
 
+        void client_DeleteObjectCompleted(object sender, DeleteObjectCompletedEventArgs e)
+        {
+            uiBusyIndicator.IsBusy = false;
+            if (e.Result)
+            {
+                MessageBox.Show("Table deleted");
+            }
+            else
+            {
+                MessageBox.Show("An error occurred. Please try again.");
+            }
+            GetTenantData();
         }
 
         private void uiAddData_Click(object sender, RoutedEventArgs e)
@@ -251,18 +256,47 @@ namespace MiniSAAS
         void adddata_DataAdded(int status)
         {
             MessageBox.Show(status.ToString() + " rows inserted");
-            GetTenantData();
+            DataRefresh();
         }
 
         private void uiDeleteData_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                List<string> fields = new List<string>();
+                List<List<string>> data = new List<List<string>>();
+                List<string> datarow = new List<string>();
+                int guid = Convert.ToInt32(((MasterObject)uiDataGrid.SelectedItem).Val0);
+                DataDescription dd = new DataDescription();
+                dd.OrgID = orgid;
+                dd.ObjName = uiListOfObjects.SelectedItem.ToString();
+                fields.Add("guid");
+                dd.Fields = fields;
+                datarow.Add(guid.ToString());
+                data.Add(datarow);
+                dd.Data = data;
 
+                DataServiceClient client = new DataServiceClient();
+                client.DeleteDataCompleted +=new EventHandler<DeleteDataCompletedEventArgs>(client_DeleteDataCompleted);
+                client.DeleteDataAsync(dd);
+                uiBusyIndicator.IsBusy = true;
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void client_DeleteDataCompleted(object sender, DeleteDataCompletedEventArgs e)
+        {
+            uiBusyIndicator.IsBusy = true;
+            MessageBox.Show(e.Result + " Rows deleted");
+            DataRefresh();
         }
 
 
-
-
-
+        /*
         private void ViewData(int orgid)
         {
             ObjectDescription od = new ObjectDescription();
@@ -340,17 +374,7 @@ namespace MiniSAAS
             }
         }
 
-        void client_DeleteObjectCompleted(object sender, DeleteObjectCompletedEventArgs e)
-        {
-            if (e.Result)
-            {
-                MessageBox.Show("Table deleted");
-            }
-            else
-            {
-                MessageBox.Show("An error occurred. Please try again.");
-            }
-        }
+        
 
         void CreateObject(int orgid)
         {
@@ -385,5 +409,45 @@ namespace MiniSAAS
                 MessageBox.Show("An error occured. Please try again");
             }
         }
+
+        private void DeleteData(int orgid)
+        {
+            try
+            {
+                DataDescription dd = new DataDescription();
+                dd.OrgID = orgid;
+                dd.ObjName = "shirt";
+
+                List<String> fields = new List<string>();
+                fields.Add("id");
+                fields.Add("color");
+
+
+                dd.Fields = fields;
+
+                List<List<String>> datacollection = new List<List<string>>();
+
+                List<String> data1 = new List<string>();
+                data1.Add("1");
+                data1.Add("red");
+                datacollection.Add(data1);
+
+                List<String> data2 = new List<string>();
+                data2.Add("2");
+                data2.Add("blue");
+                datacollection.Add(data2);
+
+                dd.Data = datacollection;
+
+
+                DataServiceClient client = new DataServiceClient();
+                client.DeleteDataCompleted += new EventHandler<DeleteDataCompletedEventArgs>(client_DeleteDataCompleted);
+                client.DeleteDataAsync(dd);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }*/
     }
 }

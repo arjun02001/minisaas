@@ -3,10 +3,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:my="clr-namespace:MiniSAAS.UserControls"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-    <Grid x:Name="LayoutRoot" Background="White">
-
-    </Grid>
+    <toolkit:BusyIndicator Name="uiBusyIndicator">
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <my:Header Grid.Row="0"></my:Header>
+            <Grid Grid.Row="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="10" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="5">
+                        <TextBlock Margin="5" Text="List of Objects"></TextBlock>
+                        <ComboBox Margin="5" Name="uiListOfObjects" SelectionChanged="uiListOfObjects_SelectionChanged"></ComboBox>
+                        <Button Margin="5" Name="uiCreateObject" Content="Create New Object"></Button>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5">
+                        <TextBlock Margin="5" Text="Object Schema"></TextBlock>
+                        <ListBox Margin="5" Name="uiObjectSchema" Height="100" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"></ListBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" Margin="10" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical">
+                        <sdk:DataGrid Name="uiDataGrid" MinHeight="300" MinWidth="600" MaxHeight="300" MaxWidth="600" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Margin="5" Name="uiAddData" Content="Add Data" Click="uiAddData_Click"></Button>
+                            <Button Margin="5" Name="uiDeleteData" Content="Delete Data" Click="uiDeleteData_Click"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </toolkit:BusyIndicator>
 </UserControl>

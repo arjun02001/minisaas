@@ -264,7 +264,7 @@ namespace MiniSAAS.Back
                 }
                 column = column.Substring(0, column.LastIndexOf(','));
 
-                sql = string.Format("select guid, {0} from dbo.heap", column);
+                sql = string.Format("select guid, {0} from dbo.heap where objid = '{1}'", column, objid);
                 dt = DataManager.GetData(sql);
                 foreach (DataRow dr in dt.Rows)
                 {

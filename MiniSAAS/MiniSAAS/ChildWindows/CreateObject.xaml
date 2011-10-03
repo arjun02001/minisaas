@@ -20,9 +20,10 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="5" Text="Primary key" VerticalAlignment="Center"></TextBlock>
-                            <TextBox Margin="5" Name="uiPrimaryKey" Width="75"></TextBox>
+                            <TextBox Margin="5" Name="uiPrimaryKey" Width="75" IsEnabled="False"></TextBox>
                         </StackPanel>
-                        <Button Margin="5" Name="uiAddField" Content="Add Another Field"></Button>
+                        <Button Margin="5" Name="uiMakePrimary" Content="Make Primary" Click="uiMakePrimary_Click"></Button>
+                        <Button Margin="5" Name="uiAddField" Content="Add Another Field" Click="uiAddField_Click"></Button>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

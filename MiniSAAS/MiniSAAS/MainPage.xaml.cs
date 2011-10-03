@@ -83,6 +83,10 @@ namespace MiniSAAS
         {
             try
             {
+                if (uiListOfObjects.Items.Count == 0)
+                {
+                    return;
+                }
                 if (uiListOfObjects.SelectedItem.ToString().ToLower().Equals("please select"))
                 {
                     return;
@@ -155,13 +159,23 @@ namespace MiniSAAS
         {
             try
             {
-                CreateObject createobject = new CreateObject();
+                CreateObject createobject = new CreateObject(orgid);
+                createobject.ObjectCreated += new ChildWindows.CreateObject.ObjectCreatedHandler(createobject_ObjectCreated);
                 createobject.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
+        }
+
+        void createobject_ObjectCreated(bool status)
+        {
+            if (!status)
+            {
+                MessageBox.Show("Object could not be created");
+            }
+            GetTenantData();
         }
 
         private void uiDeleteObject_Click(object sender, RoutedEventArgs e)

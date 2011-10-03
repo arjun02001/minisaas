@@ -44,7 +44,6 @@ namespace MiniSAAS.ChildWindows
 
         private void uiPassword_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (e.Key == Key.Enter)
             {
                 PerformLogin();

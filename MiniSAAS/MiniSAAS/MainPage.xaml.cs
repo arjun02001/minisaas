@@ -234,6 +234,24 @@ namespace MiniSAAS
         private void uiAddData_Click(object sender, RoutedEventArgs e)
         {
 
+            try
+            {
+                AddData adddata = new AddData((from p in ods
+                                               where p.ObjName == uiListOfObjects.SelectedItem
+                                               select p).Single());
+                adddata.DataAdded += new AddData.AddDataHandler(adddata_DataAdded);
+                adddata.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void adddata_DataAdded(int status)
+        {
+            MessageBox.Show(status.ToString() + " rows inserted");
+            GetTenantData();
         }
 
         private void uiDeleteData_Click(object sender, RoutedEventArgs e)

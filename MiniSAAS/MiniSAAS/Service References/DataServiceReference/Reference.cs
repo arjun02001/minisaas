@@ -203,6 +203,11 @@ namespace MiniSAAS.DataServiceReference {
         System.IAsyncResult BeginViewData(MiniSAAS.DataServiceReference.ObjectDescription od, System.AsyncCallback callback, object asyncState);
         
         MiniSAAS.DataServiceReference.DataDescription EndViewData(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataService/DeleteData", ReplyAction="http://tempuri.org/IDataService/DeleteDataResponse")]
+        System.IAsyncResult BeginDeleteData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState);
+        
+        int EndDeleteData(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -344,6 +349,25 @@ namespace MiniSAAS.DataServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeleteDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public DeleteDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataServiceClient : System.ServiceModel.ClientBase<MiniSAAS.DataServiceReference.IDataService>, MiniSAAS.DataServiceReference.IDataService {
         
         private BeginOperationDelegate onBeginRegisterTenantDelegate;
@@ -387,6 +411,12 @@ namespace MiniSAAS.DataServiceReference {
         private EndOperationDelegate onEndViewDataDelegate;
         
         private System.Threading.SendOrPostCallback onViewDataCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginDeleteDataDelegate;
+        
+        private EndOperationDelegate onEndDeleteDataDelegate;
+        
+        private System.Threading.SendOrPostCallback onDeleteDataCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -454,6 +484,8 @@ namespace MiniSAAS.DataServiceReference {
         public event System.EventHandler<InsertDataCompletedEventArgs> InsertDataCompleted;
         
         public event System.EventHandler<ViewDataCompletedEventArgs> ViewDataCompleted;
+        
+        public event System.EventHandler<DeleteDataCompletedEventArgs> DeleteDataCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -785,6 +817,52 @@ namespace MiniSAAS.DataServiceReference {
                         od}, this.onEndViewDataDelegate, this.onViewDataCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.DataServiceReference.IDataService.BeginDeleteData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteData(dd, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        int MiniSAAS.DataServiceReference.IDataService.EndDeleteData(System.IAsyncResult result) {
+            return base.Channel.EndDeleteData(result);
+        }
+        
+        private System.IAsyncResult OnBeginDeleteData(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MiniSAAS.DataServiceReference.DataDescription dd = ((MiniSAAS.DataServiceReference.DataDescription)(inValues[0]));
+            return ((MiniSAAS.DataServiceReference.IDataService)(this)).BeginDeleteData(dd, callback, asyncState);
+        }
+        
+        private object[] OnEndDeleteData(System.IAsyncResult result) {
+            int retVal = ((MiniSAAS.DataServiceReference.IDataService)(this)).EndDeleteData(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDeleteDataCompleted(object state) {
+            if ((this.DeleteDataCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DeleteDataCompleted(this, new DeleteDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DeleteDataAsync(MiniSAAS.DataServiceReference.DataDescription dd) {
+            this.DeleteDataAsync(dd, null);
+        }
+        
+        public void DeleteDataAsync(MiniSAAS.DataServiceReference.DataDescription dd, object userState) {
+            if ((this.onBeginDeleteDataDelegate == null)) {
+                this.onBeginDeleteDataDelegate = new BeginOperationDelegate(this.OnBeginDeleteData);
+            }
+            if ((this.onEndDeleteDataDelegate == null)) {
+                this.onEndDeleteDataDelegate = new EndOperationDelegate(this.OnEndDeleteData);
+            }
+            if ((this.onDeleteDataCompletedDelegate == null)) {
+                this.onDeleteDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteDataCompleted);
+            }
+            base.InvokeAsync(this.onBeginDeleteDataDelegate, new object[] {
+                        dd}, this.onEndDeleteDataDelegate, this.onDeleteDataCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -951,6 +1029,19 @@ namespace MiniSAAS.DataServiceReference {
             public MiniSAAS.DataServiceReference.DataDescription EndViewData(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MiniSAAS.DataServiceReference.DataDescription _result = ((MiniSAAS.DataServiceReference.DataDescription)(base.EndInvoke("ViewData", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginDeleteData(MiniSAAS.DataServiceReference.DataDescription dd, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = dd;
+                System.IAsyncResult _result = base.BeginInvoke("DeleteData", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public int EndDeleteData(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                int _result = ((int)(base.EndInvoke("DeleteData", _args, result)));
                 return _result;
             }
         }

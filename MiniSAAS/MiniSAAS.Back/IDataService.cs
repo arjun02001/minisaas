@@ -26,7 +26,7 @@ namespace MiniSAAS.Back
         int InsertData(DataDescription dd);
         [OperationContract]
         DataDescription ViewData(ObjectDescription od);
-        //[OperationContract]
-        //int DeleteData(DataDescription dd);
+        [OperationContract]
+        int DeleteData(DataDescription dd);
     }
 }

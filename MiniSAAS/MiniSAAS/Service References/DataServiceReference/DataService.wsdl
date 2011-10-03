@@ -50,6 +50,12 @@
   <wsdl:message name="IDataService_ViewData_OutputMessage">
     <wsdl:part name="parameters" element="tns:ViewDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataService_DeleteData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteData" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_DeleteData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDataResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDataService">
     <wsdl:operation name="RegisterTenant">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataService/RegisterTenant" message="tns:IDataService_RegisterTenant_InputMessage" />
@@ -78,6 +84,10 @@
     <wsdl:operation name="ViewData">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataService/ViewData" message="tns:IDataService_ViewData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataService/ViewDataResponse" message="tns:IDataService_ViewData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/DeleteData" message="tns:IDataService_DeleteData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/DeleteDataResponse" message="tns:IDataService_DeleteData_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataService" type="tns:IDataService">
@@ -138,6 +148,15 @@
     </wsdl:operation>
     <wsdl:operation name="ViewData">
       <soap:operation soapAction="http://tempuri.org/IDataService/ViewData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteData">
+      <soap:operation soapAction="http://tempuri.org/IDataService/DeleteData" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

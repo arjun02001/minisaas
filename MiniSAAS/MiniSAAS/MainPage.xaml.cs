@@ -47,6 +47,7 @@ namespace MiniSAAS
         {
             try
             {
+
                 DataServiceClient client = new DataServiceClient();
                 client.GetObjectCollectionCompleted += new EventHandler<GetObjectCollectionCompletedEventArgs>(client_GetObjectCollectionCompleted);
                 client.GetObjectCollectionAsync(orgid);
@@ -58,6 +59,53 @@ namespace MiniSAAS
                 MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
         }
+
+
+        private void DeleteData(int orgid)
+        {
+            try
+            {
+                DataDescription dd = new DataDescription();
+                dd.OrgID = orgid;
+                dd.ObjName = "shirt";
+
+                List<String> fields = new List<string>();
+                fields.Add("id");
+                fields.Add("color");
+                
+                
+                dd.Fields = fields;
+
+                List<List<String>> datacollection = new List<List<string>>();
+                
+                List<String> data1 = new List<string>();
+                data1.Add("1");
+                data1.Add("red");
+                datacollection.Add(data1);
+
+                List<String> data2 = new List<string>();
+                data2.Add("2");
+                data2.Add("blue");
+                datacollection.Add(data2);
+
+                dd.Data = datacollection;
+
+                            
+                DataServiceClient client = new DataServiceClient();
+                client.DeleteDataCompleted += new EventHandler<DeleteDataCompletedEventArgs>(client_DeleteDataCompleted);
+                client.DeleteDataAsync(dd);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void client_DeleteDataCompleted(object sender, DeleteDataCompletedEventArgs e)
+        {
+            MessageBox.Show(e.Result + " Rows deleted");
+        }
+
 
         void client_GetObjectCollectionCompleted(object sender, GetObjectCollectionCompletedEventArgs e)
         {

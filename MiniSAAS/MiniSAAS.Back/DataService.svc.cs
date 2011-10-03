@@ -228,6 +228,87 @@ namespace MiniSAAS.Back
             return numrowsinserted;
         }
 
+        public int DeleteData(DataDescription dd)
+        {
+            String sql; int objid = 0, i = 0, numrowsdeleted = 0;
+
+            sql = string.Format("select objid from dbo.Objects where orgid = '{0}' and objname = '{1}'", dd.OrgID, dd.ObjName);
+            DataTable dt = DataManager.GetData(sql);
+            if (dt.Rows.Count == 0)
+            {
+                return 0;
+            }
+            objid = Convert.ToInt32(dt.Rows[0][0]);
+            
+            try
+            {
+                String contains = dd.Fields.Find(delegate(String str) { return str.ToLower().Equals("guid"); });
+                if (contains != null)
+                {
+                    int guidindex = dd.Fields.IndexOf(contains);
+                    foreach(List<String> dataentry in dd.Data)
+                    {
+                        sql = string.Format("delete from dbo.heap where guid = '{0}' and objid = '{1}' and orgid = '{2}'", dataentry[guidindex],objid,dd.OrgID);
+                        numrowsdeleted = DataManager.SetData(sql);
+                    }
+                }
+                else
+                {
+                    
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(string.Format("select fieldname, fieldnumber, datatype, isprimary from dbo.fields where objid = '{0}' and fieldname in (", objid.ToString()));
+                    for (i = 0; i < dd.Fields.Count - 1; i++)
+                    {
+                        sb.Append(string.Format(" '{0}', ", dd.Fields[i]));
+                    }
+                    sb.Append(string.Format(" '{0}' )", dd.Fields[i]));
+                    dt = DataManager.GetData(sb.ToString());
+                    if (dt.Rows.Count == 0)
+                    {
+                        return 0;
+                    }
+                    dt.Columns.Add("datafieldindex");
+                    for (i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dt.Rows[i]["datafieldindex"] = dd.Fields.IndexOf(dt.Rows[i]["fieldname"].ToString());
+                    }
+                    List<String> fieldnames = new List<string>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        fieldnames.Add(dr["datafieldindex"].ToString());
+                    }
+                    using (TransactionScope scope = new TransactionScope())
+                    {
+                        StringBuilder whereclause;
+                        foreach (List<string> row in dd.Data)
+                        {                         
+                            whereclause = new StringBuilder();
+                            for ( i = 0; i < fieldnames.Count; i++)
+                            {
+                                if (row[Convert.ToInt32(fieldnames[i])] != null)
+                                {
+                                    whereclause.Append("[" + fieldnames[i] + "] = '" + row[Convert.ToInt32(fieldnames[i])] + "' , ");
+                                }
+                            }
+                            String clause = whereclause.ToString();
+                            clause = clause.Substring(0,clause.LastIndexOf(','));
+                            clause = clause.Replace(",", "and");
+                            sql = string.Format("delete from dbo.heap where {0} ", clause);
+                            numrowsdeleted += DataManager.SetData(sql);
+                        }
+                        scope.Complete();
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            return numrowsdeleted;
+        }
+
         public DataDescription ViewData(ObjectDescription od)
         {
             DataDescription dd = new DataDescription();

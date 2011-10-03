@@ -151,6 +151,24 @@ namespace MiniSAAS
             }
         }
 
+        private void uiCreateObject_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                CreateObject createobject = new CreateObject();
+                createobject.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        private void uiDeleteObject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void uiAddData_Click(object sender, RoutedEventArgs e)
         {
 
@@ -287,7 +305,5 @@ namespace MiniSAAS
                 MessageBox.Show("An error occured. Please try again");
             }
         }
-
-       
     }
 }

@@ -29,7 +29,8 @@
                     <StackPanel Grid.Column="0" Orientation="Vertical" Margin="5">
                         <TextBlock Margin="5" Text="List of Objects"></TextBlock>
                         <ComboBox Margin="5" Name="uiListOfObjects" SelectionChanged="uiListOfObjects_SelectionChanged"></ComboBox>
-                        <Button Margin="5" Name="uiCreateObject" Content="Create New Object"></Button>
+                        <Button Margin="5" Name="uiCreateObject" Content="Create New Object" Click="uiCreateObject_Click"></Button>
+                        <Button Margin="5" Name="uiDeleteObject" Content="Delete Selected Object" Click="uiDeleteObject_Click"></Button>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5">
                         <TextBlock Margin="5" Text="Object Schema"></TextBlock>

@@ -43,6 +43,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Button Margin="5" Name="uiAddData" Content="Add Data" Click="uiAddData_Click"></Button>
                             <Button Margin="5" Name="uiDeleteData" Content="Delete Data" Click="uiDeleteData_Click"></Button>
+                            <Button Margin="5" Name="uiUpdateData" Content="Update Data" Click="uiUpdateData_Click"></Button>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

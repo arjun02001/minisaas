@@ -37,7 +37,7 @@ namespace MiniSAAS.ChildWindows
 
                     TextBlock tbl = new TextBlock();
                     tbl.Text = field.Key;
-                    tbl.SetValue(Grid.RowProperty, i++);
+                    tbl.SetValue(Grid.RowProperty, i);
 
                     RowDefinition rd = new RowDefinition();
                     rd.Height = GridLength.Auto;
@@ -47,13 +47,10 @@ namespace MiniSAAS.ChildWindows
                     TextBox tb = new TextBox();
                     tb.Name = field.Key;
                     tb.Width = 75;
-                    tb.SetValue(Grid.RowProperty, i++);
+                    tb.SetValue(Grid.RowProperty, i);
 
-                    rd = new RowDefinition();
-                    rd.Height = GridLength.Auto;
-                    LayoutRoot.RowDefinitions.Add(rd);
                     LayoutRoot.Children.Add(tb);
-
+                    i++;
                 }
             }
             catch (Exception ex)

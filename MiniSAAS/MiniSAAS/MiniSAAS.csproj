@@ -96,6 +96,9 @@
     <Compile Include="ChildWindows\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindows\UpdateData.xaml.cs">
+      <DependentUpon>UpdateData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\DataType.cs" />
     <Compile Include="Classes\MasterObject.cs" />
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChildWindows\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindows\UpdateData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

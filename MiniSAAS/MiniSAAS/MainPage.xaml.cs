@@ -18,6 +18,10 @@ namespace MiniSAAS
 {
     public partial class MainPage : UserControl
     {
+        List<ObjectDescription> ods = null;
+        DataDescription dd = null;
+        int orgid = 0;
+
         public MainPage()
         {
             InitializeComponent();
@@ -35,20 +39,131 @@ namespace MiniSAAS
 
         void login_LoginSuccess(int orgid)
         {
+            this.orgid = orgid;
+            GetTenantData();
+        }
+
+        private void GetTenantData()
+        {
             try
             {
-                //DeleteObject(orgid);
-                //CreateObject(orgid);
-                //ViewObject(orgid);
-                //InsertData(orgid);
-                ViewData(orgid);
-                
+                DataServiceClient client = new DataServiceClient();
+                client.GetObjectCollectionCompleted += new EventHandler<GetObjectCollectionCompletedEventArgs>(client_GetObjectCollectionCompleted);
+                client.GetObjectCollectionAsync(orgid);
+                uiBusyIndicator.IsBusy = true;
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void client_GetObjectCollectionCompleted(object sender, GetObjectCollectionCompletedEventArgs e)
+        {
+            uiBusyIndicator.IsBusy = false;
+            try
+            {
+                uiListOfObjects.Items.Clear();
+                ods = e.Result;
+                uiListOfObjects.Items.Add("Please Select");
+                foreach (ObjectDescription od in ods)
+                {
+                    uiListOfObjects.Items.Add(od.ObjName);
+                }
+                uiListOfObjects.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
         }
+
+        private void uiListOfObjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (uiListOfObjects.SelectedItem.ToString().ToLower().Equals("please select"))
+                {
+                    return;
+                }
+                string objectname = uiListOfObjects.SelectedItem.ToString();
+                ObjectDescription od = (from p in ods
+                                        where p.ObjName.Equals(objectname)
+                                        select p).Single();
+                uiObjectSchema.Items.Clear();
+                foreach (KeyValuePair<string, string> pair in od.Fields)
+                {
+                    uiObjectSchema.Items.Add(pair.Key + "  " + pair.Value);
+                }
+
+                od = new ObjectDescription();
+                od.OrgID = orgid;
+                od.ObjName = objectname;
+
+                DataServiceClient client = new DataServiceClient();
+                client.ViewDataCompleted +=new EventHandler<ViewDataCompletedEventArgs>(client_ViewDataCompleted);
+                client.ViewDataAsync(od);
+                uiBusyIndicator.IsBusy = true;
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void client_ViewDataCompleted(object sender, ViewDataCompletedEventArgs e)
+        {
+            uiBusyIndicator.IsBusy = false;
+            try
+            {
+                dd = e.Result;
+                uiDataGrid.ItemsSource = MasterObject.GetMasterObject(dd);
+                uiDataGrid.LayoutUpdated += new EventHandler(uiDataGrid_LayoutUpdated);
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        void uiDataGrid_LayoutUpdated(object sender, EventArgs e)
+        {
+            try
+            {
+                int count = 0;
+                foreach (string field in dd.Fields)
+                {
+                    uiDataGrid.Columns[count++].Header = field;
+                }
+                int columncount = uiDataGrid.Columns.Count;
+                for (int i = dd.Fields.Count; i < columncount; i++)
+                {
+                    uiDataGrid.Columns.RemoveAt(i);
+                }
+            }
+            catch (Exception ex)
+            {
+                uiBusyIndicator.IsBusy = false;
+                //MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
+        }
+
+        private void uiAddData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void uiDeleteData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+
 
         private void ViewData(int orgid)
         {
@@ -60,10 +175,7 @@ namespace MiniSAAS
             client.ViewDataAsync(od);
         }
 
-        void client_ViewDataCompleted(object sender, ViewDataCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private void InsertData(int orgid)
         {
@@ -111,10 +223,7 @@ namespace MiniSAAS
             }
         }
 
-        void client_GetObjectCollectionCompleted(object sender, GetObjectCollectionCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         void DeleteObject(int orgid)
         {
@@ -178,5 +287,7 @@ namespace MiniSAAS
                 MessageBox.Show("An error occured. Please try again");
             }
         }
+
+       
     }
 }

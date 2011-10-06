@@ -105,7 +105,7 @@ namespace MiniSAAS
                 uiObjectSchema.Items.Clear();
                 foreach (KeyValuePair<string, string> pair in od.Fields)
                 {
-                    uiObjectSchema.Items.Add(pair.Key + "  " + pair.Value);
+                    uiObjectSchema.Items.Add(pair.Key + "  " + pair.Value + ((pair.Key.Equals(od.PrimaryKey)) ? "  [Primary Key]" : string.Empty));
                 }
             }
             catch (Exception ex)
@@ -256,7 +256,18 @@ namespace MiniSAAS
 
         void adddata_DataAdded(int status)
         {
-            MessageBox.Show(status.ToString() + " rows inserted");
+            if (status == -1)
+            {
+                MessageBox.Show("Data type mismatch during insertion");
+            }
+            else if (status == -2)
+            {
+                MessageBox.Show("Primary Key constraint violated");
+            }
+            else
+            {
+                MessageBox.Show(status.ToString() + " rows inserted");
+            }
             DataRefresh();
         }
 

@@ -174,6 +174,10 @@ namespace MiniSAAS
                 {
                     uiDataGrid.Columns.RemoveAt(i);
                 }
+                if (uiDataGrid.Columns.Count != 0 && uiDataGrid.Columns[0].Header.ToString().ToLower().Equals("guid"))
+                {
+                    uiDataGrid.Columns[0].Visibility = System.Windows.Visibility.Collapsed;
+                }
             }
             catch (Exception ex)
             {

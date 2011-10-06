@@ -207,10 +207,33 @@ namespace MiniSAAS.Back
                         column = value = string.Empty;
                         foreach (DataRow dr in dt.Rows)
                         {
-                            if (row[Convert.ToInt32(dr["datafieldindex"])] != null)
+                            string celldata = row[Convert.ToInt32(dr["datafieldindex"])];
+
+                            if (dr["isprimary"].ToString().Equals("1"))
                             {
-                                column += "[" + dr["fieldnumber"].ToString() + "], ";
-                                value += string.Format("'{0}', ", row[Convert.ToInt32(dr["datafieldindex"])]);
+                                if (String.IsNullOrEmpty(celldata))
+                                {
+                                    return -2;
+                                }
+                                sql = string.Format("select guid from dbo.heap where [{0}] = '{1}' and objid = '{2}'",dr["fieldnumber"],celldata,objid.ToString());
+                                DataTable dataTable = DataManager.GetData(sql);
+                                if (dataTable.Rows.Count != 0)
+                                {
+                                    return -2;
+                                }
+                            }
+
+                            if (!String.IsNullOrEmpty(celldata))
+                            {
+                                if (checkDatatype(dr["datatype"].ToString(), celldata))
+                                {
+                                    column += "[" + dr["fieldnumber"].ToString() + "], ";
+                                    value += string.Format("'{0}', ", celldata);
+                                }
+                                else
+                                {
+                                    return -1;
+                                }
                             }
                         }
                         column = column.Substring(0, column.LastIndexOf(','));
@@ -366,6 +389,35 @@ namespace MiniSAAS.Back
                 return null;
             }
             return dd;
+        }
+        private bool checkDatatype(String datatype,string celldata)
+        {
+            try
+            {
+                if(datatype.ToLower().Equals("int"))
+                {
+                    Convert.ToInt32(celldata);
+                }
+                else if(datatype.ToLower().Equals("float"))
+                {
+                    Convert.ToDouble(celldata);
+                }
+                else if(datatype.ToLower().Equals("varchar(50)"))
+                {
+                    //dont need this condition check
+                }
+                else if(datatype.ToLower().Equals("datetime"))
+                {
+                    Convert.ToDateTime(celldata);
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            return true;
+            
         }
     }
 }

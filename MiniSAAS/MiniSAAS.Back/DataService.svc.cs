@@ -213,13 +213,13 @@ namespace MiniSAAS.Back
                             {
                                 if (String.IsNullOrEmpty(celldata))
                                 {
-                                    return -2;
+                                    return -2; // primary key is empty
                                 }
                                 sql = string.Format("select guid from dbo.heap where [{0}] = '{1}' and objid = '{2}'",dr["fieldnumber"],celldata,objid.ToString());
                                 DataTable dataTable = DataManager.GetData(sql);
                                 if (dataTable.Rows.Count != 0)
                                 {
-                                    return -2;
+                                    return -2; // primary key constraint violated
                                 }
                             }
 
@@ -232,7 +232,7 @@ namespace MiniSAAS.Back
                                 }
                                 else
                                 {
-                                    return -1;
+                                    return -1; // data type mismatch
                                 }
                             }
                         }

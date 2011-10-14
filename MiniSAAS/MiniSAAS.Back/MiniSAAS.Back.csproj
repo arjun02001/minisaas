@@ -65,6 +65,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="WorkflowService.svc" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Constants.cs" />
@@ -72,11 +73,16 @@
     <Compile Include="Classes\DataManager.cs" />
     <Compile Include="Classes\ObjectDescription.cs" />
     <Compile Include="Classes\Utility.cs" />
+    <Compile Include="Classes\WebServiceInvoker.cs" />
     <Compile Include="DataService.svc.cs">
       <DependentUpon>DataService.svc</DependentUpon>
     </Compile>
     <Compile Include="IDataService.cs" />
+    <Compile Include="IWorkflowService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkflowService.svc.cs">
+      <DependentUpon>WorkflowService.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

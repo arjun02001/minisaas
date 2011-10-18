@@ -14,10 +14,11 @@ namespace MiniSAAS.Back
         public void DoWork()
         {
             WebServiceInvoker invoker = new WebServiceInvoker(new Uri("http://rjun.info:16000/asmx/Service1.asmx"));
-            string servicename = invoker.AvailableServices[0];
-            string method = invoker.EnumerateServiceMethods(servicename)[0];
+            //WebServiceInvoker invoker = new WebServiceInvoker(new Uri("http://wsf.cdyne.com/ProfanityWS/Profanity.asmx"));
+            List<string> services = invoker.AvailableServices;
+            List<ServiceMethod> methods = invoker.EnumerateServiceMethods(services[0]);
             object[] args = new object[] { 1, 2 };
-            int result = invoker.InvokeMethod<int>(servicename, method, args);
+            int result = invoker.InvokeMethod<int>(services[0], methods[0].MethodName, args);
         }
     }
 }

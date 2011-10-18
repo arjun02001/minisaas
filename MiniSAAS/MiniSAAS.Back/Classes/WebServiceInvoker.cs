@@ -41,7 +41,43 @@ namespace MiniSAAS.Back.Classes
             }
         }
 
-        public List<string> EnumerateServiceMethods(string servicename)
+        public List<ServiceMethod> EnumerateServiceMethods(string servicename)
+        {
+            List<ServiceMethod> servicemethods = new List<ServiceMethod>();
+            ServiceMethod method = null;
+            List<string> parameters = null;
+            try
+            {
+                if (!this.availabletypes.ContainsKey(servicename))
+                {
+                    throw new Exception("Service not available");
+                }
+                else
+                {
+                    Type type = this.availabletypes[servicename];
+                    foreach (MethodInfo minfo in type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
+                    {
+                        method = new ServiceMethod();
+                        parameters = new List<string>();
+                        method.MethodName = minfo.Name;
+                        foreach (ParameterInfo pinfo in minfo.GetParameters())
+                        {
+                            parameters.Add(pinfo.ParameterType.FullName);
+                        }
+                        method.Parameters = parameters;
+                        method.ReturnType = minfo.ReturnParameter.ParameterType.FullName;
+                        servicemethods.Add(method);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return servicemethods;
+        }
+
+        /*public List<string> EnumerateServiceMethods(string servicename)
         {
             try
             {
@@ -64,7 +100,7 @@ namespace MiniSAAS.Back.Classes
             {
                 throw;
             }
-        }
+        }*/
 
         public T InvokeMethod<T>(string servicename, string methodname, params object[] args)
         {

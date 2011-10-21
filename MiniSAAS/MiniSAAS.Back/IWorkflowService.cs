@@ -13,5 +13,28 @@ namespace MiniSAAS.Back
     {
         [OperationContract]
         void DoWork();
+
+        [OperationContract]
+        int Login(string emailid, string password);
+        [OperationContract]
+        bool ForgotPassword(string emailid);
+        [OperationContract]
+        bool Register(string emailid, string password);
+        [OperationContract]
+        double ApplyCoupon(double amount, string couponcode);
+        [OperationContract]
+        double CalculateTax(double amount);
+        [OperationContract]
+        string VerifyCreditCard(string cardnumber, DateTime expdate);
+        [OperationContract]
+        List<string> GetShippingVendors();
+        [OperationContract]
+        bool ValidateZIP(string zip);
+        [OperationContract]
+        bool AddToCart(int orgid, string userid, string productid);
+        [OperationContract]
+        List<string> GetCart(int orgid, string userid);
+        [OperationContract]
+        bool DeleteCart(int orgid, string userid, List<string> productids);
     }
 }

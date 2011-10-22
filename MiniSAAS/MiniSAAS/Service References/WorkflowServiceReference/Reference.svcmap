@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f91b5998-a634-409d-9488-e23cab1d120b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3985/WorkflowService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WorkflowService.disco" MetadataType="Disco" ID="aed9b9f9-5fee-4978-9a84-ff767bef03f1" SourceId="1" SourceUrl="http://localhost:3985/WorkflowService.svc?disco" />
+    <MetadataFile FileName="WorkflowService.wsdl" MetadataType="Wsdl" ID="d747e16a-be31-44d9-b72b-fd06a2f0366a" SourceId="1" SourceUrl="http://localhost:3985/WorkflowService.svc?wsdl" />
+    <MetadataFile FileName="WorkflowService.xsd" MetadataType="Schema" ID="2248c3d7-4881-43cd-ac07-4079a99b6a39" SourceId="1" SourceUrl="http://localhost:3985/WorkflowService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WorkflowService1.xsd" MetadataType="Schema" ID="b67374c6-f21b-4a7e-8fef-833be23aa3ae" SourceId="1" SourceUrl="http://localhost:3985/WorkflowService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WorkflowService2.xsd" MetadataType="Schema" ID="022db712-1f50-4d81-8526-88b6b22a3121" SourceId="1" SourceUrl="http://localhost:3985/WorkflowService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WorkflowService3.xsd" MetadataType="Schema" ID="9cec97ee-7165-4d25-b791-ff883537eab8" SourceId="1" SourceUrl="http://localhost:3985/WorkflowService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

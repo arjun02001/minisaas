@@ -112,6 +112,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DataViewer.xaml.cs">
       <DependentUpon>DataViewer.xaml</DependentUpon>
     </Compile>
@@ -190,6 +195,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\WorkflowServiceReference\MiniSAAS.WorkflowServiceReference.WorkflowDescription.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WorkflowServiceReference\WorkflowService.disco" />
+    <None Include="Service References\WorkflowServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\WorkflowServiceReference\configuration.svcinfo" />
+    <None Include="Service References\WorkflowServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\DataServiceReference\DataService.wsdl" />
     <None Include="Service References\DataServiceReference\DataService.xsd">
@@ -204,12 +219,26 @@
     <None Include="Service References\DataServiceReference\DataService3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WorkflowServiceReference\WorkflowService.wsdl" />
+    <None Include="Service References\WorkflowServiceReference\WorkflowService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowServiceReference\WorkflowService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowServiceReference\WorkflowService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowServiceReference\WorkflowService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DataServiceReference\" />
+    <WCFMetadataStorage Include="Service References\WorkflowServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

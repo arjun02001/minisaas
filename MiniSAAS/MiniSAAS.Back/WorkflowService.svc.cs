@@ -255,5 +255,20 @@ namespace MiniSAAS.Back
                 return false;
             }
         }
+
+        public WorkflowDescription GetWorkflow(int orgid)
+        {
+            WorkflowDescription workflowdescription = new WorkflowDescription();
+            try
+            {
+                string sql = string.Format("select * from dbo.Workflow where OrgID = '{0}'", orgid);
+                workflowdescription = (DataManager.GetData(sql).Rows.Count == 0) ? WorkflowDescription.GetWorkflow(0) : WorkflowDescription.GetWorkflow(orgid);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return workflowdescription;
+        }
     }
 }

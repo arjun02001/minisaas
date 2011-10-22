@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MiniSAAS.Back.Classes;
 
 namespace MiniSAAS.Back
 {
@@ -36,5 +37,7 @@ namespace MiniSAAS.Back
         List<string> GetCart(int orgid, string userid);
         [OperationContract]
         bool DeleteCart(int orgid, string userid, List<string> productids);
+        [OperationContract]
+        WorkflowDescription GetWorkflow(int orgid);
     }
 }

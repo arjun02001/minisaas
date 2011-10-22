@@ -71,10 +71,13 @@
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\DataDescription.cs" />
     <Compile Include="Classes\DataManager.cs" />
+    <Compile Include="Classes\Method.cs" />
     <Compile Include="Classes\ObjectDescription.cs" />
     <Compile Include="Classes\ServiceMethod.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Classes\WebServiceInvoker.cs" />
+    <Compile Include="Classes\Workflow.cs" />
+    <Compile Include="Classes\WorkflowList.cs" />
     <Compile Include="DataService.svc.cs">
       <DependentUpon>DataService.svc</DependentUpon>
     </Compile>
@@ -96,7 +99,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>11180</DevelopmentServerPort>
+          <DevelopmentServerPort>3985</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

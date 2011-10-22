@@ -77,7 +77,7 @@
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Classes\WebServiceInvoker.cs" />
     <Compile Include="Classes\Workflow.cs" />
-    <Compile Include="Classes\WorkflowList.cs" />
+    <Compile Include="Classes\WorkflowDescription.cs" />
     <Compile Include="DataService.svc.cs">
       <DependentUpon>DataService.svc</DependentUpon>
     </Compile>

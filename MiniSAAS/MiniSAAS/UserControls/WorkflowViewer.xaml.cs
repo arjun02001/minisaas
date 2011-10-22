@@ -28,5 +28,20 @@ namespace MiniSAAS.UserControls
         {
 
         }
+
+        private void uiUpdateSequence_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void uiAddMethod_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void uiDeleteMethod_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

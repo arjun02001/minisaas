@@ -41,10 +41,10 @@ namespace MiniSAAS.Back.Classes
             }
         }
 
-        public List<ServiceMethod> EnumerateServiceMethods(string servicename)
+        public List<Method> EnumerateServiceMethods(string servicename)
         {
-            List<ServiceMethod> servicemethods = new List<ServiceMethod>();
-            ServiceMethod method = null;
+            List<Method> servicemethods = new List<Method>();
+            Method method = null;
             List<string> parameters = null;
             try
             {
@@ -57,7 +57,7 @@ namespace MiniSAAS.Back.Classes
                     Type type = this.availabletypes[servicename];
                     foreach (MethodInfo minfo in type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
                     {
-                        method = new ServiceMethod();
+                        method = new Method();
                         parameters = new List<string>();
                         method.MethodName = minfo.Name;
                         foreach (ParameterInfo pinfo in minfo.GetParameters())

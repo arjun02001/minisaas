@@ -18,7 +18,7 @@ namespace MiniSAAS.Back
             //WebServiceInvoker invoker = new WebServiceInvoker(new Uri("http://rjun.info:16000/asmx/Service1.asmx"));
             WebServiceInvoker invoker = new WebServiceInvoker(new Uri("http://wsf.cdyne.com/ProfanityWS/Profanity.asmx"));
             List<string> services = invoker.AvailableServices;
-            List<ServiceMethod> methods = invoker.EnumerateServiceMethods(services[0]);
+            List<Method> methods = invoker.EnumerateServiceMethods(services[0]);
             //object[] args = new object[] { 1, 2 };
             //int result = invoker.InvokeMethod<int>(services[0], methods[0].MethodName, args);
         }

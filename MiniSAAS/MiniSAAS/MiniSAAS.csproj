@@ -170,38 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Service References\DataServiceReference\DataService.wsdl" />
-    <None Include="Service References\DataServiceReference\DataService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DataServiceReference\DataService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="ServiceReferences.ClientConfig" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\DataServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\DataServiceReference\DataService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\DataServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\DataServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DataServiceReference\DataService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DataServiceReference\DataService21.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\DataServiceReference\MiniSAAS.DataServiceReference.DataDescription.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -212,6 +183,26 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\DataServiceReference\DataService.wsdl" />
+    <None Include="Service References\DataServiceReference\DataService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataServiceReference\DataService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataServiceReference\DataService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataServiceReference\DataService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DataServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

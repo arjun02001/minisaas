@@ -9,7 +9,7 @@
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:11180/DataService.svc" binding="basicHttpBinding"
+            <endpoint address="http://localhost:3985/DataService.svc" binding="basicHttpBinding"
                 bindingConfiguration="BasicHttpBinding_IDataService" contract="DataServiceReference.IDataService"
                 name="BasicHttpBinding_IDataService" />
         </client>

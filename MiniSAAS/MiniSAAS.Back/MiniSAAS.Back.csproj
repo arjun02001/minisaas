@@ -73,7 +73,6 @@
     <Compile Include="Classes\DataManager.cs" />
     <Compile Include="Classes\Method.cs" />
     <Compile Include="Classes\ObjectDescription.cs" />
-    <Compile Include="Classes\ServiceMethod.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Classes\WebServiceInvoker.cs" />
     <Compile Include="Classes\Workflow.cs" />

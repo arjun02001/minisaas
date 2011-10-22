@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3985/DataService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3985/DataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3985/DataService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" />
+      <xsd:import schemaLocation="http://localhost:3985/DataService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDataService_RegisterTenant_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTenant" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_RegisterTenant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTenantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_LoginTenant_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginTenant" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_LoginTenant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginTenantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_CreateObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObject" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_CreateObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_DeleteObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteObject" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_DeleteObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_GetObjectCollection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectCollection" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_GetObjectCollection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectCollectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_InsertData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertData" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_InsertData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_ViewData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ViewData" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_ViewData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ViewDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_DeleteData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteData" />
+  </wsdl:message>
+  <wsdl:message name="IDataService_DeleteData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDataService">
+    <wsdl:operation name="RegisterTenant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/RegisterTenant" message="tns:IDataService_RegisterTenant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/RegisterTenantResponse" message="tns:IDataService_RegisterTenant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginTenant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/LoginTenant" message="tns:IDataService_LoginTenant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/LoginTenantResponse" message="tns:IDataService_LoginTenant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/CreateObject" message="tns:IDataService_CreateObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/CreateObjectResponse" message="tns:IDataService_CreateObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/DeleteObject" message="tns:IDataService_DeleteObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/DeleteObjectResponse" message="tns:IDataService_DeleteObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectCollection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/GetObjectCollection" message="tns:IDataService_GetObjectCollection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/GetObjectCollectionResponse" message="tns:IDataService_GetObjectCollection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/InsertData" message="tns:IDataService_InsertData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/InsertDataResponse" message="tns:IDataService_InsertData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/ViewData" message="tns:IDataService_ViewData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/ViewDataResponse" message="tns:IDataService_ViewData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataService/DeleteData" message="tns:IDataService_DeleteData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataService/DeleteDataResponse" message="tns:IDataService_DeleteData_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDataService" type="tns:IDataService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterTenant">
+      <soap:operation soapAction="http://tempuri.org/IDataService/RegisterTenant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginTenant">
+      <soap:operation soapAction="http://tempuri.org/IDataService/LoginTenant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateObject">
+      <soap:operation soapAction="http://tempuri.org/IDataService/CreateObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteObject">
+      <soap:operation soapAction="http://tempuri.org/IDataService/DeleteObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectCollection">
+      <soap:operation soapAction="http://tempuri.org/IDataService/GetObjectCollection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertData">
+      <soap:operation soapAction="http://tempuri.org/IDataService/InsertData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewData">
+      <soap:operation soapAction="http://tempuri.org/IDataService/ViewData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteData">
+      <soap:operation soapAction="http://tempuri.org/IDataService/DeleteData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataService">
+    <wsdl:port name="BasicHttpBinding_IDataService" binding="tns:BasicHttpBinding_IDataService">
+      <soap:address location="http://localhost:3985/DataService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

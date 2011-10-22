@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace MiniSAAS.Back.Classes
 {
     [DataContract]
-    public class WorkflowList
+    public class WorkflowDescription
     {
         [DataMember]
         public int OrgID;

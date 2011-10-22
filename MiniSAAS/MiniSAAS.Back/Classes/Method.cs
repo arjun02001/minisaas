@@ -21,7 +21,7 @@ namespace MiniSAAS.Back.Classes
         public string ReturnType { get; set; }
         [DataMember]
         public List<String> Parameters { get; set; }
-
-        
+        [DataMember]
+        public int WorkflowID { get; set; }
     }
 }

@@ -118,6 +118,9 @@
     <Compile Include="UserControls\Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MethodGrid.xaml.cs">
+      <DependentUpon>MethodGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\WorkflowViewer.xaml.cs">
       <DependentUpon>WorkflowViewer.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Header.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MethodGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

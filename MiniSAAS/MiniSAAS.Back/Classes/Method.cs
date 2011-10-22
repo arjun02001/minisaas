@@ -12,11 +12,11 @@ namespace MiniSAAS.Back.Classes
         [DataMember]
         public int MethodID { get; set;  }
         [DataMember]
-        public int MethodName { get; set; }
+        public string MethodName { get; set; }
         [DataMember]
         public int Sequence { get; set; }
         [DataMember]
-        public int URL { get; set; }
+        public string URL { get; set; }
         [DataMember]
         public string ReturnType { get; set; }
         [DataMember]

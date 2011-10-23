@@ -42,5 +42,9 @@ namespace MiniSAAS.Back
         bool DeleteWorkflow(int orgid, int workflowid);
         [OperationContract]
         bool DeleteMethod(int methodid);
+        [OperationContract]
+        List<Method> GetURLMethods(string url);
+        [OperationContract]
+        bool AddMethods(WorkflowDescription workflowdescription);
     }
 }

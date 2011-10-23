@@ -7,6 +7,7 @@ using System.Text;
 using MiniSAAS.Back.Classes;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Transactions;
 
 namespace MiniSAAS.Back
 {
@@ -298,11 +299,13 @@ namespace MiniSAAS.Back
         {
             try
             {
-                string sql = string.Format("delete from dbo.Workflow where WorkflowID = '{0}' and OrgID = '{1}'", workflowid, orgid);
-                if (DataManager.SetData(sql) > 0)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    return true;
+                    DataManager.SetData(string.Format("delete from dbo.Workflow where WorkflowID = '{0}' and OrgID = '{1}'", workflowid, orgid));
+                    DataManager.SetData(string.Format("delete from dbo.Method where WorkflowID = '{0}'", workflowid));
+                    scope.Complete();
                 }
+                return true;
             }
             catch (Exception)
             {
@@ -324,6 +327,39 @@ namespace MiniSAAS.Back
             {
             }
             return false;
+        }
+
+        public List<Method> GetURLMethods(string url)
+        {
+            List<Method> methods = null;
+            try
+            {
+                WebServiceInvoker invoker = new WebServiceInvoker(new Uri(url));
+                List<string> services = invoker.AvailableServices;
+                methods = invoker.EnumerateServiceMethods(services[0]);
+            }
+            catch (Exception)
+            {
+            }
+            return methods;
+        }
+
+        public bool AddMethods(WorkflowDescription workflowdescription)
+        {
+            try
+            {
+                Workflow w = workflowdescription.Workflows[0];
+                foreach (Method m in w.Methods)
+                {
+                    string sql = string.Format("insert into dbo.Method values ( '{0}', '{1}', '{2}', '{3}', '{4}', '{5}' )", w.WorkflowID, m.MethodName, m.URL, m.ReturnType, m.Parameters, m.Sequence);
+                    DataManager.SetData(sql);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

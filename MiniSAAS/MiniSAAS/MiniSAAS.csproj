@@ -93,6 +93,9 @@
     <Compile Include="ChildWindows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindows\NewMethod.xaml.cs">
+      <DependentUpon>NewMethod.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChildWindows\NewWorkflow.xaml.cs">
       <DependentUpon>NewWorkflow.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ChildWindows\NewMethod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChildWindows\NewWorkflow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +208,9 @@
     <None Include="Service References\DataServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WorkflowServiceReference\MiniSAAS.WorkflowServiceReference.Method.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WorkflowServiceReference\MiniSAAS.WorkflowServiceReference.WorkflowDescription.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

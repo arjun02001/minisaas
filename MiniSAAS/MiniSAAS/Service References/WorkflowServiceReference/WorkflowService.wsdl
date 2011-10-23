@@ -98,6 +98,18 @@
   <wsdl:message name="IWorkflowService_DeleteMethod_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMethodResponse" />
   </wsdl:message>
+  <wsdl:message name="IWorkflowService_GetURLMethods_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetURLMethods" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflowService_GetURLMethods_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetURLMethodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflowService_AddMethods_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMethods" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflowService_AddMethods_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMethodsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IWorkflowService">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/Login" message="tns:IWorkflowService_Login_InputMessage" />
@@ -158,6 +170,14 @@
     <wsdl:operation name="DeleteMethod">
       <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/DeleteMethod" message="tns:IWorkflowService_DeleteMethod_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/DeleteMethodResponse" message="tns:IWorkflowService_DeleteMethod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetURLMethods">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/GetURLMethods" message="tns:IWorkflowService_GetURLMethods_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/GetURLMethodsResponse" message="tns:IWorkflowService_GetURLMethods_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMethods">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/AddMethods" message="tns:IWorkflowService_AddMethods_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/AddMethodsResponse" message="tns:IWorkflowService_AddMethods_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IWorkflowService" type="tns:IWorkflowService">
@@ -290,6 +310,24 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMethod">
       <soap:operation soapAction="http://tempuri.org/IWorkflowService/DeleteMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetURLMethods">
+      <soap:operation soapAction="http://tempuri.org/IWorkflowService/GetURLMethods" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMethods">
+      <soap:operation soapAction="http://tempuri.org/IWorkflowService/AddMethods" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

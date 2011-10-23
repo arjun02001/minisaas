@@ -23,7 +23,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" Margin="5" HorizontalAlignment="Right">
                     <StackPanel Orientation="Vertical">
-                        <ListBox x:Name="uiWorkflow" Margin="5" Height="200" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"></ListBox>
+                        <ListBox x:Name="uiWorkflow" Margin="5" Height="200" Width="200" SelectionChanged="uiWorkflow_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"></ListBox>
                         <Button x:Name="uiAddWorkflow" Margin="5" Content="Add Workflow" Click="uiAddWorkflow_Click" Height="30"></Button>
                         <Button x:Name="uiDeleteWorkflow" Margin="5" Content="Delete Workflow" Click="uiDeleteWorkflow_Click" Height="30"></Button>
                     </StackPanel>

@@ -15,6 +15,7 @@ namespace MiniSAAS
     public partial class App : Application
     {
         public static Grid mainui = new Grid();
+        public static int orgid;
         public App()
         {
             this.Startup += this.Application_Startup;

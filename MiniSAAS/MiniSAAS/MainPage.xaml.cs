@@ -36,6 +36,7 @@ namespace MiniSAAS
 
         void login_LoginSuccess(int orgid)
         {
+            App.orgid = orgid;
             //App.GoToXAML(new DataViewer(orgid));
             App.GoToXAML(new WorkflowViewer(orgid));
         }

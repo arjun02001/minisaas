@@ -5,8 +5,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-    
+
     <Grid x:Name="LayoutRoot" Background="Black">
-        <TextBlock Text="MiniSAAS" Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10" FontSize="30"></TextBlock>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="MiniSAAS" Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10" FontSize="30"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <HyperlinkButton x:Name="uiData" Click="uiData_Click">
+                    <TextBlock Margin="5" Text="Data" Foreground="WhiteSmoke"></TextBlock>
+                </HyperlinkButton>
+                <HyperlinkButton x:Name="uiWorkflow" Click="uiWorkflow_Click">
+                    <TextBlock Margin="5" Text="Workflow" Foreground="WhiteSmoke"></TextBlock>
+                </HyperlinkButton>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

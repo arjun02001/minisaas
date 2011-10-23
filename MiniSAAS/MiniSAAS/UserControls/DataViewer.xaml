@@ -12,7 +12,7 @@
     <toolkit:BusyIndicator Name="uiBusyIndicator">
         <Grid x:Name="LayoutRoot">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <my:Header Grid.Row="0"></my:Header>

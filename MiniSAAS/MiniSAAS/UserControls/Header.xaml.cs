@@ -18,5 +18,15 @@ namespace MiniSAAS.UserControls
         {
             InitializeComponent();
         }
+
+        private void uiData_Click(object sender, RoutedEventArgs e)
+        {
+            App.GoToXAML(new DataViewer(App.orgid));
+        }
+
+        private void uiWorkflow_Click(object sender, RoutedEventArgs e)
+        {
+            App.GoToXAML(new WorkflowViewer(App.orgid));
+        }
     }
 }

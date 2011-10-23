@@ -8,7 +8,7 @@
 
     <Grid x:Name="LayoutRoot" Background="Black">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="MiniSAAS" Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10" FontSize="30"></TextBlock>
+            <TextBlock Text="MiniSAAS" Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="5" FontSize="30"></TextBlock>
             <StackPanel Orientation="Horizontal">
                 <HyperlinkButton x:Name="uiData" Click="uiData_Click">
                     <TextBlock Margin="5" Text="Data" Foreground="WhiteSmoke"></TextBlock>

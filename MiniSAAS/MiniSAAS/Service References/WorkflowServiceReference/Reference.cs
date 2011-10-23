@@ -244,11 +244,6 @@ namespace MiniSAAS.WorkflowServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WorkflowServiceReference.IWorkflowService")]
     public interface IWorkflowService {
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/DoWork", ReplyAction="http://tempuri.org/IWorkflowService/DoWorkResponse")]
-        System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState);
-        
-        void EndDoWork(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/Login", ReplyAction="http://tempuri.org/IWorkflowService/LoginResponse")]
         System.IAsyncResult BeginLogin(string emailid, string password, System.AsyncCallback callback, object asyncState);
         
@@ -318,6 +313,11 @@ namespace MiniSAAS.WorkflowServiceReference {
         System.IAsyncResult BeginDeleteWorkflow(int orgid, int workflowid, System.AsyncCallback callback, object asyncState);
         
         bool EndDeleteWorkflow(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/DeleteMethod", ReplyAction="http://tempuri.org/IWorkflowService/DeleteMethodResponse")]
+        System.IAsyncResult BeginDeleteMethod(int methodid, System.AsyncCallback callback, object asyncState);
+        
+        bool EndDeleteMethod(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -592,13 +592,26 @@ namespace MiniSAAS.WorkflowServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeleteMethodCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public DeleteMethodCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class WorkflowServiceClient : System.ServiceModel.ClientBase<MiniSAAS.WorkflowServiceReference.IWorkflowService>, MiniSAAS.WorkflowServiceReference.IWorkflowService {
-        
-        private BeginOperationDelegate onBeginDoWorkDelegate;
-        
-        private EndOperationDelegate onEndDoWorkDelegate;
-        
-        private System.Threading.SendOrPostCallback onDoWorkCompletedDelegate;
         
         private BeginOperationDelegate onBeginLoginDelegate;
         
@@ -684,6 +697,12 @@ namespace MiniSAAS.WorkflowServiceReference {
         
         private System.Threading.SendOrPostCallback onDeleteWorkflowCompletedDelegate;
         
+        private BeginOperationDelegate onBeginDeleteMethodDelegate;
+        
+        private EndOperationDelegate onEndDeleteMethodDelegate;
+        
+        private System.Threading.SendOrPostCallback onDeleteMethodCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -737,8 +756,6 @@ namespace MiniSAAS.WorkflowServiceReference {
             }
         }
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DoWorkCompleted;
-        
         public event System.EventHandler<LoginCompletedEventArgs> LoginCompleted;
         
         public event System.EventHandler<ForgotPasswordCompletedEventArgs> ForgotPasswordCompleted;
@@ -767,52 +784,11 @@ namespace MiniSAAS.WorkflowServiceReference {
         
         public event System.EventHandler<DeleteWorkflowCompletedEventArgs> DeleteWorkflowCompleted;
         
+        public event System.EventHandler<DeleteMethodCompletedEventArgs> DeleteMethodCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginDoWork(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDoWork(callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void MiniSAAS.WorkflowServiceReference.IWorkflowService.EndDoWork(System.IAsyncResult result) {
-            base.Channel.EndDoWork(result);
-        }
-        
-        private System.IAsyncResult OnBeginDoWork(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginDoWork(callback, asyncState);
-        }
-        
-        private object[] OnEndDoWork(System.IAsyncResult result) {
-            ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndDoWork(result);
-            return null;
-        }
-        
-        private void OnDoWorkCompleted(object state) {
-            if ((this.DoWorkCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.DoWorkCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void DoWorkAsync() {
-            this.DoWorkAsync(null);
-        }
-        
-        public void DoWorkAsync(object userState) {
-            if ((this.onBeginDoWorkDelegate == null)) {
-                this.onBeginDoWorkDelegate = new BeginOperationDelegate(this.OnBeginDoWork);
-            }
-            if ((this.onEndDoWorkDelegate == null)) {
-                this.onEndDoWorkDelegate = new EndOperationDelegate(this.OnEndDoWork);
-            }
-            if ((this.onDoWorkCompletedDelegate == null)) {
-                this.onDoWorkCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDoWorkCompleted);
-            }
-            base.InvokeAsync(this.onBeginDoWorkDelegate, null, this.onEndDoWorkDelegate, this.onDoWorkCompletedDelegate, userState);
-        }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginLogin(string emailid, string password, System.AsyncCallback callback, object asyncState) {
@@ -1478,6 +1454,52 @@ namespace MiniSAAS.WorkflowServiceReference {
                         workflowid}, this.onEndDeleteWorkflowDelegate, this.onDeleteWorkflowCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginDeleteMethod(int methodid, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteMethod(methodid, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool MiniSAAS.WorkflowServiceReference.IWorkflowService.EndDeleteMethod(System.IAsyncResult result) {
+            return base.Channel.EndDeleteMethod(result);
+        }
+        
+        private System.IAsyncResult OnBeginDeleteMethod(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int methodid = ((int)(inValues[0]));
+            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginDeleteMethod(methodid, callback, asyncState);
+        }
+        
+        private object[] OnEndDeleteMethod(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndDeleteMethod(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDeleteMethodCompleted(object state) {
+            if ((this.DeleteMethodCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DeleteMethodCompleted(this, new DeleteMethodCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DeleteMethodAsync(int methodid) {
+            this.DeleteMethodAsync(methodid, null);
+        }
+        
+        public void DeleteMethodAsync(int methodid, object userState) {
+            if ((this.onBeginDeleteMethodDelegate == null)) {
+                this.onBeginDeleteMethodDelegate = new BeginOperationDelegate(this.OnBeginDeleteMethod);
+            }
+            if ((this.onEndDeleteMethodDelegate == null)) {
+                this.onEndDeleteMethodDelegate = new EndOperationDelegate(this.OnEndDeleteMethod);
+            }
+            if ((this.onDeleteMethodCompletedDelegate == null)) {
+                this.onDeleteMethodCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteMethodCompleted);
+            }
+            base.InvokeAsync(this.onBeginDeleteMethodDelegate, new object[] {
+                        methodid}, this.onEndDeleteMethodDelegate, this.onDeleteMethodCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -1552,17 +1574,6 @@ namespace MiniSAAS.WorkflowServiceReference {
             
             public WorkflowServiceClientChannel(System.ServiceModel.ClientBase<MiniSAAS.WorkflowServiceReference.IWorkflowService> client) : 
                     base(client) {
-            }
-            
-            public System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
-                System.IAsyncResult _result = base.BeginInvoke("DoWork", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndDoWork(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("DoWork", _args, result);
             }
             
             public System.IAsyncResult BeginLogin(string emailid, string password, System.AsyncCallback callback, object asyncState) {
@@ -1754,6 +1765,19 @@ namespace MiniSAAS.WorkflowServiceReference {
             public bool EndDeleteWorkflow(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("DeleteWorkflow", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginDeleteMethod(int methodid, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = methodid;
+                System.IAsyncResult _result = base.BeginInvoke("DeleteMethod", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndDeleteMethod(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("DeleteMethod", _args, result)));
                 return _result;
             }
         }

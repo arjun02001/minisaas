@@ -13,9 +13,6 @@ namespace MiniSAAS.Back
     public interface IWorkflowService
     {
         [OperationContract]
-        void DoWork();
-
-        [OperationContract]
         int Login(string emailid, string password);
         [OperationContract]
         bool ForgotPassword(string emailid);
@@ -43,5 +40,7 @@ namespace MiniSAAS.Back
         bool AddWorkflow(string workflowname, int orgid);
         [OperationContract]
         bool DeleteWorkflow(int orgid, int workflowid);
+        [OperationContract]
+        bool DeleteMethod(int methodid);
     }
 }

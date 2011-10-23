@@ -309,5 +309,21 @@ namespace MiniSAAS.Back
             }
             return false;
         }
+
+        public bool DeleteMethod(int methodid)
+        {
+            try
+            {
+                string sql = string.Format("delete from dbo.method where MethodID = '{0}'", methodid);
+                if (DataManager.SetData(sql) > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
     }
 }

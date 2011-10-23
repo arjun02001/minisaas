@@ -318,6 +318,16 @@ namespace MiniSAAS.WorkflowServiceReference {
         System.IAsyncResult BeginDeleteMethod(int methodid, System.AsyncCallback callback, object asyncState);
         
         bool EndDeleteMethod(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/GetURLMethods", ReplyAction="http://tempuri.org/IWorkflowService/GetURLMethodsResponse")]
+        System.IAsyncResult BeginGetURLMethods(string url, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> EndGetURLMethods(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/AddMethods", ReplyAction="http://tempuri.org/IWorkflowService/AddMethodsResponse")]
+        System.IAsyncResult BeginAddMethods(MiniSAAS.WorkflowServiceReference.WorkflowDescription workflowdescription, System.AsyncCallback callback, object asyncState);
+        
+        bool EndAddMethods(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -611,6 +621,44 @@ namespace MiniSAAS.WorkflowServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetURLMethodsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetURLMethodsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddMethodsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddMethodsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class WorkflowServiceClient : System.ServiceModel.ClientBase<MiniSAAS.WorkflowServiceReference.IWorkflowService>, MiniSAAS.WorkflowServiceReference.IWorkflowService {
         
         private BeginOperationDelegate onBeginLoginDelegate;
@@ -703,6 +751,18 @@ namespace MiniSAAS.WorkflowServiceReference {
         
         private System.Threading.SendOrPostCallback onDeleteMethodCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetURLMethodsDelegate;
+        
+        private EndOperationDelegate onEndGetURLMethodsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetURLMethodsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddMethodsDelegate;
+        
+        private EndOperationDelegate onEndAddMethodsDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddMethodsCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -785,6 +845,10 @@ namespace MiniSAAS.WorkflowServiceReference {
         public event System.EventHandler<DeleteWorkflowCompletedEventArgs> DeleteWorkflowCompleted;
         
         public event System.EventHandler<DeleteMethodCompletedEventArgs> DeleteMethodCompleted;
+        
+        public event System.EventHandler<GetURLMethodsCompletedEventArgs> GetURLMethodsCompleted;
+        
+        public event System.EventHandler<AddMethodsCompletedEventArgs> AddMethodsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1500,6 +1564,98 @@ namespace MiniSAAS.WorkflowServiceReference {
                         methodid}, this.onEndDeleteMethodDelegate, this.onDeleteMethodCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginGetURLMethods(string url, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetURLMethods(url, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> MiniSAAS.WorkflowServiceReference.IWorkflowService.EndGetURLMethods(System.IAsyncResult result) {
+            return base.Channel.EndGetURLMethods(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetURLMethods(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string url = ((string)(inValues[0]));
+            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginGetURLMethods(url, callback, asyncState);
+        }
+        
+        private object[] OnEndGetURLMethods(System.IAsyncResult result) {
+            System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndGetURLMethods(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetURLMethodsCompleted(object state) {
+            if ((this.GetURLMethodsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetURLMethodsCompleted(this, new GetURLMethodsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetURLMethodsAsync(string url) {
+            this.GetURLMethodsAsync(url, null);
+        }
+        
+        public void GetURLMethodsAsync(string url, object userState) {
+            if ((this.onBeginGetURLMethodsDelegate == null)) {
+                this.onBeginGetURLMethodsDelegate = new BeginOperationDelegate(this.OnBeginGetURLMethods);
+            }
+            if ((this.onEndGetURLMethodsDelegate == null)) {
+                this.onEndGetURLMethodsDelegate = new EndOperationDelegate(this.OnEndGetURLMethods);
+            }
+            if ((this.onGetURLMethodsCompletedDelegate == null)) {
+                this.onGetURLMethodsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetURLMethodsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetURLMethodsDelegate, new object[] {
+                        url}, this.onEndGetURLMethodsDelegate, this.onGetURLMethodsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginAddMethods(MiniSAAS.WorkflowServiceReference.WorkflowDescription workflowdescription, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddMethods(workflowdescription, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool MiniSAAS.WorkflowServiceReference.IWorkflowService.EndAddMethods(System.IAsyncResult result) {
+            return base.Channel.EndAddMethods(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddMethods(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MiniSAAS.WorkflowServiceReference.WorkflowDescription workflowdescription = ((MiniSAAS.WorkflowServiceReference.WorkflowDescription)(inValues[0]));
+            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginAddMethods(workflowdescription, callback, asyncState);
+        }
+        
+        private object[] OnEndAddMethods(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndAddMethods(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddMethodsCompleted(object state) {
+            if ((this.AddMethodsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddMethodsCompleted(this, new AddMethodsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddMethodsAsync(MiniSAAS.WorkflowServiceReference.WorkflowDescription workflowdescription) {
+            this.AddMethodsAsync(workflowdescription, null);
+        }
+        
+        public void AddMethodsAsync(MiniSAAS.WorkflowServiceReference.WorkflowDescription workflowdescription, object userState) {
+            if ((this.onBeginAddMethodsDelegate == null)) {
+                this.onBeginAddMethodsDelegate = new BeginOperationDelegate(this.OnBeginAddMethods);
+            }
+            if ((this.onEndAddMethodsDelegate == null)) {
+                this.onEndAddMethodsDelegate = new EndOperationDelegate(this.OnEndAddMethods);
+            }
+            if ((this.onAddMethodsCompletedDelegate == null)) {
+                this.onAddMethodsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddMethodsCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddMethodsDelegate, new object[] {
+                        workflowdescription}, this.onEndAddMethodsDelegate, this.onAddMethodsCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -1778,6 +1934,32 @@ namespace MiniSAAS.WorkflowServiceReference {
             public bool EndDeleteMethod(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("DeleteMethod", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetURLMethods(string url, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = url;
+                System.IAsyncResult _result = base.BeginInvoke("GetURLMethods", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> EndGetURLMethods(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> _result = ((System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method>)(base.EndInvoke("GetURLMethods", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginAddMethods(MiniSAAS.WorkflowServiceReference.WorkflowDescription workflowdescription, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = workflowdescription;
+                System.IAsyncResult _result = base.BeginInvoke("AddMethods", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndAddMethods(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("AddMethods", _args, result)));
                 return _result;
             }
         }

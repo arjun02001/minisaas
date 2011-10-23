@@ -107,7 +107,26 @@ namespace MiniSAAS.UserControls
 
         private void uiAddMethod_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                int workflowid = (from p in workflowdescription.Workflows
+                                 where p.WorkflowName == uiWorkflow.SelectedItem.ToString()
+                                 select p.WorkflowID).Single();
+                NewMethod newmethod = new NewMethod(workflowid);
+                newmethod.Closed += delegate(object sender1, EventArgs e1)
+                {
+                    NewMethod nm = (NewMethod)sender1;
+                    if (nm.DialogResult == true)
+                    {
+                        Refresh();
+                    }
+                };
+                newmethod.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
         }
 
         private void uiDeleteMethod_Click(object sender, RoutedEventArgs e)

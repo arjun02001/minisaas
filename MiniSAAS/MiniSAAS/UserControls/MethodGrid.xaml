@@ -13,11 +13,11 @@
         <sdk:DataGrid x:Name="uiMethodDataGrid" Height="300" Width="500" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding MethodID}" Visibility="Collapsed"></sdk:DataGridTextColumn>
-                <sdk:DataGridTextColumn Header="MethodName" Binding="{Binding MethodName}"></sdk:DataGridTextColumn>
-                <sdk:DataGridTextColumn Header="Sequence" Binding="{Binding Sequence}"></sdk:DataGridTextColumn>
-                <sdk:DataGridTextColumn Header="URL" Binding="{Binding URL}"></sdk:DataGridTextColumn>
-                <sdk:DataGridTextColumn Header="ReturnType" Binding="{Binding ReturnType}"></sdk:DataGridTextColumn>
-                <sdk:DataGridTextColumn Header="Parameters" Binding="{Binding Parameters}"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="MethodName" Binding="{Binding MethodName}" IsReadOnly="True"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="Sequence" Binding="{Binding Sequence}" IsReadOnly="True"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="URL" Binding="{Binding URL}" IsReadOnly="True" Width="100"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="ReturnType" Binding="{Binding ReturnType}" IsReadOnly="True"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="Parameters" Binding="{Binding Parameters}" IsReadOnly="True"></sdk:DataGridTextColumn>
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
     </Grid>

@@ -18,6 +18,7 @@ namespace MiniSAAS.Back.Classes
         Dictionary<string, Type> availabletypes;
         Assembly webserviceassembly;
         List<string> services;
+        string url = string.Empty;
 
         public List<string> AvailableServices { get { return this.services; } }
 
@@ -25,6 +26,7 @@ namespace MiniSAAS.Back.Classes
         {
             try
             {
+                this.url = webserviceuri.AbsoluteUri;
                 this.services = new List<string>();
                 this.availabletypes = new Dictionary<string, Type>();
                 this.webserviceassembly = BuildAssemblyFromWSDL(webserviceuri);
@@ -59,13 +61,15 @@ namespace MiniSAAS.Back.Classes
                     {
                         method = new Method();
                         method.MethodName = minfo.Name;
+                        parameters = string.Empty;
                         foreach (ParameterInfo pinfo in minfo.GetParameters())
                         {
                             parameters += pinfo.ParameterType.FullName + ",";
                         }
-                        parameters = parameters.Substring(0, parameters.LastIndexOf(','));
+                        parameters = (parameters.Equals(string.Empty)) ? string.Empty : parameters.Substring(0, parameters.LastIndexOf(','));
                         method.Parameters = parameters;
                         method.ReturnType = minfo.ReturnParameter.ParameterType.FullName;
+                        method.URL = url;
                         servicemethods.Add(method);
                     }
                 }
@@ -76,31 +80,6 @@ namespace MiniSAAS.Back.Classes
             }
             return servicemethods;
         }
-
-        /*public List<string> EnumerateServiceMethods(string servicename)
-        {
-            try
-            {
-                List<string> methods = new List<string>();
-                if (!this.availabletypes.ContainsKey(servicename))
-                {
-                    throw new Exception("Service Not Available");
-                }
-                else
-                {
-                    Type type = this.availabletypes[servicename];
-                    foreach (MethodInfo minfo in type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
-                    {
-                        methods.Add(minfo.Name);
-                    }
-                    return methods;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }*/
 
         public T InvokeMethod<T>(string servicename, string methodname, params object[] args)
         {

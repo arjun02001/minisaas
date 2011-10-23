@@ -274,5 +274,40 @@ namespace MiniSAAS.Back
             }
             return workflowdescription;
         }
+
+        public bool AddWorkflow(string workflowname, int orgid)
+        {
+            try
+            {
+                string sql = string.Format("select * from dbo.Workflow where WorkflowName = '{0}' and OrgID = '{1}'", workflowname, orgid);
+                if (DataManager.GetData(sql).Rows.Count != 0)
+                {
+                    return false;
+                }
+                sql = string.Format("insert into dbo.Workflow values ('{0}', '{1}')", orgid, workflowname);
+                DataManager.SetData(sql);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeleteWorkflow(int orgid, int workflowid)
+        {
+            try
+            {
+                string sql = string.Format("delete from dbo.Workflow where WorkflowID = '{0}' and OrgID = '{1}'", workflowid, orgid);
+                if (DataManager.SetData(sql) > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
     }
 }

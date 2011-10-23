@@ -173,17 +173,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetWorkflow">
+  <xs:element name="GetWorkflows">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="orgid" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetWorkflowResponse">
+  <xs:element name="GetWorkflowsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="GetWorkflowResult" nillable="true" type="q4:WorkflowDescription" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="GetWorkflowsResult" nillable="true" type="q4:WorkflowDescription" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

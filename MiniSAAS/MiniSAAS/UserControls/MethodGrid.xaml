@@ -10,7 +10,7 @@
     d:DesignHeight="300" d:DesignWidth="400">
     
     <Grid x:Name="LayoutRoot" Background="White">
-        <sdk:DataGrid x:Name="uiMethodDataGrid" Height="300" Width="500" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <sdk:DataGrid x:Name="uiMethodDataGrid" Height="300" Width="500" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding MethodID}" Visibility="Collapsed"></sdk:DataGridTextColumn>
                 <sdk:DataGridTextColumn Header="MethodName" Binding="{Binding MethodName}"></sdk:DataGridTextColumn>

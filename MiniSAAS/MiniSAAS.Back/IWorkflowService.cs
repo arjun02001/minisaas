@@ -38,6 +38,6 @@ namespace MiniSAAS.Back
         [OperationContract]
         bool DeleteCart(int orgid, string userid, List<string> productids);
         [OperationContract]
-        WorkflowDescription GetWorkflow(int orgid);
+        WorkflowDescription GetWorkflows(int orgid);
     }
 }

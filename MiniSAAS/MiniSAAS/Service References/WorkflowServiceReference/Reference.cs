@@ -22,7 +22,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         
         private int OrgIDField;
         
-        private System.Collections.ObjectModel.ObservableCollection<MiniSAAS.WorkflowServiceReference.Workflow> WorkflowsField;
+        private System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Workflow> WorkflowsField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int OrgID {
@@ -38,7 +38,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.WorkflowServiceReference.Workflow> Workflows {
+        public System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Workflow> Workflows {
             get {
                 return this.WorkflowsField;
             }
@@ -65,14 +65,14 @@ namespace MiniSAAS.WorkflowServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="Workflow", Namespace="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes")]
     public partial class Workflow : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Collections.ObjectModel.ObservableCollection<MiniSAAS.WorkflowServiceReference.Method> MethodsField;
+        private System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> MethodsField;
         
         private int WorkflowIDField;
         
         private string WorkflowNameField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.WorkflowServiceReference.Method> Methods {
+        public System.Collections.Generic.List<MiniSAAS.WorkflowServiceReference.Method> Methods {
             get {
                 return this.MethodsField;
             }
@@ -129,7 +129,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         
         private string MethodNameField;
         
-        private System.Collections.ObjectModel.ObservableCollection<string> ParametersField;
+        private string ParametersField;
         
         private string ReturnTypeField;
         
@@ -166,7 +166,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<string> Parameters {
+        public string Parameters {
             get {
                 return this.ParametersField;
             }
@@ -282,7 +282,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/GetShippingVendors", ReplyAction="http://tempuri.org/IWorkflowService/GetShippingVendorsResponse")]
         System.IAsyncResult BeginGetShippingVendors(System.AsyncCallback callback, object asyncState);
         
-        System.Collections.ObjectModel.ObservableCollection<string> EndGetShippingVendors(System.IAsyncResult result);
+        System.Collections.Generic.List<string> EndGetShippingVendors(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/ValidateZIP", ReplyAction="http://tempuri.org/IWorkflowService/ValidateZIPResponse")]
         System.IAsyncResult BeginValidateZIP(string zip, System.AsyncCallback callback, object asyncState);
@@ -297,17 +297,17 @@ namespace MiniSAAS.WorkflowServiceReference {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/GetCart", ReplyAction="http://tempuri.org/IWorkflowService/GetCartResponse")]
         System.IAsyncResult BeginGetCart(int orgid, string userid, System.AsyncCallback callback, object asyncState);
         
-        System.Collections.ObjectModel.ObservableCollection<string> EndGetCart(System.IAsyncResult result);
+        System.Collections.Generic.List<string> EndGetCart(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/DeleteCart", ReplyAction="http://tempuri.org/IWorkflowService/DeleteCartResponse")]
-        System.IAsyncResult BeginDeleteCart(int orgid, string userid, System.Collections.ObjectModel.ObservableCollection<string> productids, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginDeleteCart(int orgid, string userid, System.Collections.Generic.List<string> productids, System.AsyncCallback callback, object asyncState);
         
         bool EndDeleteCart(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/GetWorkflow", ReplyAction="http://tempuri.org/IWorkflowService/GetWorkflowResponse")]
-        System.IAsyncResult BeginGetWorkflow(int orgid, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/GetWorkflows", ReplyAction="http://tempuri.org/IWorkflowService/GetWorkflowsResponse")]
+        System.IAsyncResult BeginGetWorkflows(int orgid, System.AsyncCallback callback, object asyncState);
         
-        MiniSAAS.WorkflowServiceReference.WorkflowDescription EndGetWorkflow(System.IAsyncResult result);
+        MiniSAAS.WorkflowServiceReference.WorkflowDescription EndGetWorkflows(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -439,10 +439,10 @@ namespace MiniSAAS.WorkflowServiceReference {
             this.results = results;
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<string> Result {
+        public System.Collections.Generic.List<string> Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<string>)(this.results[0]));
+                return ((System.Collections.Generic.List<string>)(this.results[0]));
             }
         }
     }
@@ -496,10 +496,10 @@ namespace MiniSAAS.WorkflowServiceReference {
             this.results = results;
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<string> Result {
+        public System.Collections.Generic.List<string> Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<string>)(this.results[0]));
+                return ((System.Collections.Generic.List<string>)(this.results[0]));
             }
         }
     }
@@ -525,11 +525,11 @@ namespace MiniSAAS.WorkflowServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetWorkflowCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetWorkflowsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetWorkflowCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetWorkflowsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -618,11 +618,11 @@ namespace MiniSAAS.WorkflowServiceReference {
         
         private System.Threading.SendOrPostCallback onDeleteCartCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetWorkflowDelegate;
+        private BeginOperationDelegate onBeginGetWorkflowsDelegate;
         
-        private EndOperationDelegate onEndGetWorkflowDelegate;
+        private EndOperationDelegate onEndGetWorkflowsDelegate;
         
-        private System.Threading.SendOrPostCallback onGetWorkflowCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetWorkflowsCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -701,7 +701,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         
         public event System.EventHandler<DeleteCartCompletedEventArgs> DeleteCartCompleted;
         
-        public event System.EventHandler<GetWorkflowCompletedEventArgs> GetWorkflowCompleted;
+        public event System.EventHandler<GetWorkflowsCompletedEventArgs> GetWorkflowsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1040,7 +1040,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<string> MiniSAAS.WorkflowServiceReference.IWorkflowService.EndGetShippingVendors(System.IAsyncResult result) {
+        System.Collections.Generic.List<string> MiniSAAS.WorkflowServiceReference.IWorkflowService.EndGetShippingVendors(System.IAsyncResult result) {
             return base.Channel.EndGetShippingVendors(result);
         }
         
@@ -1049,7 +1049,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         private object[] OnEndGetShippingVendors(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<string> retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndGetShippingVendors(result);
+            System.Collections.Generic.List<string> retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndGetShippingVendors(result);
             return new object[] {
                     retVal};
         }
@@ -1180,7 +1180,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<string> MiniSAAS.WorkflowServiceReference.IWorkflowService.EndGetCart(System.IAsyncResult result) {
+        System.Collections.Generic.List<string> MiniSAAS.WorkflowServiceReference.IWorkflowService.EndGetCart(System.IAsyncResult result) {
             return base.Channel.EndGetCart(result);
         }
         
@@ -1191,7 +1191,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         private object[] OnEndGetCart(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<string> retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndGetCart(result);
+            System.Collections.Generic.List<string> retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndGetCart(result);
             return new object[] {
                     retVal};
         }
@@ -1223,7 +1223,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginDeleteCart(int orgid, string userid, System.Collections.ObjectModel.ObservableCollection<string> productids, System.AsyncCallback callback, object asyncState) {
+        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginDeleteCart(int orgid, string userid, System.Collections.Generic.List<string> productids, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginDeleteCart(orgid, userid, productids, callback, asyncState);
         }
         
@@ -1235,7 +1235,7 @@ namespace MiniSAAS.WorkflowServiceReference {
         private System.IAsyncResult OnBeginDeleteCart(object[] inValues, System.AsyncCallback callback, object asyncState) {
             int orgid = ((int)(inValues[0]));
             string userid = ((string)(inValues[1]));
-            System.Collections.ObjectModel.ObservableCollection<string> productids = ((System.Collections.ObjectModel.ObservableCollection<string>)(inValues[2]));
+            System.Collections.Generic.List<string> productids = ((System.Collections.Generic.List<string>)(inValues[2]));
             return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginDeleteCart(orgid, userid, productids, callback, asyncState);
         }
         
@@ -1252,11 +1252,11 @@ namespace MiniSAAS.WorkflowServiceReference {
             }
         }
         
-        public void DeleteCartAsync(int orgid, string userid, System.Collections.ObjectModel.ObservableCollection<string> productids) {
+        public void DeleteCartAsync(int orgid, string userid, System.Collections.Generic.List<string> productids) {
             this.DeleteCartAsync(orgid, userid, productids, null);
         }
         
-        public void DeleteCartAsync(int orgid, string userid, System.Collections.ObjectModel.ObservableCollection<string> productids, object userState) {
+        public void DeleteCartAsync(int orgid, string userid, System.Collections.Generic.List<string> productids, object userState) {
             if ((this.onBeginDeleteCartDelegate == null)) {
                 this.onBeginDeleteCartDelegate = new BeginOperationDelegate(this.OnBeginDeleteCart);
             }
@@ -1273,49 +1273,49 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginGetWorkflow(int orgid, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetWorkflow(orgid, callback, asyncState);
+        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginGetWorkflows(int orgid, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetWorkflows(orgid, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        MiniSAAS.WorkflowServiceReference.WorkflowDescription MiniSAAS.WorkflowServiceReference.IWorkflowService.EndGetWorkflow(System.IAsyncResult result) {
-            return base.Channel.EndGetWorkflow(result);
+        MiniSAAS.WorkflowServiceReference.WorkflowDescription MiniSAAS.WorkflowServiceReference.IWorkflowService.EndGetWorkflows(System.IAsyncResult result) {
+            return base.Channel.EndGetWorkflows(result);
         }
         
-        private System.IAsyncResult OnBeginGetWorkflow(object[] inValues, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult OnBeginGetWorkflows(object[] inValues, System.AsyncCallback callback, object asyncState) {
             int orgid = ((int)(inValues[0]));
-            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginGetWorkflow(orgid, callback, asyncState);
+            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginGetWorkflows(orgid, callback, asyncState);
         }
         
-        private object[] OnEndGetWorkflow(System.IAsyncResult result) {
-            MiniSAAS.WorkflowServiceReference.WorkflowDescription retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndGetWorkflow(result);
+        private object[] OnEndGetWorkflows(System.IAsyncResult result) {
+            MiniSAAS.WorkflowServiceReference.WorkflowDescription retVal = ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).EndGetWorkflows(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetWorkflowCompleted(object state) {
-            if ((this.GetWorkflowCompleted != null)) {
+        private void OnGetWorkflowsCompleted(object state) {
+            if ((this.GetWorkflowsCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetWorkflowCompleted(this, new GetWorkflowCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetWorkflowsCompleted(this, new GetWorkflowsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetWorkflowAsync(int orgid) {
-            this.GetWorkflowAsync(orgid, null);
+        public void GetWorkflowsAsync(int orgid) {
+            this.GetWorkflowsAsync(orgid, null);
         }
         
-        public void GetWorkflowAsync(int orgid, object userState) {
-            if ((this.onBeginGetWorkflowDelegate == null)) {
-                this.onBeginGetWorkflowDelegate = new BeginOperationDelegate(this.OnBeginGetWorkflow);
+        public void GetWorkflowsAsync(int orgid, object userState) {
+            if ((this.onBeginGetWorkflowsDelegate == null)) {
+                this.onBeginGetWorkflowsDelegate = new BeginOperationDelegate(this.OnBeginGetWorkflows);
             }
-            if ((this.onEndGetWorkflowDelegate == null)) {
-                this.onEndGetWorkflowDelegate = new EndOperationDelegate(this.OnEndGetWorkflow);
+            if ((this.onEndGetWorkflowsDelegate == null)) {
+                this.onEndGetWorkflowsDelegate = new EndOperationDelegate(this.OnEndGetWorkflows);
             }
-            if ((this.onGetWorkflowCompletedDelegate == null)) {
-                this.onGetWorkflowCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetWorkflowCompleted);
+            if ((this.onGetWorkflowsCompletedDelegate == null)) {
+                this.onGetWorkflowsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetWorkflowsCompleted);
             }
-            base.InvokeAsync(this.onBeginGetWorkflowDelegate, new object[] {
-                        orgid}, this.onEndGetWorkflowDelegate, this.onGetWorkflowCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetWorkflowsDelegate, new object[] {
+                        orgid}, this.onEndGetWorkflowsDelegate, this.onGetWorkflowsCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -1493,9 +1493,9 @@ namespace MiniSAAS.WorkflowServiceReference {
                 return _result;
             }
             
-            public System.Collections.ObjectModel.ObservableCollection<string> EndGetShippingVendors(System.IAsyncResult result) {
+            public System.Collections.Generic.List<string> EndGetShippingVendors(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<string> _result = ((System.Collections.ObjectModel.ObservableCollection<string>)(base.EndInvoke("GetShippingVendors", _args, result)));
+                System.Collections.Generic.List<string> _result = ((System.Collections.Generic.List<string>)(base.EndInvoke("GetShippingVendors", _args, result)));
                 return _result;
             }
             
@@ -1535,13 +1535,13 @@ namespace MiniSAAS.WorkflowServiceReference {
                 return _result;
             }
             
-            public System.Collections.ObjectModel.ObservableCollection<string> EndGetCart(System.IAsyncResult result) {
+            public System.Collections.Generic.List<string> EndGetCart(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<string> _result = ((System.Collections.ObjectModel.ObservableCollection<string>)(base.EndInvoke("GetCart", _args, result)));
+                System.Collections.Generic.List<string> _result = ((System.Collections.Generic.List<string>)(base.EndInvoke("GetCart", _args, result)));
                 return _result;
             }
             
-            public System.IAsyncResult BeginDeleteCart(int orgid, string userid, System.Collections.ObjectModel.ObservableCollection<string> productids, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginDeleteCart(int orgid, string userid, System.Collections.Generic.List<string> productids, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[3];
                 _args[0] = orgid;
                 _args[1] = userid;
@@ -1556,16 +1556,16 @@ namespace MiniSAAS.WorkflowServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetWorkflow(int orgid, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetWorkflows(int orgid, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = orgid;
-                System.IAsyncResult _result = base.BeginInvoke("GetWorkflow", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("GetWorkflows", _args, callback, asyncState);
                 return _result;
             }
             
-            public MiniSAAS.WorkflowServiceReference.WorkflowDescription EndGetWorkflow(System.IAsyncResult result) {
+            public MiniSAAS.WorkflowServiceReference.WorkflowDescription EndGetWorkflows(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                MiniSAAS.WorkflowServiceReference.WorkflowDescription _result = ((MiniSAAS.WorkflowServiceReference.WorkflowDescription)(base.EndInvoke("GetWorkflow", _args, result)));
+                MiniSAAS.WorkflowServiceReference.WorkflowDescription _result = ((MiniSAAS.WorkflowServiceReference.WorkflowDescription)(base.EndInvoke("GetWorkflows", _args, result)));
                 return _result;
             }
         }

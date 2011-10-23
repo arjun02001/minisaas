@@ -45,7 +45,7 @@ namespace MiniSAAS.Back.Classes
         {
             List<Method> servicemethods = new List<Method>();
             Method method = null;
-            List<string> parameters = null;
+            string parameters = string.Empty;
             try
             {
                 if (!this.availabletypes.ContainsKey(servicename))
@@ -58,12 +58,12 @@ namespace MiniSAAS.Back.Classes
                     foreach (MethodInfo minfo in type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
                     {
                         method = new Method();
-                        parameters = new List<string>();
                         method.MethodName = minfo.Name;
                         foreach (ParameterInfo pinfo in minfo.GetParameters())
                         {
-                            parameters.Add(pinfo.ParameterType.FullName);
+                            parameters += pinfo.ParameterType.FullName + ",";
                         }
+                        parameters = parameters.Substring(0, parameters.LastIndexOf(','));
                         method.Parameters = parameters;
                         method.ReturnType = minfo.ReturnParameter.ParameterType.FullName;
                         servicemethods.Add(method);

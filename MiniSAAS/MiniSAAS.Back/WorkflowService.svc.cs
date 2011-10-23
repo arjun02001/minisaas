@@ -256,13 +256,17 @@ namespace MiniSAAS.Back
             }
         }
 
-        public WorkflowDescription GetWorkflow(int orgid)
+        public WorkflowDescription GetWorkflows(int orgid)
         {
             WorkflowDescription workflowdescription = new WorkflowDescription();
             try
             {
                 string sql = string.Format("select * from dbo.Workflow where OrgID = '{0}'", orgid);
-                workflowdescription = (DataManager.GetData(sql).Rows.Count == 0) ? WorkflowDescription.GetWorkflow(0) : WorkflowDescription.GetWorkflow(orgid);
+                if (DataManager.GetData(sql).Rows.Count == 0)
+                {
+                    WorkflowDescription.ReplicateWorkflows(orgid);
+                }
+                workflowdescription = WorkflowDescription.GetWorkflows(orgid);
             }
             catch (Exception)
             {

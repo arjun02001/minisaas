@@ -112,7 +112,23 @@ namespace MiniSAAS.UserControls
 
         private void uiDeleteMethod_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                int methodid = ((Method)uiMethodGrid.uiMethodDataGrid.SelectedItem).MethodID;
+                WorkflowServiceClient client = new WorkflowServiceClient();
+                client.DeleteMethodCompleted += delegate(object sender1, DeleteMethodCompletedEventArgs e1)
+                {
+                    if (e1.Result)
+                    {
+                        Refresh();
+                    }
+                };
+                client.DeleteMethodAsync(methodid);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
         }
 
         private void uiWorkflow_SelectionChanged(object sender, SelectionChangedEventArgs e)

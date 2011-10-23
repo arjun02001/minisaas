@@ -8,12 +8,6 @@
       <xsd:import schemaLocation="http://localhost:3985/WorkflowService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IWorkflowService_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
-  </wsdl:message>
-  <wsdl:message name="IWorkflowService_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
-  </wsdl:message>
   <wsdl:message name="IWorkflowService_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
@@ -98,11 +92,13 @@
   <wsdl:message name="IWorkflowService_DeleteWorkflow_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteWorkflowResponse" />
   </wsdl:message>
+  <wsdl:message name="IWorkflowService_DeleteMethod_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMethod" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflowService_DeleteMethod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMethodResponse" />
+  </wsdl:message>
   <wsdl:portType name="IWorkflowService">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/DoWork" message="tns:IWorkflowService_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/DoWorkResponse" message="tns:IWorkflowService_DoWork_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/Login" message="tns:IWorkflowService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/LoginResponse" message="tns:IWorkflowService_Login_OutputMessage" />
@@ -159,18 +155,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/DeleteWorkflow" message="tns:IWorkflowService_DeleteWorkflow_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/DeleteWorkflowResponse" message="tns:IWorkflowService_DeleteWorkflow_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DeleteMethod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/DeleteMethod" message="tns:IWorkflowService_DeleteMethod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/DeleteMethodResponse" message="tns:IWorkflowService_DeleteMethod_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IWorkflowService" type="tns:IWorkflowService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="DoWork">
-      <soap:operation soapAction="http://tempuri.org/IWorkflowService/DoWork" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Login">
       <soap:operation soapAction="http://tempuri.org/IWorkflowService/Login" style="document" />
       <wsdl:input>
@@ -290,6 +281,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteWorkflow">
       <soap:operation soapAction="http://tempuri.org/IWorkflowService/DeleteWorkflow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMethod">
+      <soap:operation soapAction="http://tempuri.org/IWorkflowService/DeleteMethod" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

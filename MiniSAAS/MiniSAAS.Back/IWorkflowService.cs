@@ -46,5 +46,7 @@ namespace MiniSAAS.Back
         List<Method> GetURLMethods(string url);
         [OperationContract]
         bool AddMethods(WorkflowDescription workflowdescription);
+        [OperationContract]
+        bool UpdateMethodSequence(int methodid, int sequence);
     }
 }

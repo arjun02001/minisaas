@@ -102,7 +102,24 @@ namespace MiniSAAS.UserControls
 
         private void uiUpdateSequence_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                int methodid = ((Method)(uiMethodGrid.uiMethodDataGrid.SelectedItem)).MethodID;
+                UpdateSequence updatesequence = new UpdateSequence(methodid);
+                updatesequence.Closed += delegate(object sender1, EventArgs e1)
+                {
+                    UpdateSequence us = (UpdateSequence)sender1;
+                    if (us.DialogResult == true)
+                    {
+                        Refresh();
+                    }
+                };
+                updatesequence.Show();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
         }
 
         private void uiAddMethod_Click(object sender, RoutedEventArgs e)

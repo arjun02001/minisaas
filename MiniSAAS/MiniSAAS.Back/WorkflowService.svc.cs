@@ -361,5 +361,20 @@ namespace MiniSAAS.Back
                 return false;
             }
         }
+
+        public bool UpdateMethodSequence(int methodid, int sequence)
+        {
+            try
+            {
+                if (DataManager.SetData(string.Format("update dbo.Method set Sequence = '{0}' where MethodID = '{1}'", sequence, methodid)) > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
     }
 }

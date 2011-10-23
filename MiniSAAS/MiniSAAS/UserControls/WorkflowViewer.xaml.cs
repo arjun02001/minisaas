@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using MiniSAAS.WorkflowServiceReference;
+using MiniSAAS.ChildWindows;
 
 namespace MiniSAAS.UserControls
 {
@@ -64,12 +65,39 @@ namespace MiniSAAS.UserControls
 
         private void uiAddWorkflow_Click(object sender, RoutedEventArgs e)
         {
-
+            NewWorkflow newworkflow = new NewWorkflow(orgid);
+            newworkflow.Closed += delegate(object sender1, EventArgs e1)
+            {
+                NewWorkflow nf = (NewWorkflow)sender1;
+                if (nf.DialogResult == true)
+                {
+                    Refresh();
+                }
+            };
+            newworkflow.Show();
         }
 
         private void uiDeleteWorkflow_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                int workflowid = (from p in workflowdescription.Workflows
+                                 where p.WorkflowName == uiWorkflow.SelectedItem.ToString()
+                                 select p.WorkflowID).Single();
+                WorkflowServiceClient client = new WorkflowServiceClient();
+                client.DeleteWorkflowCompleted += delegate(object sender1, DeleteWorkflowCompletedEventArgs e1)
+                {
+                    if (e1.Result)
+                    {
+                        Refresh();
+                    }
+                };
+                client.DeleteWorkflowAsync(orgid, workflowid);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+            }
         }
 
         private void uiUpdateSequence_Click(object sender, RoutedEventArgs e)
@@ -91,6 +119,10 @@ namespace MiniSAAS.UserControls
         {
             try
             {
+                if (uiWorkflow.Items.Count == 0)
+                {
+                    return;
+                }
                 uiMethodGrid.uiMethodDataGrid.ItemsSource = (from p in workflowdescription.Workflows
                                                             where p.WorkflowName == uiWorkflow.SelectedItem.ToString()
                                                             select p).Single<Workflow>().Methods;

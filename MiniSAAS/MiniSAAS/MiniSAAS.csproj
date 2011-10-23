@@ -93,6 +93,9 @@
     <Compile Include="ChildWindows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindows\NewWorkflow.xaml.cs">
+      <DependentUpon>NewWorkflow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChildWindows\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChildWindows\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindows\NewWorkflow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

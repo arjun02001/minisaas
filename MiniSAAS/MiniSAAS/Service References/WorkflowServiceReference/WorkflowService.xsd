@@ -187,4 +187,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddWorkflow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="workflowname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddWorkflowResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddWorkflowResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteWorkflow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orgid" type="xs:int" />
+        <xs:element minOccurs="0" name="workflowid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteWorkflowResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteWorkflowResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

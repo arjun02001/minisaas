@@ -86,6 +86,18 @@
   <wsdl:message name="IWorkflowService_GetWorkflows_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetWorkflowsResponse" />
   </wsdl:message>
+  <wsdl:message name="IWorkflowService_AddWorkflow_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddWorkflow" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflowService_AddWorkflow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddWorkflowResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflowService_DeleteWorkflow_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkflow" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflowService_DeleteWorkflow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkflowResponse" />
+  </wsdl:message>
   <wsdl:portType name="IWorkflowService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/DoWork" message="tns:IWorkflowService_DoWork_InputMessage" />
@@ -138,6 +150,14 @@
     <wsdl:operation name="GetWorkflows">
       <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/GetWorkflows" message="tns:IWorkflowService_GetWorkflows_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/GetWorkflowsResponse" message="tns:IWorkflowService_GetWorkflows_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddWorkflow">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/AddWorkflow" message="tns:IWorkflowService_AddWorkflow_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/AddWorkflowResponse" message="tns:IWorkflowService_AddWorkflow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkflow">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflowService/DeleteWorkflow" message="tns:IWorkflowService_DeleteWorkflow_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflowService/DeleteWorkflowResponse" message="tns:IWorkflowService_DeleteWorkflow_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IWorkflowService" type="tns:IWorkflowService">
@@ -252,6 +272,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetWorkflows">
       <soap:operation soapAction="http://tempuri.org/IWorkflowService/GetWorkflows" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWorkflow">
+      <soap:operation soapAction="http://tempuri.org/IWorkflowService/AddWorkflow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkflow">
+      <soap:operation soapAction="http://tempuri.org/IWorkflowService/DeleteWorkflow" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

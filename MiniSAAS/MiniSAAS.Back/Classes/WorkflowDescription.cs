@@ -22,7 +22,7 @@ namespace MiniSAAS.Back.Classes
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    string sql = string.Format("insert into dbo.Workflow (OrgID, WorkflowName) select {0}, WorkflowName from dbo.Workflow", orgid);
+                    string sql = string.Format("insert into dbo.Workflow (OrgID, WorkflowName) select {0}, WorkflowName from dbo.Workflow where OrgID = '0'", orgid);
                     DataManager.SetData(sql);
                     sql = string.Format("select * from dbo.Workflow where OrgID = '0'");
                     DataTable dt = DataManager.GetData(sql);

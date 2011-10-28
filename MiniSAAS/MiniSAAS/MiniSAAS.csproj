@@ -229,7 +229,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="ServiceReferences.ClientConfig" />
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Service References\DataServiceReference\DataService.wsdl" />
     <None Include="Service References\DataServiceReference\DataService.xsd">
       <SubType>Designer</SubType>

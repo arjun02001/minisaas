@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MiniSAAS.Back.Classes;
 
 namespace MiniSAAS.Back
 {
@@ -11,6 +12,7 @@ namespace MiniSAAS.Back
     [ServiceContract]
     public interface IUIService
     {
-        
+        [OperationContract]
+        List<Control> GetControls(int orgid, ControlLocation controllocation);
     }
 }

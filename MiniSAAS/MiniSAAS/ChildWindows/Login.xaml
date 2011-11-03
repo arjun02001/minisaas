@@ -15,9 +15,9 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="Email" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
-        <TextBox Name="uiEmail" Margin="5" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"></TextBox>
+        <TextBox Name="uiEmail" Margin="5" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Text="arjun@gmail.com"></TextBox>
         <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Password" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
-        <PasswordBox Name="uiPassword" Margin="5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" KeyDown="uiPassword_KeyDown"></PasswordBox>
+        <PasswordBox Name="uiPassword" Margin="5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Password="arjun" KeyDown="uiPassword_KeyDown"></PasswordBox>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Name="uiLogin" Margin="5" Content="Login" Width="75" Click="uiLogin_Click"></Button>
             <Button Name="uiRegister" Margin="5" Content="Register" Width="75" Click="uiRegister_Click"></Button>

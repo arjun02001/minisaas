@@ -28,5 +28,15 @@ namespace MiniSAAS.UserControls
         {
             App.GoToXAML(new WorkflowViewer(App.orgid));
         }
+
+        private void uiUICustomizer_Click(object sender, RoutedEventArgs e)
+        {
+            App.GoToXAML(new UICustomizer(App.orgid));
+        }
+
+        private void uiUIViewer_Click(object sender, RoutedEventArgs e)
+        {
+            App.GoToXAML(new UIViewer(App.orgid));
+        }
     }
 }

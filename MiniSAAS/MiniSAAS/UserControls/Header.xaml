@@ -16,6 +16,12 @@
                 <HyperlinkButton x:Name="uiWorkflow" Click="uiWorkflow_Click">
                     <TextBlock Margin="5" Text="Workflow" Foreground="WhiteSmoke"></TextBlock>
                 </HyperlinkButton>
+                <HyperlinkButton x:Name="uiUICustomizer" Click="uiUICustomizer_Click">
+                    <TextBlock Margin="5" Text="UI Customizer" Foreground="WhiteSmoke"></TextBlock>
+                </HyperlinkButton>
+                <HyperlinkButton x:Name="uiUIViewer" Click="uiUIViewer_Click">
+                    <TextBlock Margin="5" Text="UI Viewer" Foreground="WhiteSmoke"></TextBlock>
+                </HyperlinkButton>
             </StackPanel>
         </StackPanel>
     </Grid>

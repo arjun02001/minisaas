@@ -90,8 +90,14 @@
     <Compile Include="ChildWindows\Field.xaml.cs">
       <DependentUpon>Field.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindows\HeaderCustomizer.xaml.cs">
+      <DependentUpon>HeaderCustomizer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChildWindows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChildWindows\Message.xaml.cs">
+      <DependentUpon>Message.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChildWindows\NewMethod.xaml.cs">
       <DependentUpon>NewMethod.xaml</DependentUpon>
@@ -162,7 +168,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ChildWindows\HeaderCustomizer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChildWindows\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindows\Message.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -31,12 +31,12 @@ namespace MiniSAAS.UserControls
 
         private void uiUICustomizer_Click(object sender, RoutedEventArgs e)
         {
-            App.GoToXAML(new UICustomizer(App.orgid));
+            App.GoToXAML(new UICustomizer());
         }
 
         private void uiUIViewer_Click(object sender, RoutedEventArgs e)
         {
-            App.GoToXAML(new UIViewer(App.orgid));
+            App.GoToXAML(new UIViewer());
         }
     }
 }

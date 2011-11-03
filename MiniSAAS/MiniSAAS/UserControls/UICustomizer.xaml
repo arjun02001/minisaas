@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:my="clr-namespace:MiniSAAS.UserControls"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
@@ -10,11 +11,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="75"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <my:Header Grid.Row="0"></my:Header>
+        <Grid Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="75"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
-        <Grid Background="White" x:Name="uiHeaderGrid" MouseLeftButtonDown="uiHeaderGrid_MouseLeftButtonDown" ToolTipService.ToolTip="Click here to choose a background" ToolTipService.Placement="Mouse" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave">
-            <TextBlock x:Name="uiTitle" Margin="5" FontSize="30" Text="TITLE" MouseLeftButtonDown="uiTitle_MouseLeftButtonDown" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTipService.ToolTip="Click here to add title" ToolTipService.Placement="Mouse" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave"></TextBlock>
+        <Grid Background="White" x:Name="uiHeaderGrid" MouseLeftButtonDown="uiHeaderGrid_MouseLeftButtonDown" ToolTipService.ToolTip="Click here to choose a title and background" ToolTipService.Placement="Mouse" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave">
+            <TextBlock x:Name="uiTitle" Margin="5" FontSize="30" Text="TITLE" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         </Grid>
         </Border>
         <Grid Grid.Row="1">
@@ -23,7 +30,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
-                <Grid x:Name="uiSideBarGrid" Background="White" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave" ToolTipService.ToolTip="Click here to add links" ToolTipService.Placement="Mouse">
+                <Grid x:Name="uiSideBarGrid" Background="White" MouseLeftButtonDown="uiSideBarGrid_MouseLeftButtonDown" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave" ToolTipService.ToolTip="Click here to add links" ToolTipService.Placement="Mouse">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
                         <HyperlinkButton Content="Example link 1"></HyperlinkButton>
                         <HyperlinkButton Content="Example link 2"></HyperlinkButton>
@@ -40,7 +47,7 @@
             </Border>
         </Grid>
         <Border Grid.Row="2" BorderBrush="Black" BorderThickness="2">
-            <Grid x:Name="uiFooterGrid" Background="White" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave" ToolTipService.ToolTip="Click here to add footer links" ToolTipService.Placement="Mouse">
+            <Grid x:Name="uiFooterGrid" Background="White" MouseLeftButtonDown="uiFooterGrid_MouseLeftButtonDown" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave" ToolTipService.ToolTip="Click here to add footer links" ToolTipService.Placement="Mouse">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
                     <HyperlinkButton Content="Example footer link 1"></HyperlinkButton>
                     <HyperlinkButton Content="Example footer link 1"></HyperlinkButton>
@@ -48,5 +55,6 @@
                 </StackPanel>
             </Grid>
         </Border>
+        </Grid>
     </Grid>
 </UserControl>

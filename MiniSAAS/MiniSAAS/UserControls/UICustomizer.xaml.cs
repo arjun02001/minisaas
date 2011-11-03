@@ -9,12 +9,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using MiniSAAS.ChildWindows;
 
 namespace MiniSAAS.UserControls
 {
     public partial class UICustomizer : UserControl
     {
-        public UICustomizer(int orgid)
+        public UICustomizer()
         {
             InitializeComponent();
         }
@@ -31,12 +32,17 @@ namespace MiniSAAS.UserControls
 
         private void uiHeaderGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("hi");
+            new HeaderCustomizer().Show();
         }
 
-        private void uiTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void uiSideBarGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("hello");
+
+        }
+
+        private void uiFooterGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

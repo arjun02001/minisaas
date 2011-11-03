@@ -14,7 +14,7 @@ namespace MiniSAAS.UserControls
 {
     public partial class UIViewer : UserControl
     {
-        public UIViewer(int orgid)
+        public UIViewer()
         {
             InitializeComponent();
         }

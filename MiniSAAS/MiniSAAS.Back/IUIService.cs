@@ -14,5 +14,7 @@ namespace MiniSAAS.Back
     {
         [OperationContract]
         List<Control> GetControls(int orgid, ControlLocation controllocation);
+        [OperationContract]
+        bool UpdateHeader(int orgid, Control control);
     }
 }

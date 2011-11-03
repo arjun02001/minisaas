@@ -10,6 +10,10 @@
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
+                <binding name="BasicHttpBinding_IUIService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
             </basicHttpBinding>
         </bindings>
         <client>
@@ -19,6 +23,9 @@
             <endpoint address="http://localhost:3985/WorkflowService.svc"
                 binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IWorkflowService"
                 contract="WorkflowServiceReference.IWorkflowService" name="BasicHttpBinding_IWorkflowService" />
+            <endpoint address="http://localhost:3985/UIService.svc" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IUIService" contract="UIServiceReference.IUIService"
+                name="BasicHttpBinding_IUIService" />
         </client>
     </system.serviceModel>
 </configuration>

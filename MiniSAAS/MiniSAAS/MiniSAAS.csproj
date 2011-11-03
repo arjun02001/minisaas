@@ -127,6 +127,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\UIServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WorkflowServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -244,6 +249,19 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\UIServiceReference\MiniSAAS.UIServiceReference.Control.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UIServiceReference\UIService.wsdl" />
+    <None Include="Service References\UIServiceReference\UIService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UIServiceReference\UIService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UIServiceReference\UIService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\WorkflowServiceReference\MiniSAAS.WorkflowServiceReference.Method.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -254,6 +272,13 @@
     <None Include="Service References\WorkflowServiceReference\configuration91.svcinfo" />
     <None Include="Service References\WorkflowServiceReference\configuration.svcinfo" />
     <None Include="Service References\WorkflowServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\UIServiceReference\UIService.disco" />
+    <None Include="Service References\UIServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\UIServiceReference\configuration.svcinfo" />
+    <None Include="Service References\UIServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -292,6 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DataServiceReference\" />
+    <WCFMetadataStorage Include="Service References\UIServiceReference\" />
     <WCFMetadataStorage Include="Service References\WorkflowServiceReference\" />
   </ItemGroup>
   <ItemGroup />

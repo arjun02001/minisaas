@@ -38,5 +38,31 @@ namespace MiniSAAS.Back
             }
             return controls;
         }
+
+        public bool UpdateHeader(int orgid, Control control)
+        {
+            try
+            {
+                string sql = string.Format(" select * from dbo.Control c, dbo.ControlLocation cl ") +
+                            string.Format(" where c.ControlLocation = cl.Value and c.OrgID = '{0}' and c.ControlLocation = '{1}' ", orgid, (int)ControlLocation.Header);
+                DataTable dt = DataManager.GetData(sql);
+                if (dt.Rows.Count > 0)
+                {
+                    sql = string.Format(" update dbo.Control set Text = '{0}', BackgroundImage = '{1}' where ControlID = '{2}' ", control.Text.Trim(), control.BackgroundImage.Trim(), control.ControlID);
+
+                }
+                else
+                {
+                    sql = string.Format(" insert into dbo.Control (OrgID, ControlLocation, Text, BackgroundImage) ") +
+                          string.Format(" values ('{0}', '{1}', '{2}', '{3}') ", orgid, (int)ControlLocation.Header, control.Text.Trim(), control.BackgroundImage.Trim());
+                }
+                DataManager.SetData(sql);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace MiniSAAS.Back.Classes
 {
     public enum ControlLocation
     {
-        Header,
+        Header = 1,
         Footer,
         Sidebar
     };

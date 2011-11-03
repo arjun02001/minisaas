@@ -19,7 +19,7 @@ namespace MiniSAAS.Back
             {
                 string sql = string.Format(" select c.ControlID, c.ControlLocation, c.Text, c.RedirectURL, c.BackgroundImage ") +
                             string.Format(" from dbo.Control c, dbo.ControlLocation cl ") +
-                            string.Format(" where c.ControlLocation = cl.Value and cl.Location = '{0}' and c.OrgID = '{1}' ", controllocation, orgid);
+                            string.Format(" where c.ControlLocation = cl.Value and c.ControlLocation = '{0}' and c.OrgID = '{1}' ", (int)controllocation, orgid);
                 DataTable dt = DataManager.GetData(sql);
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -56,6 +56,35 @@ namespace MiniSAAS.Back
                     sql = string.Format(" insert into dbo.Control (OrgID, ControlLocation, Text, BackgroundImage) ") +
                           string.Format(" values ('{0}', '{1}', '{2}', '{3}') ", orgid, (int)ControlLocation.Header, control.Text.Trim(), control.BackgroundImage.Trim());
                 }
+                DataManager.SetData(sql);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
+
+        public bool AddLinks(int orgid, Control control)
+        {
+            try
+            {
+                string sql = string.Format(" insert into dbo.Control (OrgID, ControlLocation, Text, RedirectURL) ") +
+                            string.Format(" values ('{0}', '{1}', '{2}', '{3}') ", orgid, (int)control.ControlLocation, control.Text, control.RedirectURL);
+                DataManager.SetData(sql);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
+
+        public bool RemoveLinks(int orgid, Control control)
+        {
+            try
+            {
+                string sql = string.Format(" delete from dbo.Control where ControlID = '{0}' and OrgID = '{1}' ", control.ControlID, orgid);
                 DataManager.SetData(sql);
                 return true;
             }

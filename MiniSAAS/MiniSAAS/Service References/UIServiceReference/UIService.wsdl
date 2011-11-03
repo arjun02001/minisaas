@@ -19,6 +19,18 @@
   <wsdl:message name="IUIService_UpdateHeader_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateHeaderResponse" />
   </wsdl:message>
+  <wsdl:message name="IUIService_AddLinks_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLinks" />
+  </wsdl:message>
+  <wsdl:message name="IUIService_AddLinks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUIService_RemoveLinks_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinks" />
+  </wsdl:message>
+  <wsdl:message name="IUIService_RemoveLinks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinksResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUIService">
     <wsdl:operation name="GetControls">
       <wsdl:input wsaw:Action="http://tempuri.org/IUIService/GetControls" message="tns:IUIService_GetControls_InputMessage" />
@@ -27,6 +39,14 @@
     <wsdl:operation name="UpdateHeader">
       <wsdl:input wsaw:Action="http://tempuri.org/IUIService/UpdateHeader" message="tns:IUIService_UpdateHeader_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUIService/UpdateHeaderResponse" message="tns:IUIService_UpdateHeader_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLinks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUIService/AddLinks" message="tns:IUIService_AddLinks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUIService/AddLinksResponse" message="tns:IUIService_AddLinks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUIService/RemoveLinks" message="tns:IUIService_RemoveLinks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUIService/RemoveLinksResponse" message="tns:IUIService_RemoveLinks_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUIService" type="tns:IUIService">
@@ -42,6 +62,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateHeader">
       <soap:operation soapAction="http://tempuri.org/IUIService/UpdateHeader" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLinks">
+      <soap:operation soapAction="http://tempuri.org/IUIService/AddLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinks">
+      <soap:operation soapAction="http://tempuri.org/IUIService/RemoveLinks" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

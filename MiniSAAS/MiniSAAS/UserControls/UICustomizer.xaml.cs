@@ -37,7 +37,7 @@ namespace MiniSAAS.UserControls
 
         private void uiSideBarGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            new SidebarCustomizer().Show();
         }
 
         private void uiFooterGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

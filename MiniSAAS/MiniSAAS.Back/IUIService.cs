@@ -16,5 +16,9 @@ namespace MiniSAAS.Back
         List<Control> GetControls(int orgid, ControlLocation controllocation);
         [OperationContract]
         bool UpdateHeader(int orgid, Control control);
+        [OperationContract]
+        bool AddLinks(int orgid, Control control);
+        [OperationContract]
+        bool RemoveLinks(int orgid, Control control);
     }
 }

@@ -42,7 +42,7 @@ namespace MiniSAAS.UserControls
 
         private void uiFooterGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            new FooterCustomizer().Show();
         }
     }
 }

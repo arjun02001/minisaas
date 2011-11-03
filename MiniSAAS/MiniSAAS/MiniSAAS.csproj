@@ -135,6 +135,12 @@
     <Compile Include="UserControls\MethodGrid.xaml.cs">
       <DependentUpon>MethodGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UICustomizer.xaml.cs">
+      <DependentUpon>UICustomizer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UIViewer.xaml.cs">
+      <DependentUpon>UIViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\WorkflowViewer.xaml.cs">
       <DependentUpon>WorkflowViewer.xaml</DependentUpon>
     </Compile>
@@ -193,6 +199,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MethodGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UICustomizer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UIViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,6 +280,7 @@
     <WCFMetadataStorage Include="Service References\DataServiceReference\" />
     <WCFMetadataStorage Include="Service References\WorkflowServiceReference\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -31,4 +31,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddLinks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orgid" type="xs:int" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="control" nillable="true" type="q4:Control" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddLinksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddLinksResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveLinks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orgid" type="xs:int" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MiniSAAS.Back.Classes" minOccurs="0" name="control" nillable="true" type="q5:Control" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveLinksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveLinksResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

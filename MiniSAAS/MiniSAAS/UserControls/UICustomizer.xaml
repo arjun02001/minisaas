@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
-                <Grid x:Name="uiSideBarGrid" Background="White" MouseLeftButtonDown="uiSideBarGrid_MouseLeftButtonDown" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave" ToolTipService.ToolTip="Click here to add links" ToolTipService.Placement="Mouse">
+                <Grid x:Name="uiSideBarGrid" Background="White" MouseLeftButtonDown="uiSideBarGrid_MouseLeftButtonDown" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave" ToolTipService.ToolTip="Click here to add side bar links" ToolTipService.Placement="Mouse">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
                         <HyperlinkButton Content="Example link 1"></HyperlinkButton>
                         <HyperlinkButton Content="Example link 2"></HyperlinkButton>

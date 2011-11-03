@@ -132,6 +132,16 @@ namespace MiniSAAS.UIServiceReference {
         System.IAsyncResult BeginUpdateHeader(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState);
         
         bool EndUpdateHeader(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUIService/AddLinks", ReplyAction="http://tempuri.org/IUIService/AddLinksResponse")]
+        System.IAsyncResult BeginAddLinks(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState);
+        
+        bool EndAddLinks(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUIService/RemoveLinks", ReplyAction="http://tempuri.org/IUIService/RemoveLinksResponse")]
+        System.IAsyncResult BeginRemoveLinks(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState);
+        
+        bool EndRemoveLinks(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -178,6 +188,44 @@ namespace MiniSAAS.UIServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddLinksCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddLinksCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RemoveLinksCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RemoveLinksCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class UIServiceClient : System.ServiceModel.ClientBase<MiniSAAS.UIServiceReference.IUIService>, MiniSAAS.UIServiceReference.IUIService {
         
         private BeginOperationDelegate onBeginGetControlsDelegate;
@@ -191,6 +239,18 @@ namespace MiniSAAS.UIServiceReference {
         private EndOperationDelegate onEndUpdateHeaderDelegate;
         
         private System.Threading.SendOrPostCallback onUpdateHeaderCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddLinksDelegate;
+        
+        private EndOperationDelegate onEndAddLinksDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddLinksCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginRemoveLinksDelegate;
+        
+        private EndOperationDelegate onEndRemoveLinksDelegate;
+        
+        private System.Threading.SendOrPostCallback onRemoveLinksCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -248,6 +308,10 @@ namespace MiniSAAS.UIServiceReference {
         public event System.EventHandler<GetControlsCompletedEventArgs> GetControlsCompleted;
         
         public event System.EventHandler<UpdateHeaderCompletedEventArgs> UpdateHeaderCompleted;
+        
+        public event System.EventHandler<AddLinksCompletedEventArgs> AddLinksCompleted;
+        
+        public event System.EventHandler<RemoveLinksCompletedEventArgs> RemoveLinksCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -347,6 +411,102 @@ namespace MiniSAAS.UIServiceReference {
             base.InvokeAsync(this.onBeginUpdateHeaderDelegate, new object[] {
                         orgid,
                         control}, this.onEndUpdateHeaderDelegate, this.onUpdateHeaderCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.UIServiceReference.IUIService.BeginAddLinks(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddLinks(orgid, control, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool MiniSAAS.UIServiceReference.IUIService.EndAddLinks(System.IAsyncResult result) {
+            return base.Channel.EndAddLinks(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddLinks(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int orgid = ((int)(inValues[0]));
+            MiniSAAS.UIServiceReference.Control control = ((MiniSAAS.UIServiceReference.Control)(inValues[1]));
+            return ((MiniSAAS.UIServiceReference.IUIService)(this)).BeginAddLinks(orgid, control, callback, asyncState);
+        }
+        
+        private object[] OnEndAddLinks(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.UIServiceReference.IUIService)(this)).EndAddLinks(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddLinksCompleted(object state) {
+            if ((this.AddLinksCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddLinksCompleted(this, new AddLinksCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddLinksAsync(int orgid, MiniSAAS.UIServiceReference.Control control) {
+            this.AddLinksAsync(orgid, control, null);
+        }
+        
+        public void AddLinksAsync(int orgid, MiniSAAS.UIServiceReference.Control control, object userState) {
+            if ((this.onBeginAddLinksDelegate == null)) {
+                this.onBeginAddLinksDelegate = new BeginOperationDelegate(this.OnBeginAddLinks);
+            }
+            if ((this.onEndAddLinksDelegate == null)) {
+                this.onEndAddLinksDelegate = new EndOperationDelegate(this.OnEndAddLinks);
+            }
+            if ((this.onAddLinksCompletedDelegate == null)) {
+                this.onAddLinksCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddLinksCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddLinksDelegate, new object[] {
+                        orgid,
+                        control}, this.onEndAddLinksDelegate, this.onAddLinksCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.UIServiceReference.IUIService.BeginRemoveLinks(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRemoveLinks(orgid, control, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool MiniSAAS.UIServiceReference.IUIService.EndRemoveLinks(System.IAsyncResult result) {
+            return base.Channel.EndRemoveLinks(result);
+        }
+        
+        private System.IAsyncResult OnBeginRemoveLinks(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int orgid = ((int)(inValues[0]));
+            MiniSAAS.UIServiceReference.Control control = ((MiniSAAS.UIServiceReference.Control)(inValues[1]));
+            return ((MiniSAAS.UIServiceReference.IUIService)(this)).BeginRemoveLinks(orgid, control, callback, asyncState);
+        }
+        
+        private object[] OnEndRemoveLinks(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.UIServiceReference.IUIService)(this)).EndRemoveLinks(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnRemoveLinksCompleted(object state) {
+            if ((this.RemoveLinksCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RemoveLinksCompleted(this, new RemoveLinksCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RemoveLinksAsync(int orgid, MiniSAAS.UIServiceReference.Control control) {
+            this.RemoveLinksAsync(orgid, control, null);
+        }
+        
+        public void RemoveLinksAsync(int orgid, MiniSAAS.UIServiceReference.Control control, object userState) {
+            if ((this.onBeginRemoveLinksDelegate == null)) {
+                this.onBeginRemoveLinksDelegate = new BeginOperationDelegate(this.OnBeginRemoveLinks);
+            }
+            if ((this.onEndRemoveLinksDelegate == null)) {
+                this.onEndRemoveLinksDelegate = new EndOperationDelegate(this.OnEndRemoveLinks);
+            }
+            if ((this.onRemoveLinksCompletedDelegate == null)) {
+                this.onRemoveLinksCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRemoveLinksCompleted);
+            }
+            base.InvokeAsync(this.onBeginRemoveLinksDelegate, new object[] {
+                        orgid,
+                        control}, this.onEndRemoveLinksDelegate, this.onRemoveLinksCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -450,6 +610,34 @@ namespace MiniSAAS.UIServiceReference {
             public bool EndUpdateHeader(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("UpdateHeader", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginAddLinks(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = orgid;
+                _args[1] = control;
+                System.IAsyncResult _result = base.BeginInvoke("AddLinks", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndAddLinks(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("AddLinks", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginRemoveLinks(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = orgid;
+                _args[1] = control;
+                System.IAsyncResult _result = base.BeginInvoke("RemoveLinks", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndRemoveLinks(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("RemoveLinks", _args, result)));
                 return _result;
             }
         }

@@ -1,0 +1,35 @@
+﻿<controls:ChildWindow x:Class="MiniSAAS.ChildWindows.SidebarCustomizer"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+           Width="400" Height="300" 
+           Title="Sidebar Customizer">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Margin="5" Text="Existing links"></TextBlock>
+        <sdk:DataGrid Grid.Row="1" x:Name="uiSidebarLinksGrid" Margin="5" AutoGenerateColumns="False" Width="350" Height="150" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding ControlID}" Visibility="Collapsed"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="Text" Binding="{Binding Text}" IsReadOnly="True"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="RedirectURL" Binding="{Binding RedirectURL}" IsReadOnly="True"></sdk:DataGridTextColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Margin="5" Text="Text" VerticalAlignment="Center"></TextBlock>
+            <TextBox Margin="5" x:Name="uiText" Width="100"></TextBox>
+            <TextBlock Margin="5" Text="RedirectURL" VerticalAlignment="Center"></TextBlock>
+            <TextBox Margin="5" x:Name="uiRedirectURL" Width="130"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="5" x:Name="uiAddLink" Content="Add Link" Click="uiAddLink_Click"></Button>
+            <Button Margin="5" x:Name="uiRemoveLink" Content="Remove Link" Click="uiRemoveLink_Click"></Button>
+            <Button Margin="5" x:Name="uiDone" Content="Done" Click="uiDone_Click"></Button>
+        </StackPanel>
+    </Grid>
+</controls:ChildWindow>

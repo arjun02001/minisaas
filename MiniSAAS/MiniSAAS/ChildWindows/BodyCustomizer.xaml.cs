@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Reflection;
 using MiniSAAS.UIServiceReference;
 
 namespace MiniSAAS.ChildWindows
@@ -99,7 +100,19 @@ namespace MiniSAAS.ChildWindows
 
         private void uiPreviewPage_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                string page = (uiAvailablePagesGrid.SelectedItem as Page).RedirectURL;
+                Message message = new Message(string.Empty);
+                message.Width = 600;
+                message.Height = 500;
+                message.LayoutRoot.Children.Clear();
+                message.LayoutRoot.Children.Add((UIElement)System.Activator.CreateInstance(Type.GetType("MiniSAAS.Parts." + page)));
+                message.Show();
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void uiDone_Click(object sender, RoutedEventArgs e)

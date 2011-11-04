@@ -32,7 +32,6 @@ namespace MiniSAAS.UserControls
                 client.GetControlsAsync(App.orgid, ControlLocation.Header, ControlLocation.Header);
                 client.GetControlsAsync(App.orgid, ControlLocation.Footer, ControlLocation.Footer);
                 client.GetControlsAsync(App.orgid, ControlLocation.Sidebar, ControlLocation.Sidebar);
-                client.GetControlsAsync(App.orgid, ControlLocation.Body, ControlLocation.Body);
             }
             catch (Exception ex)
             {
@@ -121,6 +120,9 @@ namespace MiniSAAS.UserControls
                     };
                     uiSidebarPanel.Children.Add(hlb);
                 }
+                UIServiceClient client = new UIServiceClient();
+                client.GetControlsCompleted += new EventHandler<GetControlsCompletedEventArgs>(client_GetControlsCompleted);
+                client.GetControlsAsync(App.orgid, ControlLocation.Body, ControlLocation.Body);
             }
             catch (Exception ex)
             {

@@ -41,7 +41,7 @@
                     </Grid>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
-                    <Grid Background="White" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave">
+                    <Grid x:Name="uiBodyGrid" MouseLeftButtonDown="uiBodyGrid_MouseLeftButtonDown" Background="White" MouseEnter="ui_MouseEnter" MouseLeave="ui_MouseLeave" ToolTipService.ToolTip="Click here to add default pages" ToolTipService.Placement="Mouse">
                     </Grid>
                 </Border>
             </Grid>

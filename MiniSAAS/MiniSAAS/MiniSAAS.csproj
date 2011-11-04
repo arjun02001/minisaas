@@ -85,6 +85,9 @@
     <Compile Include="ChildWindows\AddData.xaml.cs">
       <DependentUpon>AddData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindows\BodyCustomizer.xaml.cs">
+      <DependentUpon>BodyCustomizer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChildWindows\CreateObject.xaml.cs">
       <DependentUpon>CreateObject.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,18 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Parts\AvailableProducts.xaml.cs">
+      <DependentUpon>AvailableProducts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Parts\Checkout.xaml.cs">
+      <DependentUpon>Checkout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Parts\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Parts\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\DataServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -169,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="ChildWindows\AddData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindows\BodyCustomizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +240,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Parts\AvailableProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Parts\Checkout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Parts\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Parts\Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

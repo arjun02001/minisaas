@@ -83,7 +83,10 @@ namespace MiniSAAS.UserControls
                     hlb.Tag = control.RedirectURL;
                     hlb.Click += delegate(object sender, RoutedEventArgs e)
                     {
-                        uiBrowser.Navigate(new Uri((sender as HyperlinkButton).Tag.ToString(), UriKind.RelativeOrAbsolute));
+                        uiBodyGrid.Children.Clear();
+                        WebBrowser webbrowser = new WebBrowser();
+                        uiBodyGrid.Children.Add(webbrowser);
+                        webbrowser.Navigate(new Uri((sender as HyperlinkButton).Tag.ToString(), UriKind.RelativeOrAbsolute));
                     };
                     uiFooterPanel.Children.Add(hlb);
                 }
@@ -106,7 +109,10 @@ namespace MiniSAAS.UserControls
                     hlb.Tag = control.RedirectURL;
                     hlb.Click += delegate(object sender, RoutedEventArgs e)
                     {
-                        uiBrowser.Navigate(new Uri((sender as HyperlinkButton).Tag.ToString(), UriKind.RelativeOrAbsolute));
+                        uiBodyGrid.Children.Clear();
+                        WebBrowser webbrowser = new WebBrowser();
+                        uiBodyGrid.Children.Add(webbrowser);
+                        webbrowser.Navigate(new Uri((sender as HyperlinkButton).Tag.ToString(), UriKind.RelativeOrAbsolute));
                     };
                     uiSidebarPanel.Children.Add(hlb);
                 }

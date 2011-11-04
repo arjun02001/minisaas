@@ -44,5 +44,10 @@ namespace MiniSAAS.UserControls
         {
             new FooterCustomizer().Show();
         }
+
+        private void uiBodyGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new BodyCustomizer().Show();
+        }
     }
 }

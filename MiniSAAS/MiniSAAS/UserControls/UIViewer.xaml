@@ -36,8 +36,7 @@
                     </Grid>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
-                    <Grid>
-                        <WebBrowser x:Name="uiBrowser"></WebBrowser>
+                    <Grid x:Name="uiBodyGrid">
                     </Grid>
                 </Border>
             </Grid>

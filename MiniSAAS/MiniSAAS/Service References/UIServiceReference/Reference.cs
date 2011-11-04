@@ -27,6 +27,9 @@ namespace MiniSAAS.UIServiceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Sidebar = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Body = 4,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -142,6 +145,16 @@ namespace MiniSAAS.UIServiceReference {
         System.IAsyncResult BeginRemoveLinks(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState);
         
         bool EndRemoveLinks(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUIService/AddPage", ReplyAction="http://tempuri.org/IUIService/AddPageResponse")]
+        System.IAsyncResult BeginAddPage(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState);
+        
+        bool EndAddPage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUIService/RemovePage", ReplyAction="http://tempuri.org/IUIService/RemovePageResponse")]
+        System.IAsyncResult BeginRemovePage(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState);
+        
+        bool EndRemovePage(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -226,6 +239,44 @@ namespace MiniSAAS.UIServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddPageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddPageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RemovePageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RemovePageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class UIServiceClient : System.ServiceModel.ClientBase<MiniSAAS.UIServiceReference.IUIService>, MiniSAAS.UIServiceReference.IUIService {
         
         private BeginOperationDelegate onBeginGetControlsDelegate;
@@ -251,6 +302,18 @@ namespace MiniSAAS.UIServiceReference {
         private EndOperationDelegate onEndRemoveLinksDelegate;
         
         private System.Threading.SendOrPostCallback onRemoveLinksCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddPageDelegate;
+        
+        private EndOperationDelegate onEndAddPageDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddPageCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginRemovePageDelegate;
+        
+        private EndOperationDelegate onEndRemovePageDelegate;
+        
+        private System.Threading.SendOrPostCallback onRemovePageCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -312,6 +375,10 @@ namespace MiniSAAS.UIServiceReference {
         public event System.EventHandler<AddLinksCompletedEventArgs> AddLinksCompleted;
         
         public event System.EventHandler<RemoveLinksCompletedEventArgs> RemoveLinksCompleted;
+        
+        public event System.EventHandler<AddPageCompletedEventArgs> AddPageCompleted;
+        
+        public event System.EventHandler<RemovePageCompletedEventArgs> RemovePageCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -509,6 +576,102 @@ namespace MiniSAAS.UIServiceReference {
                         control}, this.onEndRemoveLinksDelegate, this.onRemoveLinksCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.UIServiceReference.IUIService.BeginAddPage(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddPage(orgid, control, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool MiniSAAS.UIServiceReference.IUIService.EndAddPage(System.IAsyncResult result) {
+            return base.Channel.EndAddPage(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddPage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int orgid = ((int)(inValues[0]));
+            MiniSAAS.UIServiceReference.Control control = ((MiniSAAS.UIServiceReference.Control)(inValues[1]));
+            return ((MiniSAAS.UIServiceReference.IUIService)(this)).BeginAddPage(orgid, control, callback, asyncState);
+        }
+        
+        private object[] OnEndAddPage(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.UIServiceReference.IUIService)(this)).EndAddPage(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddPageCompleted(object state) {
+            if ((this.AddPageCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddPageCompleted(this, new AddPageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddPageAsync(int orgid, MiniSAAS.UIServiceReference.Control control) {
+            this.AddPageAsync(orgid, control, null);
+        }
+        
+        public void AddPageAsync(int orgid, MiniSAAS.UIServiceReference.Control control, object userState) {
+            if ((this.onBeginAddPageDelegate == null)) {
+                this.onBeginAddPageDelegate = new BeginOperationDelegate(this.OnBeginAddPage);
+            }
+            if ((this.onEndAddPageDelegate == null)) {
+                this.onEndAddPageDelegate = new EndOperationDelegate(this.OnEndAddPage);
+            }
+            if ((this.onAddPageCompletedDelegate == null)) {
+                this.onAddPageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddPageCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddPageDelegate, new object[] {
+                        orgid,
+                        control}, this.onEndAddPageDelegate, this.onAddPageCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MiniSAAS.UIServiceReference.IUIService.BeginRemovePage(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRemovePage(orgid, control, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool MiniSAAS.UIServiceReference.IUIService.EndRemovePage(System.IAsyncResult result) {
+            return base.Channel.EndRemovePage(result);
+        }
+        
+        private System.IAsyncResult OnBeginRemovePage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int orgid = ((int)(inValues[0]));
+            MiniSAAS.UIServiceReference.Control control = ((MiniSAAS.UIServiceReference.Control)(inValues[1]));
+            return ((MiniSAAS.UIServiceReference.IUIService)(this)).BeginRemovePage(orgid, control, callback, asyncState);
+        }
+        
+        private object[] OnEndRemovePage(System.IAsyncResult result) {
+            bool retVal = ((MiniSAAS.UIServiceReference.IUIService)(this)).EndRemovePage(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnRemovePageCompleted(object state) {
+            if ((this.RemovePageCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RemovePageCompleted(this, new RemovePageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RemovePageAsync(int orgid, MiniSAAS.UIServiceReference.Control control) {
+            this.RemovePageAsync(orgid, control, null);
+        }
+        
+        public void RemovePageAsync(int orgid, MiniSAAS.UIServiceReference.Control control, object userState) {
+            if ((this.onBeginRemovePageDelegate == null)) {
+                this.onBeginRemovePageDelegate = new BeginOperationDelegate(this.OnBeginRemovePage);
+            }
+            if ((this.onEndRemovePageDelegate == null)) {
+                this.onEndRemovePageDelegate = new EndOperationDelegate(this.OnEndRemovePage);
+            }
+            if ((this.onRemovePageCompletedDelegate == null)) {
+                this.onRemovePageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRemovePageCompleted);
+            }
+            base.InvokeAsync(this.onBeginRemovePageDelegate, new object[] {
+                        orgid,
+                        control}, this.onEndRemovePageDelegate, this.onRemovePageCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -638,6 +801,34 @@ namespace MiniSAAS.UIServiceReference {
             public bool EndRemoveLinks(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("RemoveLinks", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginAddPage(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = orgid;
+                _args[1] = control;
+                System.IAsyncResult _result = base.BeginInvoke("AddPage", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndAddPage(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("AddPage", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginRemovePage(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = orgid;
+                _args[1] = control;
+                System.IAsyncResult _result = base.BeginInvoke("RemovePage", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndRemovePage(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("RemovePage", _args, result)));
                 return _result;
             }
         }

@@ -2,15 +2,41 @@
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
            Width="400" Height="300" 
            Title="Body Customizer">
     <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
-        <Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="Existing Pages"></TextBlock>
+        <sdk:DataGrid Grid.Row="1" Grid.Column="0" x:Name="uiExistingPagesGrid" Margin="5" AutoGenerateColumns="False" Width="175" Height="150" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding ControlID}" Visibility="Collapsed"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="Page" Binding="{Binding Text}" IsReadOnly="True"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="Location" Binding="{Binding RedirectURL}" IsReadOnly="True"></sdk:DataGridTextColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+            <Button x:Name="uiRemovePage" Margin="5" Content="Remove Page" Click="uiRemovePage_Click"></Button>
+            <Button x:Name="uiDone" Margin="5" Content="Done" Click="uiDone_Click"></Button>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Available Pages"></TextBlock>
+        <sdk:DataGrid Grid.Row="1" Grid.Column="1" x:Name="uiAvailablePagesGrid" Margin="5" AutoGenerateColumns="False" Width="175" Height="150" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Header="Page" Binding="{Binding Text}" IsReadOnly="True"></sdk:DataGridTextColumn>
+                <sdk:DataGridTextColumn Header="Location" Binding="{Binding RedirectURL}" IsReadOnly="True"></sdk:DataGridTextColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
+            <Button x:Name="uiAddPage" Margin="5" Content="Add Page" Click="uiAddPage_Click"></Button>
+            <Button x:Name="uiPreviewPage" Margin="5" Content="Preview Page" Click="uiPreviewPage_Click"></Button>
+        </StackPanel>
     </Grid>
 </controls:ChildWindow>

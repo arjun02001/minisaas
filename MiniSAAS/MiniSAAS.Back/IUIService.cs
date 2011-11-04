@@ -20,5 +20,9 @@ namespace MiniSAAS.Back
         bool AddLinks(int orgid, Control control);
         [OperationContract]
         bool RemoveLinks(int orgid, Control control);
+        [OperationContract]
+        bool AddPage(int orgid, Control control);
+        [OperationContract]
+        bool RemovePage(int orgid, Control control);
     }
 }

@@ -93,5 +93,40 @@ namespace MiniSAAS.Back
             }
             return false;
         }
+
+        public bool AddPage(int orgid, Control control)
+        {
+            try
+            {
+                string sql = string.Format(" select * from dbo.Control where OrgID = '{0}' and ControlLocation = '{1}' ", orgid, (int)control.ControlLocation) +
+                            string.Format(" and Text = '{0}' and RedirectURL = '{1}' ", control.Text, control.RedirectURL);
+                if (DataManager.GetData(sql).Rows.Count > 0)
+                {
+                    return false;
+                }
+                sql = string.Format(" insert into dbo.Control (OrgID, ControlLocation, Text, RedirectURL) ") +
+                            string.Format(" values ('{0}', '{1}', '{2}', '{3}') ", orgid, (int)control.ControlLocation, control.Text, control.RedirectURL);
+                DataManager.SetData(sql);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
+
+        public bool RemovePage(int orgid, Control control)
+        {
+            try
+            {
+                string sql = string.Format(" delete from dbo.Control where ControlID = '{0}' and OrgID = '{1}' ", control.ControlID, orgid);
+                DataManager.SetData(sql);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
     }
 }

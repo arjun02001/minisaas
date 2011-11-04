@@ -31,6 +31,18 @@
   <wsdl:message name="IUIService_RemoveLinks_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveLinksResponse" />
   </wsdl:message>
+  <wsdl:message name="IUIService_AddPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPage" />
+  </wsdl:message>
+  <wsdl:message name="IUIService_AddPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUIService_RemovePage_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePage" />
+  </wsdl:message>
+  <wsdl:message name="IUIService_RemovePage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePageResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUIService">
     <wsdl:operation name="GetControls">
       <wsdl:input wsaw:Action="http://tempuri.org/IUIService/GetControls" message="tns:IUIService_GetControls_InputMessage" />
@@ -47,6 +59,14 @@
     <wsdl:operation name="RemoveLinks">
       <wsdl:input wsaw:Action="http://tempuri.org/IUIService/RemoveLinks" message="tns:IUIService_RemoveLinks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUIService/RemoveLinksResponse" message="tns:IUIService_RemoveLinks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUIService/AddPage" message="tns:IUIService_AddPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUIService/AddPageResponse" message="tns:IUIService_AddPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUIService/RemovePage" message="tns:IUIService_RemovePage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUIService/RemovePageResponse" message="tns:IUIService_RemovePage_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUIService" type="tns:IUIService">
@@ -80,6 +100,24 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveLinks">
       <soap:operation soapAction="http://tempuri.org/IUIService/RemoveLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPage">
+      <soap:operation soapAction="http://tempuri.org/IUIService/AddPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePage">
+      <soap:operation soapAction="http://tempuri.org/IUIService/RemovePage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

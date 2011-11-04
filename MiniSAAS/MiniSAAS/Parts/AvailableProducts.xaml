@@ -7,6 +7,17 @@
     d:DesignHeight="300" d:DesignWidth="400">
     
     <Grid x:Name="LayoutRoot" Background="White">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Width="300" Height="250" Source="http://gaminglaptopsreview.net/wp-content/uploads/2011/05/Alienware-M17x-with-Intel-QX9300-nVidia-GTX-280M-SLI-17-Inch-Laptop-01.jpg"></Image>
+        <Image Grid.Row="0" Grid.Column="1" Width="300" Height="250" Source="http://www.geek.com/wp-content/uploads/2008/12/alienware_m17x_01.jpg"></Image>
+        <Image Grid.Row="1" Grid.Column="0" Width="300" Height="250" Source="http://laptops-and-notebooks.findthebest.com/sites/default/files/840/media/images/Alienware_M14x_Laptop.jpg"></Image>
+        <Image Grid.Row="1" Grid.Column="1" Width="300" Height="250" Source="http://www.letsgodigital.org/images/artikelen/199/dell-alienware-m17x-laptop.jpg"></Image>
     </Grid>
 </UserControl>

@@ -107,10 +107,10 @@ namespace MiniSAAS.ChildWindows
                 message.Width = 600;
                 message.Height = 500;
                 message.LayoutRoot.Children.Clear();
-                message.LayoutRoot.Children.Add((UIElement)System.Activator.CreateInstance(Type.GetType("MiniSAAS.Parts." + page)));
+                message.LayoutRoot.Children.Add((UserControl)System.Activator.CreateInstance(Type.GetType("MiniSAAS.Parts." + page)));
                 message.Show();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

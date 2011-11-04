@@ -9,6 +9,7 @@ namespace MiniSAAS.Back.Classes
     {
         Header = 1,
         Footer,
-        Sidebar
+        Sidebar,
+        Body
     };
 }

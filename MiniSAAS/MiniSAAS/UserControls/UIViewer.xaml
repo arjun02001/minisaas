@@ -30,8 +30,8 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
-                    <Grid x:Name="uiSideBarGrid" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="uiSidebarPanel" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                    <Grid x:Name="uiSideBarGrid">
+                        <StackPanel x:Name="uiSidebarPanel" Orientation="Vertical" HorizontalAlignment="Center" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         </StackPanel>
                     </Grid>
                 </Border>

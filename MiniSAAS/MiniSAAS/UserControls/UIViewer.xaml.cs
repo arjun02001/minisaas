@@ -67,7 +67,6 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
         }
 
@@ -81,16 +80,16 @@ namespace MiniSAAS.UserControls
                     HyperlinkButton hlb = new HyperlinkButton();
                     hlb.Margin = new Thickness(5);
                     hlb.Content = control.Text;
+                    hlb.Tag = control.RedirectURL;
                     hlb.Click += delegate(object sender, RoutedEventArgs e)
                     {
-                        uiBrowser.Navigate(new Uri(control.RedirectURL, UriKind.RelativeOrAbsolute);
+                        uiBrowser.Navigate(new Uri((sender as HyperlinkButton).Tag.ToString(), UriKind.RelativeOrAbsolute));
                     };
                     uiFooterPanel.Children.Add(hlb);
                 }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
         }
 
@@ -104,16 +103,16 @@ namespace MiniSAAS.UserControls
                     HyperlinkButton hlb = new HyperlinkButton();
                     hlb.Margin = new Thickness(5);
                     hlb.Content = control.Text;
+                    hlb.Tag = control.RedirectURL;
                     hlb.Click += delegate(object sender, RoutedEventArgs e)
                     {
-                        uiBrowser.Navigate(new Uri(control.RedirectURL, UriKind.RelativeOrAbsolute));
+                        uiBrowser.Navigate(new Uri((sender as HyperlinkButton).Tag.ToString(), UriKind.RelativeOrAbsolute));
                     };
                     uiSidebarPanel.Children.Add(hlb);
                 }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
         }
     }

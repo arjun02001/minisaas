@@ -32,6 +32,7 @@ namespace MiniSAAS.UserControls
                 client.GetControlsAsync(App.orgid, ControlLocation.Header, ControlLocation.Header);
                 client.GetControlsAsync(App.orgid, ControlLocation.Footer, ControlLocation.Footer);
                 client.GetControlsAsync(App.orgid, ControlLocation.Sidebar, ControlLocation.Sidebar);
+                client.GetControlsAsync(App.orgid, ControlLocation.Body, ControlLocation.Body);
             }
             catch (Exception ex)
             {
@@ -52,6 +53,10 @@ namespace MiniSAAS.UserControls
             if ((ControlLocation)e.UserState == ControlLocation.Sidebar)
             {
                 ProcessSidebar(e.Result);
+            }
+            if ((ControlLocation)e.UserState == ControlLocation.Body)
+            {
+                ProcessBody(e.Result);
             }
         }
 
@@ -118,6 +123,29 @@ namespace MiniSAAS.UserControls
                 }
             }
             catch (Exception ex)
+            {
+            }
+        }
+
+        private void ProcessBody(List<MiniSAAS.UIServiceReference.Control> controls)
+        {
+            try
+            {
+                foreach (MiniSAAS.UIServiceReference.Control control in controls)
+                {
+                    HyperlinkButton hlb = new HyperlinkButton();
+                    hlb.Margin = new Thickness(5);
+                    hlb.Content = control.Text;
+                    hlb.Tag = control.RedirectURL;
+                    hlb.Click += delegate(object sender, RoutedEventArgs e)
+                    {
+                        uiBodyGrid.Children.Clear();
+                        uiBodyGrid.Children.Add((UserControl)System.Activator.CreateInstance(Type.GetType("MiniSAAS.Parts." + (sender as HyperlinkButton).Tag.ToString())));
+                    };
+                    uiSidebarPanel.Children.Add(hlb);
+                }
+            }
+            catch (Exception)
             {
             }
         }

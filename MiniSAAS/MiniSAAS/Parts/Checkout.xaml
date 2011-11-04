@@ -6,7 +6,17 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     
-    <Grid x:Name="LayoutRoot" Background="White">
-
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="http://www.greatestelectronictoys.com/wp-content/uploads/29_18_orig.jpg"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="5" Text="Your Cart"></TextBlock>
+        <Image Width="200" Height="200" Margin="5" Source="http://2.bp.blogspot.com/-oklStKdzhyk/TbrmQNuREeI/AAAAAAAAIb8/4x5RDphkQBo/s1600/Alienware+by+cheap+laptops+%25283%2529.jpg"></Image>
+        <Button Grid.Row="1" Margin="5" Width="100" Content="Pay Now"></Button>
     </Grid>
 </UserControl>

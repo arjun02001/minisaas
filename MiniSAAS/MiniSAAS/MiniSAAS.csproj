@@ -286,9 +286,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Service References\DataServiceReference\DataService.disco" />
     <None Include="Service References\DataServiceReference\configuration91.svcinfo" />
     <None Include="Service References\DataServiceReference\configuration.svcinfo" />
+    <None Include="Service References\DataServiceReference\DataService11.wsdl" />
+    <None Include="Service References\DataServiceReference\DataService44.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataServiceReference\DataService45.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataServiceReference\DataService46.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataServiceReference\DataService47.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\DataServiceReference\MiniSAAS.DataServiceReference.DataDescription.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -302,14 +314,14 @@
     <None Include="Service References\UIServiceReference\MiniSAAS.UIServiceReference.Control.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UIServiceReference\UIService.wsdl" />
-    <None Include="Service References\UIServiceReference\UIService.xsd">
+    <None Include="Service References\UIServiceReference\UIService1.wsdl" />
+    <None Include="Service References\UIServiceReference\UIService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UIServiceReference\UIService1.xsd">
+    <None Include="Service References\UIServiceReference\UIService31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UIServiceReference\UIService2.xsd">
+    <None Include="Service References\UIServiceReference\UIService32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\WorkflowServiceReference\MiniSAAS.WorkflowServiceReference.Method.datasource">
@@ -318,14 +330,12 @@
     <None Include="Service References\WorkflowServiceReference\MiniSAAS.WorkflowServiceReference.WorkflowDescription.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\WorkflowServiceReference\WorkflowService.disco" />
     <None Include="Service References\WorkflowServiceReference\configuration91.svcinfo" />
     <None Include="Service References\WorkflowServiceReference\configuration.svcinfo" />
     <None Include="Service References\WorkflowServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\UIServiceReference\UIService.disco" />
     <None Include="Service References\UIServiceReference\configuration91.svcinfo" />
     <None Include="Service References\UIServiceReference\configuration.svcinfo" />
     <None Include="Service References\UIServiceReference\Reference.svcmap">
@@ -333,33 +343,23 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Properties\OutOfBrowserSettings.xml" />
+    <None Include="Service References\DataServiceReference\DataService11.disco" />
+    <None Include="Service References\UIServiceReference\UIService1.disco" />
+    <None Include="Service References\WorkflowServiceReference\WorkflowService11.disco" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Service References\DataServiceReference\DataService.wsdl" />
-    <None Include="Service References\DataServiceReference\DataService.xsd">
+    <None Include="Service References\WorkflowServiceReference\WorkflowService11.wsdl" />
+    <None Include="Service References\WorkflowServiceReference\WorkflowService44.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DataServiceReference\DataService1.xsd">
+    <None Include="Service References\WorkflowServiceReference\WorkflowService45.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DataServiceReference\DataService2.xsd">
+    <None Include="Service References\WorkflowServiceReference\WorkflowService46.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DataServiceReference\DataService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WorkflowServiceReference\WorkflowService.wsdl" />
-    <None Include="Service References\WorkflowServiceReference\WorkflowService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WorkflowServiceReference\WorkflowService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WorkflowServiceReference\WorkflowService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WorkflowServiceReference\WorkflowService3.xsd">
+    <None Include="Service References\WorkflowServiceReference\WorkflowService47.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

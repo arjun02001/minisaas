@@ -20,14 +20,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:3985/UIService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://rjun.info:16000/minisaas/UIService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="UIService.disco" MetadataType="Disco" ID="1412f926-ca63-4c93-b7b5-5a742f51b9a2" SourceId="1" SourceUrl="http://localhost:3985/UIService.svc?disco" />
-    <MetadataFile FileName="UIService.xsd" MetadataType="Schema" ID="60f74e72-6e38-48b8-81aa-4ed6d048be8b" SourceId="1" SourceUrl="http://localhost:3985/UIService.svc?xsd=xsd2" />
-    <MetadataFile FileName="UIService1.xsd" MetadataType="Schema" ID="63265cba-b54f-459a-910d-3e45d5fe34db" SourceId="1" SourceUrl="http://localhost:3985/UIService.svc?xsd=xsd1" />
-    <MetadataFile FileName="UIService.wsdl" MetadataType="Wsdl" ID="36ae1a8a-24b0-4d28-b548-f35f3721f5f8" SourceId="1" SourceUrl="http://localhost:3985/UIService.svc?wsdl" />
-    <MetadataFile FileName="UIService2.xsd" MetadataType="Schema" ID="8e1217e9-97a9-415b-9ed6-c538885545cc" SourceId="1" SourceUrl="http://localhost:3985/UIService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UIService1.disco" MetadataType="Disco" ID="03318bf6-18f3-4864-bf94-f52c79339f7e" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/UIService.svc?disco" />
+    <MetadataFile FileName="UIService3.xsd" MetadataType="Schema" ID="bdc8cb00-733e-4c7f-81f4-9448b03f1934" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/UIService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UIService1.wsdl" MetadataType="Wsdl" ID="43f5a3a8-aa1a-468d-b5da-f2106629fbdb" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/UIService.svc?wsdl" />
+    <MetadataFile FileName="UIService31.xsd" MetadataType="Schema" ID="f4728002-5433-42db-ac9a-48a18244af12" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/UIService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UIService32.xsd" MetadataType="Schema" ID="c720504d-2d92-446c-9da2-92a32f9e2ae8" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/UIService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

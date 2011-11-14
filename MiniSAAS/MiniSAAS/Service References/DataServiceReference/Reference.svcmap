@@ -20,15 +20,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:3985/DataService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://rjun.info:16000/minisaas/DataService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DataService.disco" MetadataType="Disco" ID="1995f4bf-1e58-4094-8eb8-043e8cb9be39" SourceId="1" SourceUrl="http://localhost:3985/DataService.svc?disco" />
-    <MetadataFile FileName="DataService.wsdl" MetadataType="Wsdl" ID="28453bb3-e3fd-41d7-9c9d-8017f31c508e" SourceId="1" SourceUrl="http://localhost:3985/DataService.svc?wsdl" />
-    <MetadataFile FileName="DataService.xsd" MetadataType="Schema" ID="a7bc2777-851e-49e8-acdc-a7047eaeaf4b" SourceId="1" SourceUrl="http://localhost:3985/DataService.svc?xsd=xsd1" />
-    <MetadataFile FileName="DataService1.xsd" MetadataType="Schema" ID="08e01995-d0b8-43f9-b159-18c22add2855" SourceId="1" SourceUrl="http://localhost:3985/DataService.svc?xsd=xsd2" />
-    <MetadataFile FileName="DataService2.xsd" MetadataType="Schema" ID="01f0d53d-d0a2-4d28-b222-3586c16dcf86" SourceId="1" SourceUrl="http://localhost:3985/DataService.svc?xsd=xsd3" />
-    <MetadataFile FileName="DataService3.xsd" MetadataType="Schema" ID="9aea8071-2f90-4ce4-8602-d15e0126dd2b" SourceId="1" SourceUrl="http://localhost:3985/DataService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DataService44.xsd" MetadataType="Schema" ID="0457e14b-7dae-4db3-a88d-213fa0d6ec96" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/DataService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataService11.wsdl" MetadataType="Wsdl" ID="0c8550bd-bfc8-4f44-8d0e-e64211272707" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/DataService.svc?wsdl" />
+    <MetadataFile FileName="DataService11.disco" MetadataType="Disco" ID="c5ffd8d3-988a-490f-be9a-99be766fa26e" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/DataService.svc?disco" />
+    <MetadataFile FileName="DataService45.xsd" MetadataType="Schema" ID="7c80197d-601f-4aed-814b-97b737726a97" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/DataService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DataService46.xsd" MetadataType="Schema" ID="66bdc018-2cc5-43eb-a4ca-5609437781dc" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/DataService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DataService47.xsd" MetadataType="Schema" ID="c684ff86-2734-49b4-bda3-b0c1950dbab3" SourceId="1" SourceUrl="http://rjun.info:16000/minisaas/DataService.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

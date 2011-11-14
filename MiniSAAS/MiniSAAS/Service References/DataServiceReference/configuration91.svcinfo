@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="/WbmHHEZBi7xSsCWZWddQ4vTDDc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="aSJy1yzKncjgY9y2ROhmNX8pJ+0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IDataService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IDataService" contract="DataServiceReference.IDataService" bindingType="basicHttpBinding" address="http://localhost:3985/DataService.svc" bindingConfiguration="BasicHttpBinding_IDataService">
+    <endpoint name="BasicHttpBinding_IDataService" contract="DataServiceReference.IDataService" bindingType="basicHttpBinding" address="http://rjun.info:16000/minisaas/DataService.svc" bindingConfiguration="BasicHttpBinding_IDataService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:3985/DataService.svc</serializedValue>
+          <serializedValue>http://rjun.info:16000/minisaas/DataService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

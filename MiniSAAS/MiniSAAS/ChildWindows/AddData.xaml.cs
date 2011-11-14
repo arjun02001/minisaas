@@ -55,7 +55,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -84,22 +84,20 @@ namespace MiniSAAS.ChildWindows
                 dd.ObjName = od.ObjName;
 
                 DataServiceClient client = new DataServiceClient();
-                client.InsertDataCompleted += new EventHandler<InsertDataCompletedEventArgs>(client_InsertDataCompleted);
+                client.InsertDataCompleted += delegate(object sender1, InsertDataCompletedEventArgs e1)
+                {
+                    if (DataAdded != null)
+                    {
+                        DataAdded(e1.Result);
+                    }
+                };
                 client.InsertDataAsync(dd);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
             this.DialogResult = true;
-        }
-
-        void client_InsertDataCompleted(object sender, InsertDataCompletedEventArgs e)
-        {
-            if (DataAdded != null)
-            {
-                DataAdded(e.Result);
-            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

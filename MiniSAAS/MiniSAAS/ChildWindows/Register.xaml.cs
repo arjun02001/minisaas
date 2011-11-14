@@ -33,7 +33,7 @@ namespace MiniSAAS.ChildWindows
             {
                 if(!Utility.ValidateEmail(uiEmail.Text) || (!uiPassword.Password.Equals(uiReTypePassword.Password)))
                 {
-                    MessageBox.Show("Verify EmailID and Password");
+                    new Message("Verify EmailID and Password").Show();
                     return;
                 }
                 DataServiceClient client = new DataServiceClient();
@@ -42,7 +42,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -56,12 +56,12 @@ namespace MiniSAAS.ChildWindows
                 }
                 else
                 {
-                    MessageBox.Show("Email already exists");
+                    new Message("Email already exists").Show();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 

@@ -69,7 +69,7 @@ namespace MiniSAAS.UserControls
                     uiHeaderGrid.Background = new ImageBrush() { ImageSource = new BitmapImage(new Uri(controls[0].BackgroundImage, UriKind.Absolute)) };
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -95,7 +95,7 @@ namespace MiniSAAS.UserControls
                     uiFooterPanel.Children.Add(hlb);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -124,7 +124,7 @@ namespace MiniSAAS.UserControls
                 client.GetControlsCompleted += new EventHandler<GetControlsCompletedEventArgs>(client_GetControlsCompleted);
                 client.GetControlsAsync(App.orgid, ControlLocation.Body, ControlLocation.Body);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

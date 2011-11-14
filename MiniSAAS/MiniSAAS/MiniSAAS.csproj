@@ -124,7 +124,6 @@
     <Compile Include="ChildWindows\UpdateSequence.xaml.cs">
       <DependentUpon>UpdateSequence.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\DataType.cs" />
     <Compile Include="Classes\MasterObject.cs" />
     <Compile Include="Classes\Utility.cs" />

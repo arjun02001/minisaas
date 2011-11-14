@@ -37,7 +37,7 @@ namespace MiniSAAS.ChildWindows
         {
             if (!e.Result)
             {
-                MessageBox.Show("A Workflow with this name already exists.");
+                new Message("A Workflow with this name already exists.").Show();
             }
             else
             {

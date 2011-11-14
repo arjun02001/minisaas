@@ -39,7 +39,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -59,7 +59,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -96,7 +96,7 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -116,9 +116,8 @@ namespace MiniSAAS.UserControls
                 };
                 updatesequence.Show();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
         }
 
@@ -163,7 +162,7 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -181,7 +180,7 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
     }

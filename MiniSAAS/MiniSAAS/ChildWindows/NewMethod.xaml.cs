@@ -36,7 +36,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -56,7 +56,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -74,7 +74,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -91,7 +91,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -154,7 +154,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 

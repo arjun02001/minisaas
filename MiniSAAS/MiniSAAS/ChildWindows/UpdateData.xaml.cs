@@ -65,7 +65,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -92,7 +92,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -102,7 +102,7 @@ namespace MiniSAAS.ChildWindows
             {
                 if (e.Result == 0)
                 {
-                    MessageBox.Show("Updation failed");
+                    new Message("Updation Failed").Show();
                     return;
                 }
 
@@ -135,7 +135,7 @@ namespace MiniSAAS.ChildWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 

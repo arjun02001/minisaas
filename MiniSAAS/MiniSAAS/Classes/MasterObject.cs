@@ -13,6 +13,7 @@ using MiniSAAS.Classes;
 using MiniSAAS.DataServiceReference;
 using System.Diagnostics;
 using System.Reflection;
+using MiniSAAS.ChildWindows;
 
 namespace MiniSAAS.Classes
 {
@@ -69,7 +70,7 @@ namespace MiniSAAS.Classes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
             return masterobject;
         }

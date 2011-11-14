@@ -41,7 +41,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -61,7 +61,7 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -96,7 +96,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -124,7 +124,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -141,7 +141,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -167,7 +167,6 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                //MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
             }
         }
 
@@ -181,7 +180,7 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -189,7 +188,7 @@ namespace MiniSAAS.UserControls
         {
             if (!status)
             {
-                MessageBox.Show("Object could not be created");
+                new Message("Object could not be created").Show();
             }
             GetTenantData();
         }
@@ -208,7 +207,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -217,11 +216,11 @@ namespace MiniSAAS.UserControls
             uiBusyIndicator.IsBusy = false;
             if (e.Result)
             {
-                MessageBox.Show("Table deleted");
+                new Message("Table deleted").Show();
             }
             else
             {
-                MessageBox.Show("An error occurred. Please try again.");
+                new Message("An error has occured. Please try again.").Show();
             }
             GetTenantData();
         }
@@ -239,7 +238,7 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -247,15 +246,15 @@ namespace MiniSAAS.UserControls
         {
             if (status == -1)
             {
-                MessageBox.Show("Data type mismatch during insertion");
+                new Message("Data type mismatch during insertion").Show();
             }
             else if (status == -2)
             {
-                MessageBox.Show("Primary Key constraint violated");
+                new Message("Primary key constraint violated").Show();
             }
             else
             {
-                MessageBox.Show(status.ToString() + " rows inserted");
+                new Message(status.ToString() + " rows inserted").Show();
             }
             DataRefresh();
         }
@@ -285,14 +284,14 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
         void client_DeleteDataCompleted(object sender, DeleteDataCompletedEventArgs e)
         {
             uiBusyIndicator.IsBusy = true;
-            MessageBox.Show(e.Result + " Rows deleted");
+            new Message(e.Result + " rows deleted").Show();
             DataRefresh();
         }
 
@@ -308,7 +307,7 @@ namespace MiniSAAS.UserControls
             catch (Exception ex)
             {
                 uiBusyIndicator.IsBusy = false;
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 

@@ -38,5 +38,10 @@ namespace MiniSAAS.UserControls
         {
             App.GoToXAML(new UIViewer());
         }
+
+        private void uiLogout_Click(object sender, RoutedEventArgs e)
+        {
+            App.GoToXAML(new MainPage());
+        }
     }
 }

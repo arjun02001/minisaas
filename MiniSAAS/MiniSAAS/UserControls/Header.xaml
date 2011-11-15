@@ -22,6 +22,9 @@
                 <HyperlinkButton x:Name="uiUIViewer" Click="uiUIViewer_Click">
                     <TextBlock Margin="5" Text="UI Viewer" Foreground="WhiteSmoke"></TextBlock>
                 </HyperlinkButton>
+                <HyperlinkButton x:Name="uiLogout" Click="uiLogout_Click" HorizontalAlignment="Right">
+                    <TextBlock Margin="5" Text="Logout" Foreground="WhiteSmoke"></TextBlock>
+                </HyperlinkButton>
             </StackPanel>
         </StackPanel>
     </Grid>

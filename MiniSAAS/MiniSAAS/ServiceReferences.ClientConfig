@@ -1,24 +1,6 @@
 ﻿<configuration>
     <system.serviceModel>
-        <bindings>
-            <basicHttpBinding>
-                <binding name="BasicHttpBinding_IWorkflowService" maxBufferSize="2147483647"
-                    maxReceivedMessageSize="2147483647">
-                    <security mode="None" />
-                </binding>
-                <binding name="BasicHttpBinding_IUIService" maxBufferSize="2147483647"
-                    maxReceivedMessageSize="2147483647">
-                    <security mode="None" />
-                </binding>
-            </basicHttpBinding>
-        </bindings>
-        <client>
-            <endpoint address="http://rjun.info:16000/minisaas/UIService.svc"
-                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IUIService"
-                contract="UIServiceReference.IUIService" name="BasicHttpBinding_IUIService" />
-            <endpoint address="http://rjun.info:16000/minisaas/WorkflowService.svc"
-                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IWorkflowService"
-                contract="WorkflowServiceReference.IWorkflowService" name="BasicHttpBinding_IWorkflowService" />
-        </client>
+        <bindings />
+        <client />
     </system.serviceModel>
 </configuration>

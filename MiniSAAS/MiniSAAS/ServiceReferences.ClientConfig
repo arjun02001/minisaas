@@ -2,10 +2,6 @@
     <system.serviceModel>
         <bindings>
             <basicHttpBinding>
-                <binding name="BasicHttpBinding_IDataService" maxBufferSize="2147483647"
-                    maxReceivedMessageSize="2147483647">
-                    <security mode="None" />
-                </binding>
                 <binding name="BasicHttpBinding_IWorkflowService" maxBufferSize="2147483647"
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
@@ -17,9 +13,6 @@
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://rjun.info:16000/minisaas/DataService.svc"
-                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IDataService"
-                contract="DataServiceReference.IDataService" name="BasicHttpBinding_IDataService" />
             <endpoint address="http://rjun.info:16000/minisaas/UIService.svc"
                 binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IUIService"
                 contract="UIServiceReference.IUIService" name="BasicHttpBinding_IUIService" />

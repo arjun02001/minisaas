@@ -22,6 +22,7 @@ namespace MiniSAAS.ChildWindows
         public Login()
         {
             InitializeComponent();
+            GetOrgs();
         }
 
         private void uiRegister_Click(object sender, RoutedEventArgs e)
@@ -90,6 +91,23 @@ namespace MiniSAAS.ChildWindows
             {
                 new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
+        }
+
+        private void GetOrgs()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
+        }
+
+        private void uiUserLogin_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

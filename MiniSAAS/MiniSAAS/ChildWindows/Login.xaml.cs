@@ -19,6 +19,7 @@ namespace MiniSAAS.ChildWindows
     {
         public delegate void LoginSuccessHandler(int orgid);
         public event LoginSuccessHandler LoginSuccess;
+        public event LoginSuccessHandler TenantSelected;
         public Login()
         {
             InitializeComponent();
@@ -97,7 +98,19 @@ namespace MiniSAAS.ChildWindows
         {
             try
             {
-
+                DataServiceClient client = new DataServiceClient();
+                client.GetOrgsCompleted += delegate(object sender, GetOrgsCompletedEventArgs e)
+                {
+                    foreach (string s in e.Result)
+                    {
+                        uiTenants.Items.Add(s);
+                    }
+                    if (e.Result.Count > 0)
+                    {
+                        uiTenants.SelectedIndex = 0;
+                    }
+                };
+                client.GetOrgsAsync();
             }
             catch (Exception ex)
             {
@@ -107,7 +120,18 @@ namespace MiniSAAS.ChildWindows
 
         private void uiUserLogin_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (TenantSelected != null)
+                {
+                    TenantSelected(Convert.ToInt32(uiTenants.SelectedItem));
+                }
+                this.DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
         }
     }
 }

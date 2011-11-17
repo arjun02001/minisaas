@@ -25,20 +25,22 @@ namespace MiniSAAS
             try
             {
                 Login login = new Login();
-                login.LoginSuccess += new Login.LoginSuccessHandler(login_LoginSuccess);
+                login.LoginSuccess += delegate(int orgid)
+                {
+                    App.orgid = orgid;
+                    App.GoToXAML(new DataViewer(orgid));
+                };
+                login.TenantSelected += delegate(int orgid)
+                {
+                    App.orgid = orgid;
+                    App.GoToXAML(new UIViewer());
+                };
                 login.Show();
             }
             catch (Exception ex)
             {
                 new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
-        }
-
-        void login_LoginSuccess(int orgid)
-        {
-            App.orgid = orgid;
-            //App.GoToXAML(new DataViewer(orgid));
-            App.GoToXAML(new WorkflowViewer(orgid));
         }
     }
 }

@@ -1,1 +1,3 @@
 http://localhost:3985/DataService.svc
+http://localhost:3985/UIService.svc
+http://localhost:3985/WorkflowService.svc

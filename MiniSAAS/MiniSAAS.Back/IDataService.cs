@@ -28,5 +28,7 @@ namespace MiniSAAS.Back
         DataDescription ViewData(ObjectDescription od);
         [OperationContract]
         int DeleteData(DataDescription dd);
+        [OperationContract]
+        List<string> GetOrgs();
     }
 }

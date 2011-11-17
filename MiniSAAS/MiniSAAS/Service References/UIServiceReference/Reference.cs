@@ -129,7 +129,7 @@ namespace MiniSAAS.UIServiceReference {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUIService/GetControls", ReplyAction="http://tempuri.org/IUIService/GetControlsResponse")]
         System.IAsyncResult BeginGetControls(int orgid, MiniSAAS.UIServiceReference.ControlLocation controllocation, System.AsyncCallback callback, object asyncState);
         
-        System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control> EndGetControls(System.IAsyncResult result);
+        System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control> EndGetControls(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUIService/UpdateHeader", ReplyAction="http://tempuri.org/IUIService/UpdateHeaderResponse")]
         System.IAsyncResult BeginUpdateHeader(int orgid, MiniSAAS.UIServiceReference.Control control, System.AsyncCallback callback, object asyncState);
@@ -172,10 +172,10 @@ namespace MiniSAAS.UIServiceReference {
             this.results = results;
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control> Result {
+        public System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control> Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control>)(this.results[0]));
+                return ((System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control>)(this.results[0]));
             }
         }
     }
@@ -390,7 +390,7 @@ namespace MiniSAAS.UIServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control> MiniSAAS.UIServiceReference.IUIService.EndGetControls(System.IAsyncResult result) {
+        System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control> MiniSAAS.UIServiceReference.IUIService.EndGetControls(System.IAsyncResult result) {
             return base.Channel.EndGetControls(result);
         }
         
@@ -401,7 +401,7 @@ namespace MiniSAAS.UIServiceReference {
         }
         
         private object[] OnEndGetControls(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control> retVal = ((MiniSAAS.UIServiceReference.IUIService)(this)).EndGetControls(result);
+            System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control> retVal = ((MiniSAAS.UIServiceReference.IUIService)(this)).EndGetControls(result);
             return new object[] {
                     retVal};
         }
@@ -756,9 +756,9 @@ namespace MiniSAAS.UIServiceReference {
                 return _result;
             }
             
-            public System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control> EndGetControls(System.IAsyncResult result) {
+            public System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control> EndGetControls(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control> _result = ((System.Collections.ObjectModel.ObservableCollection<MiniSAAS.UIServiceReference.Control>)(base.EndInvoke("GetControls", _args, result)));
+                System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control> _result = ((System.Collections.Generic.List<MiniSAAS.UIServiceReference.Control>)(base.EndInvoke("GetControls", _args, result)));
                 return _result;
             }
             

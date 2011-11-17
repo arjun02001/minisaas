@@ -24,55 +24,70 @@ namespace MiniSAAS.Back
             //int result = invoker.InvokeMethod<int>(services[0], methods[0].MethodName, args);
         }
 
-        public int Login(string emailid, string password)
+        public int Login(int orgid, string emailid, string password)
         {
             try
             {
-                if (!Utility.ValidateEmail(emailid))
+                if (!Utility.ValidateEmail(emailid) || string.IsNullOrEmpty(password))
                 {
                     return -1;
                 }
-                string sql = string.Format("select orgid from dbo.Tenant where emailid = '{0}' and password = '{1}'", emailid, password);
-                DataTable dt = DataManager.GetData(sql);
-                if (dt.Rows.Count == 0)
+                DataService dataservice = new DataService();
+                DataDescription dd = dataservice.ViewData((from p in dataservice.GetObjectCollection(orgid)
+                                                           where p.ObjName.ToLower().Equals("user")
+                                                           select p).Single());
+                foreach (List<string> row in dd.Data)
                 {
-                    return -1;
+                    if (row[2].Equals(emailid) && row[3].Equals(password))
+                    {
+                        return Convert.ToInt32(row[1]);
+                    }
                 }
-                return Convert.ToInt32(dt.Rows[0][0]);
             }
             catch (Exception)
             {
-                return -1;
             }
+            return -1;
         }
 
-        public bool ForgotPassword(string emailid)
+        public bool ForgotPassword(int orgid, string emailid)
         {
             try
             {
+                string password = string.Empty;
                 if (!Utility.ValidateEmail(emailid))
                 {
                     return false;
                 }
-                string sql = string.Format("select password from dbo.Tenant where emailid = '{0}'", emailid);
-                DataTable dt = DataManager.GetData(sql);
-                if (dt.Rows.Count == 0)
+                DataService dataservice = new DataService();
+                DataDescription dd = dataservice.ViewData((from p in dataservice.GetObjectCollection(orgid)
+                                                           where p.ObjName.ToLower().Equals("user")
+                                                           select p).Single());
+                foreach (List<string> row in dd.Data)
                 {
-                    return false;
+                    if (row[2].Equals(emailid))
+                    {
+                        password = row[3].ToString();
+                        break;
+                    }
                 }
-                return Utility.SendEmail(emailid, "Password", string.Format("Password = {0}", dt.Rows[0][0].ToString()));
+
+                if (!string.IsNullOrEmpty(password))
+                {
+                    return Utility.SendEmail(emailid, "Password", string.Format("Password = {0}", password));
+                }
             }
             catch (Exception)
             {
-                return false;
             }
+            return false;
         }
 
         public bool Register(int orgid, string emailid, string password)
         {
             try
             {
-                if (!Utility.ValidateEmail(emailid))
+                if (!Utility.ValidateEmail(emailid) || string.IsNullOrEmpty(password))
                 {
                     return false;
                 }

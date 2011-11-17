@@ -13,9 +13,9 @@ namespace MiniSAAS.Back
     public interface IWorkflowService
     {
         [OperationContract]
-        int Login(string emailid, string password);
+        int Login(int orgid, string emailid, string password);
         [OperationContract]
-        bool ForgotPassword(string emailid);
+        bool ForgotPassword(int orgid, string emailid);
         [OperationContract]
         bool Register(int orgid, string emailid, string password);
         [OperationContract]

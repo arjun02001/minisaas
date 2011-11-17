@@ -279,6 +279,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WCF.txt" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\UIServiceReference\MiniSAAS.UIServiceReference.Control.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

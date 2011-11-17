@@ -390,6 +390,7 @@ namespace MiniSAAS.Back
             }
             return dd;
         }
+
         private bool checkDatatype(String datatype,string celldata)
         {
             try
@@ -413,11 +414,27 @@ namespace MiniSAAS.Back
             }
             catch (Exception)
             {
-
                 return false;
             }
             return true;
-            
+        }
+
+        public List<string> GetOrgs()
+        {
+            List<string> orgs = new List<string>();
+            try
+            {
+                string sql = "select distinct(OrgID) from dbo.Tenant order by OrgID";
+                DataTable dt = DataManager.GetData(sql);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    orgs.Add(dr["OrgID"].ToString());
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return orgs;
         }
     }
 }

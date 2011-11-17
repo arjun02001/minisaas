@@ -17,7 +17,7 @@ namespace MiniSAAS.Back
         [OperationContract]
         bool ForgotPassword(string emailid);
         [OperationContract]
-        bool Register(string emailid, string password);
+        bool Register(int orgid, string emailid, string password);
         [OperationContract]
         double ApplyCoupon(double amount, string couponcode);
         [OperationContract]

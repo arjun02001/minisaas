@@ -68,7 +68,7 @@ namespace MiniSAAS.Back
             }
         }
 
-        public bool Register(string emailid, string password)
+        public bool Register(int orgid, string emailid, string password)
         {
             try
             {
@@ -76,15 +76,25 @@ namespace MiniSAAS.Back
                 {
                     return false;
                 }
-                string sql = "select * from dbo.Tenant where emailid = '" + emailid + "'";
+
+                DataService dataservice = new DataService();
+                ObjectDescription od = (from p in dataservice.GetObjectCollection(orgid)
+                                       where p.ObjName.ToLower().Equals("user")
+                                       select p).Single();
+                int nextvalue = 1;
+                string sql = string.Format("select max([0]) from dbo.heap h, dbo.objects o where h.objid = o.objid and o.objname = 'user' and h.orgid = '{0}'", orgid);
                 DataTable dt = DataManager.GetData(sql);
-                if (dt.Rows.Count != 0)
+                if (dt.Rows[0][0] != DBNull.Value)
                 {
-                    return false;
+                    nextvalue = Convert.ToInt32(dt.Rows[0][0]) + 1;
                 }
-                sql = string.Format("insert into dbo.Tenant (emailid, password) values ('{0}', '{1}')", emailid, password);
-                DataManager.SetData(sql);
+                DataDescription dd = dataservice.ViewData(od);
+                dd.OrgID = orgid;
+                dd.Fields.RemoveAt(0);
+                dd.Data = new List<List<string>>() { new List<string>() { nextvalue.ToString(), emailid, password } };
+
                 Utility.SendEmail(emailid, "New account registered", string.Format("Email = {0}\nPassword = {1}", emailid, password));
+                dataservice.InsertData(dd);
                 return true;
             }
             catch (Exception)

@@ -18,5 +18,10 @@ namespace MiniSAAS.Parts
         {
             InitializeComponent();
         }
+
+        public Checkout(List<string> product)
+        {
+            InitializeComponent();
+        }
     }
 }

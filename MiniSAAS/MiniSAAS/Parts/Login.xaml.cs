@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using MiniSAAS.WorkflowServiceReference;
 using MiniSAAS.Classes;
 using MiniSAAS.ChildWindows;
+using System.Diagnostics;
 
 namespace MiniSAAS.Parts
 {
@@ -39,13 +40,14 @@ namespace MiniSAAS.Parts
                         }
                         else
                         {
-                            this.Content = new AvailableProducts(UserType.User);
+                            this.Content = new AvailableProducts(UserType.User, e1.Result);
                         }
                     };
                 client.LoginAsync(App.orgid, uiEmail.Text.Trim(), uiPassword.Password.Trim());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -53,10 +55,11 @@ namespace MiniSAAS.Parts
         {
             try
             {
-
+                new Register().Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -64,10 +67,11 @@ namespace MiniSAAS.Parts
         {
             try
             {
-
+                new ForgotPassword().Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
     }

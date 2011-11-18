@@ -21,12 +21,14 @@ namespace MiniSAAS.Parts
     public partial class AvailableProducts : UserControl
     {
         UserType usertype;
+        int userid;
         bool iscartflow = false;
 
-        public AvailableProducts(UserType usertype)
+        public AvailableProducts(UserType usertype, int userid)
         {
             InitializeComponent();
             this.usertype = usertype;
+            this.userid = userid;
             uiStaticProducts.Visibility = System.Windows.Visibility.Collapsed;
             GetCustomizedMethods();
         }
@@ -111,8 +113,7 @@ namespace MiniSAAS.Parts
 
                 foreach (List<string> p in dd.Data)
                 {
-                    ProductDetail pd = new ProductDetail();
-                    pd.ProductID = p[1];
+                    ProductDetail pd = new ProductDetail(Convert.ToInt32(p[1]), userid);
                     pd.uiName.Text = p[2];
                     pd.uiPrice.Text = "$" + p[3];
                     pd.uiImage.Source = new BitmapImage(new Uri(p[4], UriKind.Absolute));

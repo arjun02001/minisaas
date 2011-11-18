@@ -11,39 +11,38 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using MiniSAAS.ChildWindows;
 using System.Diagnostics;
+using MiniSAAS.Classes;
 using MiniSAAS.WorkflowServiceReference;
 
 namespace MiniSAAS.Parts
 {
-    public partial class ProductDetail : UserControl
+    public partial class Register : ChildWindow
     {
-        public int ProductID { get; set; }
-        int userid;
-
-        public ProductDetail(int productid, int userid)
+        public Register()
         {
             InitializeComponent();
-            ProductID = productid;
-            this.userid = userid;
         }
 
-        private void uiAddToCart_Click(object sender, RoutedEventArgs e)
+        private void uiSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (!Utility.ValidateEmail(uiEmail.Text) || (uiPassword.Password != uiConfirmPassword.Password) || string.IsNullOrEmpty(uiPassword.Password))
+                {
+                    new Message("Please verify Email / Password").Show();
+                    return;
+                }
                 WorkflowServiceClient client = new WorkflowServiceClient();
-                client.AddToCartCompleted += (sender1, e1) =>
+                client.RegisterCompleted += (sender1, e1) =>
                     {
                         if (!e1.Result)
                         {
                             new Message("An error occured").Show();
+                            return;
                         }
-                        else
-                        {
-                            new Message("Product added to cart").Show();
-                        }
+                        this.DialogResult = true;
                     };
-                client.AddToCartAsync(App.orgid, userid.ToString(), ProductID.ToString());
+                client.RegisterAsync(App.orgid, uiEmail.Text, uiPassword.Password);
             }
             catch (Exception ex)
             {
@@ -51,16 +50,10 @@ namespace MiniSAAS.Parts
             }
         }
 
-        private void uiBuyNow_Click(object sender, RoutedEventArgs e)
+        private void uiCancel_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
-            }
+            this.DialogResult = false;
         }
     }
 }
+

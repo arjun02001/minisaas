@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using MiniSAAS.Classes;
 
 namespace MiniSAAS.UserControls
 {
@@ -36,7 +37,7 @@ namespace MiniSAAS.UserControls
 
         private void uiUIViewer_Click(object sender, RoutedEventArgs e)
         {
-            App.GoToXAML(new UIViewer());
+            App.GoToXAML(new UIViewer(UserType.Tenant));
         }
 
         private void uiLogout_Click(object sender, RoutedEventArgs e)

@@ -5,6 +5,7 @@
   <xs:element name="Login">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="orgid" type="xs:int" />
         <xs:element minOccurs="0" name="emailid" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
       </xs:sequence>
@@ -20,6 +21,7 @@
   <xs:element name="ForgotPassword">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="orgid" type="xs:int" />
         <xs:element minOccurs="0" name="emailid" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

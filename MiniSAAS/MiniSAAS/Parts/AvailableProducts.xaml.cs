@@ -9,14 +9,127 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using MiniSAAS.ChildWindows;
+using System.Diagnostics;
+using MiniSAAS.DataServiceReference;
+using MiniSAAS.Classes;
+using System.Windows.Media.Imaging;
+using MiniSAAS.WorkflowServiceReference;
 
 namespace MiniSAAS.Parts
 {
     public partial class AvailableProducts : UserControl
     {
+        UserType usertype;
+        bool iscartflow = false;
+
+        public AvailableProducts(UserType usertype)
+        {
+            InitializeComponent();
+            this.usertype = usertype;
+            uiStaticProducts.Visibility = System.Windows.Visibility.Collapsed;
+            GetCustomizedMethods();
+        }
+
         public AvailableProducts()
         {
             InitializeComponent();
+            uiProductsGrid.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void GetCustomizedMethods()
+        {
+            try
+            {
+                WorkflowServiceClient client = new WorkflowServiceClient();
+                client.GetWorkflowsCompleted += new EventHandler<GetWorkflowsCompletedEventArgs>(client_GetWorkflowsCompleted);
+                client.GetWorkflowsAsync(App.orgid);
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
+        }
+
+        void client_GetWorkflowsCompleted(object sender, GetWorkflowsCompletedEventArgs e)
+        {
+            try
+            {
+                foreach (Workflow w in e.Result.Workflows)
+                {
+                    if (w.WorkflowName.ToLower().Equals("cart"))
+                    {
+                        iscartflow = true;
+                        break;
+                    }
+                }
+                GetProducts();
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
+        }
+
+        private void GetProducts()
+        {
+            try
+            {
+                DataServiceClient client = new DataServiceClient();
+                client.GetObjectCollectionCompleted += new EventHandler<GetObjectCollectionCompletedEventArgs>(client_GetObjectCollectionCompleted);
+                client.GetObjectCollectionAsync(App.orgid);
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
+        }
+
+        void client_GetObjectCollectionCompleted(object sender, GetObjectCollectionCompletedEventArgs e)
+        {
+            try
+            {
+                ObjectDescription od = (from p in e.Result
+                                        where p.ObjName.ToLower().Equals("product")
+                                        select p).Single();
+                DataServiceClient client = new DataServiceClient();
+                client.ViewDataCompleted += new EventHandler<ViewDataCompletedEventArgs>(client_ViewDataCompleted);
+                client.ViewDataAsync(od);
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
+        }
+
+        void client_ViewDataCompleted(object sender, ViewDataCompletedEventArgs e)
+        {
+            try
+            {
+                DataDescription dd = e.Result;
+                uiProductsPanel.Children.Clear();
+
+                foreach (List<string> p in dd.Data)
+                {
+                    ProductDetail pd = new ProductDetail();
+                    pd.ProductID = p[1];
+                    pd.uiName.Text = p[2];
+                    pd.uiPrice.Text = "$" + p[3];
+                    pd.uiImage.Source = new BitmapImage(new Uri(p[4], UriKind.Absolute));
+                    pd.uiAddToCart.Visibility = (iscartflow) ? Visibility.Visible : Visibility.Collapsed;
+                    uiProductsPanel.Children.Add(pd);
+                }
+                uiCheckout.Visibility = (iscartflow) ? Visibility.Visible : Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
+        }
+
+        private void uiCheckout_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

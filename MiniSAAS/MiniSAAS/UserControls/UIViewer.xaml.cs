@@ -14,6 +14,7 @@ using MiniSAAS.UIServiceReference;
 using System.Windows.Media.Imaging;
 using MiniSAAS.Classes;
 using MiniSAAS.Parts;
+using MiniSAAS.ChildWindows;
 
 namespace MiniSAAS.UserControls
 {
@@ -28,7 +29,7 @@ namespace MiniSAAS.UserControls
             {
                 uiHeader.Visibility = System.Windows.Visibility.Collapsed;
                 uiBodyGrid.Children.Clear();
-                uiBodyGrid.Children.Add(new Login());
+                uiBodyGrid.Children.Add(new Parts.Login());
             }
             GetControls();
         }
@@ -45,7 +46,7 @@ namespace MiniSAAS.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new StackFrame().GetMethod().Name + Environment.NewLine + ex);
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -79,8 +80,9 @@ namespace MiniSAAS.UserControls
                     uiHeaderGrid.Background = new ImageBrush() { ImageSource = new BitmapImage(new Uri(controls[0].BackgroundImage, UriKind.Absolute)) };
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -105,8 +107,9 @@ namespace MiniSAAS.UserControls
                     uiFooterPanel.Children.Add(hlb);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -130,12 +133,16 @@ namespace MiniSAAS.UserControls
                     };
                     uiSidebarPanel.Children.Add(hlb);
                 }
-                UIServiceClient client = new UIServiceClient();
-                client.GetControlsCompleted += new EventHandler<GetControlsCompletedEventArgs>(client_GetControlsCompleted);
-                client.GetControlsAsync(App.orgid, ControlLocation.Body, ControlLocation.Body);
+                if (usertype != UserType.User)
+                {
+                    UIServiceClient client = new UIServiceClient();
+                    client.GetControlsCompleted += new EventHandler<GetControlsCompletedEventArgs>(client_GetControlsCompleted);
+                    client.GetControlsAsync(App.orgid, ControlLocation.Body, ControlLocation.Body);
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
 
@@ -157,8 +164,9 @@ namespace MiniSAAS.UserControls
                     uiSidebarPanel.Children.Add(hlb);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
         }
     }

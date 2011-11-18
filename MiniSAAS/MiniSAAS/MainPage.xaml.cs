@@ -33,7 +33,7 @@ namespace MiniSAAS
                 login.TenantSelected += delegate(int orgid)
                 {
                     App.orgid = orgid;
-                    App.GoToXAML(new UIViewer());
+                    App.GoToXAML(new UIViewer(UserType.User));
                 };
                 login.Show();
             }

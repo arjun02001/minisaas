@@ -12,14 +12,24 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using MiniSAAS.UIServiceReference;
 using System.Windows.Media.Imaging;
+using MiniSAAS.Classes;
+using MiniSAAS.Parts;
 
 namespace MiniSAAS.UserControls
 {
     public partial class UIViewer : UserControl
     {
-        public UIViewer()
+        UserType usertype;
+        public UIViewer(UserType usertype)
         {
             InitializeComponent();
+            this.usertype = usertype;
+            if (usertype == UserType.User)
+            {
+                uiHeader.Visibility = System.Windows.Visibility.Collapsed;
+                uiBodyGrid.Children.Clear();
+                uiBodyGrid.Children.Add(new Login());
+            }
             GetControls();
         }
 

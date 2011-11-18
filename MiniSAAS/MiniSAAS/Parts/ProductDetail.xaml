@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="MiniSAAS.Parts.ProductDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="500">
+    
+    <Grid x:Name="LayoutRoot" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="uiName" Margin="5" FontWeight="Bold" Text="Alienware" HorizontalAlignment="Center" VerticalAlignment="Center" FontStyle="Italic" FontSize="20"></TextBlock>
+            <Image x:Name="uiImage" Margin="5" Source="http://www.geek.com/wp-content/uploads/2008/12/alienware_m17x_01.jpg" Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock x:Name="uiPrice" Margin="5" Text="500$" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <HyperlinkButton x:Name="uiAddToCart" Margin="5" Click="uiAddToCart_Click" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="http://www.marketingforwahm.com/image-files/add-to-cart.jpg" Height="70"></Image>
+            </HyperlinkButton>
+            <HyperlinkButton x:Name="uiBuyNow" Margin="5" Click="uiBuyNow_Click" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="http://www.sightmax.com/images/buttons/buy_now.png" Height="50"></Image>
+            </HyperlinkButton>
+        </StackPanel>
+    </Grid>
+</UserControl>

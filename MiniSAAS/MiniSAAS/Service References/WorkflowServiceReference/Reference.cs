@@ -245,12 +245,12 @@ namespace MiniSAAS.WorkflowServiceReference {
     public interface IWorkflowService {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/Login", ReplyAction="http://tempuri.org/IWorkflowService/LoginResponse")]
-        System.IAsyncResult BeginLogin(string emailid, string password, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginLogin(int orgid, string emailid, string password, System.AsyncCallback callback, object asyncState);
         
         int EndLogin(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWorkflowService/ForgotPassword", ReplyAction="http://tempuri.org/IWorkflowService/ForgotPasswordResponse")]
-        System.IAsyncResult BeginForgotPassword(string emailid, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginForgotPassword(int orgid, string emailid, System.AsyncCallback callback, object asyncState);
         
         bool EndForgotPassword(System.IAsyncResult result);
         
@@ -887,8 +887,8 @@ namespace MiniSAAS.WorkflowServiceReference {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginLogin(string emailid, string password, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginLogin(emailid, password, callback, asyncState);
+        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginLogin(int orgid, string emailid, string password, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginLogin(orgid, emailid, password, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -897,9 +897,10 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         private System.IAsyncResult OnBeginLogin(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string emailid = ((string)(inValues[0]));
-            string password = ((string)(inValues[1]));
-            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginLogin(emailid, password, callback, asyncState);
+            int orgid = ((int)(inValues[0]));
+            string emailid = ((string)(inValues[1]));
+            string password = ((string)(inValues[2]));
+            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginLogin(orgid, emailid, password, callback, asyncState);
         }
         
         private object[] OnEndLogin(System.IAsyncResult result) {
@@ -915,11 +916,11 @@ namespace MiniSAAS.WorkflowServiceReference {
             }
         }
         
-        public void LoginAsync(string emailid, string password) {
-            this.LoginAsync(emailid, password, null);
+        public void LoginAsync(int orgid, string emailid, string password) {
+            this.LoginAsync(orgid, emailid, password, null);
         }
         
-        public void LoginAsync(string emailid, string password, object userState) {
+        public void LoginAsync(int orgid, string emailid, string password, object userState) {
             if ((this.onBeginLoginDelegate == null)) {
                 this.onBeginLoginDelegate = new BeginOperationDelegate(this.OnBeginLogin);
             }
@@ -930,13 +931,14 @@ namespace MiniSAAS.WorkflowServiceReference {
                 this.onLoginCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnLoginCompleted);
             }
             base.InvokeAsync(this.onBeginLoginDelegate, new object[] {
+                        orgid,
                         emailid,
                         password}, this.onEndLoginDelegate, this.onLoginCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginForgotPassword(string emailid, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginForgotPassword(emailid, callback, asyncState);
+        System.IAsyncResult MiniSAAS.WorkflowServiceReference.IWorkflowService.BeginForgotPassword(int orgid, string emailid, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginForgotPassword(orgid, emailid, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -945,8 +947,9 @@ namespace MiniSAAS.WorkflowServiceReference {
         }
         
         private System.IAsyncResult OnBeginForgotPassword(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string emailid = ((string)(inValues[0]));
-            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginForgotPassword(emailid, callback, asyncState);
+            int orgid = ((int)(inValues[0]));
+            string emailid = ((string)(inValues[1]));
+            return ((MiniSAAS.WorkflowServiceReference.IWorkflowService)(this)).BeginForgotPassword(orgid, emailid, callback, asyncState);
         }
         
         private object[] OnEndForgotPassword(System.IAsyncResult result) {
@@ -962,11 +965,11 @@ namespace MiniSAAS.WorkflowServiceReference {
             }
         }
         
-        public void ForgotPasswordAsync(string emailid) {
-            this.ForgotPasswordAsync(emailid, null);
+        public void ForgotPasswordAsync(int orgid, string emailid) {
+            this.ForgotPasswordAsync(orgid, emailid, null);
         }
         
-        public void ForgotPasswordAsync(string emailid, object userState) {
+        public void ForgotPasswordAsync(int orgid, string emailid, object userState) {
             if ((this.onBeginForgotPasswordDelegate == null)) {
                 this.onBeginForgotPasswordDelegate = new BeginOperationDelegate(this.OnBeginForgotPassword);
             }
@@ -977,6 +980,7 @@ namespace MiniSAAS.WorkflowServiceReference {
                 this.onForgotPasswordCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnForgotPasswordCompleted);
             }
             base.InvokeAsync(this.onBeginForgotPasswordDelegate, new object[] {
+                        orgid,
                         emailid}, this.onEndForgotPasswordDelegate, this.onForgotPasswordCompletedDelegate, userState);
         }
         
@@ -1814,10 +1818,11 @@ namespace MiniSAAS.WorkflowServiceReference {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginLogin(string emailid, string password, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
-                _args[0] = emailid;
-                _args[1] = password;
+            public System.IAsyncResult BeginLogin(int orgid, string emailid, string password, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
+                _args[0] = orgid;
+                _args[1] = emailid;
+                _args[2] = password;
                 System.IAsyncResult _result = base.BeginInvoke("Login", _args, callback, asyncState);
                 return _result;
             }
@@ -1828,9 +1833,10 @@ namespace MiniSAAS.WorkflowServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginForgotPassword(string emailid, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = emailid;
+            public System.IAsyncResult BeginForgotPassword(int orgid, string emailid, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = orgid;
+                _args[1] = emailid;
                 System.IAsyncResult _result = base.BeginInvoke("ForgotPassword", _args, callback, asyncState);
                 return _result;
             }

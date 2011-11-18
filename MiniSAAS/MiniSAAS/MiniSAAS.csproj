@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Classes\DataType.cs" />
     <Compile Include="Classes\MasterObject.cs" />
+    <Compile Include="Classes\UserType.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -138,6 +139,9 @@
     </Compile>
     <Compile Include="Parts\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Parts\ProductDetail.xaml.cs">
+      <DependentUpon>ProductDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Parts\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -251,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Parts\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Parts\ProductDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

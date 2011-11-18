@@ -9,10 +9,10 @@
     
     <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <my:Header Grid.Row="0"></my:Header>
+        <my:Header x:Name="uiHeader" Grid.Row="0"></my:Header>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"></RowDefinition>

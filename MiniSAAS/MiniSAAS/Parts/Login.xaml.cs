@@ -9,6 +9,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using MiniSAAS.WorkflowServiceReference;
+using MiniSAAS.Classes;
+using MiniSAAS.ChildWindows;
 
 namespace MiniSAAS.Parts
 {
@@ -17,6 +20,55 @@ namespace MiniSAAS.Parts
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void uiLogin_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (!Utility.ValidateEmail(uiEmail.Text) || string.IsNullOrEmpty(uiEmail.Text) || string.IsNullOrEmpty(uiPassword.Password))
+                {
+                    return;
+                }
+                WorkflowServiceClient client = new WorkflowServiceClient();
+                client.LoginCompleted += (sender1, e1) =>
+                    {
+                        if (e1.Result == -1)
+                        {
+                            new Message("Invalid Credentials").Show();
+                        }
+                        else
+                        {
+                            this.Content = new AvailableProducts(UserType.User);
+                        }
+                    };
+                client.LoginAsync(App.orgid, uiEmail.Text.Trim(), uiPassword.Password.Trim());
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void uiRegister_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void uiForgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

@@ -12,19 +12,33 @@ using System.Windows.Shapes;
 using MiniSAAS.ChildWindows;
 using System.Diagnostics;
 using MiniSAAS.WorkflowServiceReference;
+using System.Windows.Media.Imaging;
 
 namespace MiniSAAS.Parts
 {
     public partial class ProductDetail : UserControl
     {
-        public int ProductID { get; set; }
         int userid;
+        List<string> product;
 
-        public ProductDetail(int productid, int userid)
+        public delegate void BuyNowClickedHandler(List<string> product);
+        public event BuyNowClickedHandler BuyNowClicked;
+
+        public ProductDetail(List<string> product, int userid)
         {
             InitializeComponent();
-            ProductID = productid;
-            this.userid = userid;
+            try
+            {
+                this.product = product;
+                this.userid = userid;
+                uiName.Text = product[2];
+                uiPrice.Text = "$" + product[3];
+                uiImage.Source = new BitmapImage(new Uri(product[4], UriKind.Absolute));
+            }
+            catch (Exception ex)
+            {
+                new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
+            }
         }
 
         private void uiAddToCart_Click(object sender, RoutedEventArgs e)
@@ -43,7 +57,7 @@ namespace MiniSAAS.Parts
                             new Message("Product added to cart").Show();
                         }
                     };
-                client.AddToCartAsync(App.orgid, userid.ToString(), ProductID.ToString());
+                client.AddToCartAsync(App.orgid, userid.ToString(), product[1]);
             }
             catch (Exception ex)
             {
@@ -55,7 +69,10 @@ namespace MiniSAAS.Parts
         {
             try
             {
-
+                if (BuyNowClicked != null)
+                {
+                    BuyNowClicked(product);
+                }
             }
             catch (Exception ex)
             {

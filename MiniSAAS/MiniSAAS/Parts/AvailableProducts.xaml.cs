@@ -113,10 +113,11 @@ namespace MiniSAAS.Parts
 
                 foreach (List<string> p in dd.Data)
                 {
-                    ProductDetail pd = new ProductDetail(Convert.ToInt32(p[1]), userid);
-                    pd.uiName.Text = p[2];
-                    pd.uiPrice.Text = "$" + p[3];
-                    pd.uiImage.Source = new BitmapImage(new Uri(p[4], UriKind.Absolute));
+                    ProductDetail pd = new ProductDetail(p, userid);
+                    pd.BuyNowClicked += (product) =>
+                        {
+                            this.Content = new Checkout(product);
+                        };
                     pd.uiAddToCart.Visibility = (iscartflow) ? Visibility.Visible : Visibility.Collapsed;
                     uiProductsPanel.Children.Add(pd);
                 }

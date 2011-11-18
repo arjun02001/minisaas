@@ -7,16 +7,25 @@
     d:DesignHeight="300" d:DesignWidth="400">
     
     <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="http://www.greatestelectronictoys.com/wp-content/uploads/29_18_orig.jpg"></ImageBrush>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Margin="5" Text="Your Cart" FontSize="18"></TextBlock>
-        <Image Width="200" Height="200" Margin="5" Source="http://2.bp.blogspot.com/-oklStKdzhyk/TbrmQNuREeI/AAAAAAAAIb8/4x5RDphkQBo/s1600/Alienware+by+cheap+laptops+%25283%2529.jpg"></Image>
-        <Button Grid.Row="2" Margin="5" Width="100" Content="Pay Now" VerticalAlignment="Bottom"></Button>
+        <Grid Grid.Row="0" x:Name="uiStaticProduct">
+            <Grid.Background>
+                <ImageBrush ImageSource="http://www.greatestelectronictoys.com/wp-content/uploads/29_18_orig.jpg"></ImageBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="5" Text="Your Cart" FontSize="18"></TextBlock>
+            <Image Width="200" Height="200" Margin="5" Source="http://2.bp.blogspot.com/-oklStKdzhyk/TbrmQNuREeI/AAAAAAAAIb8/4x5RDphkQBo/s1600/Alienware+by+cheap+laptops+%25283%2529.jpg"></Image>
+            <Button Grid.Row="2" Margin="5" Width="100" Content="Pay Now" VerticalAlignment="Bottom"></Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            
+        </Grid>
     </Grid>
 </UserControl>

@@ -124,7 +124,7 @@ namespace MiniSAAS.Back
             {
                 switch (couponcode.ToLower())
                 {
-                    case "aaa": return 0;
+                    case "aaa": return amount / 4.0;
                     case "bbb": return amount / 2.0;
                     case "ccc": return amount / 3.0;
                     default: return amount;
@@ -194,7 +194,7 @@ namespace MiniSAAS.Back
                     }
                     else
                     {
-                        return "Unknown Card Number";
+                        return "Invalid Card";
                     }
                 }
             }

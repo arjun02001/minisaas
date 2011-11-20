@@ -24,8 +24,75 @@
             <Image Width="200" Height="200" Margin="5" Source="http://2.bp.blogspot.com/-oklStKdzhyk/TbrmQNuREeI/AAAAAAAAIb8/4x5RDphkQBo/s1600/Alienware+by+cheap+laptops+%25283%2529.jpg"></Image>
             <Button Grid.Row="2" Margin="5" Width="100" Content="Pay Now" VerticalAlignment="Bottom"></Button>
         </Grid>
-        <Grid Grid.Row="1">
-            
+        <Grid Grid.Row="1" x:Name="uiCheckoutGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Grid.Row="0" Margin="5" Text="Your Cart" FontSize="20" FontStyle="Italic" FontWeight="Bold"></TextBlock>
+                    <StackPanel x:Name="uiProductsPanel" Orientation="Vertical" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBlock Margin="5" Text="Total:"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiTotal" Text="0"></TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="uiTaxPanel" Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Margin="5" Text="After Tax:"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiAfterTax" Text="0"></TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="uiCouponPanel" Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock Margin="5" Text="Apply Coupon"></TextBlock>
+                    <ComboBox Margin="5" x:Name="uiCoupon" SelectedIndex="0" Width="75" SelectionChanged="uiCoupon_SelectionChanged">
+                        <ComboBoxItem>Select</ComboBoxItem>
+                        <ComboBoxItem>aaa</ComboBoxItem>
+                        <ComboBoxItem>bbb</ComboBoxItem>
+                        <ComboBoxItem>ccc</ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock Margin="5" x:Name="uiAfterCoupon" Text="0"></TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="uiCreditCardPanel" Orientation="Horizontal" Grid.Row="3">
+                    <TextBlock Margin="5" Text="Card Number"></TextBlock>
+                    <TextBox Margin="5" x:Name="uiCard" Width="150"></TextBox>
+                    <TextBlock Margin="5" Text="Exipiry (mm/yyyy)"></TextBlock>
+                    <TextBox Margin="5" x:Name="uiExpiry" Width="75"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="4">
+                    <TextBlock Margin="5" Text="Name"></TextBlock>
+                    <TextBox Margin="5" x:Name="uiName" Width="150"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="5">
+                    <TextBlock Margin="5" Text="Address"></TextBlock>
+                    <TextBox Margin="5" x:Name="uiAddress" Width="150"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="6">
+                    <TextBlock Margin="5" Text="Zip"></TextBlock>
+                    <TextBox Margin="5" x:Name="uiZip" Width="150"></TextBox>
+                </StackPanel>
+                <StackPanel Name="uiVendorPanel" Orientation="Horizontal" Grid.Row="7">
+                    <TextBlock Margin="5" Text="Choose Vendor"></TextBlock>
+                    <ComboBox Margin="5" x:Name="uiVendor" Width="150"></ComboBox>
+                </StackPanel>
+                <HyperlinkButton Margin="20" x:Name="uiConfirm" Click="uiConfirm_Click" Grid.Row="8">
+                    <Image Source="http://t1.ftcdn.net/jpg/00/28/46/48/400_F_28464895_5KpJs2pDocCTR6L5eVJrTHOZdJL6LqKG.jpg" Width="150" Height="75"></Image>
+                </HyperlinkButton>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

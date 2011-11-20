@@ -19,17 +19,18 @@ namespace MiniSAAS.Parts
     public partial class ProductDetail : UserControl
     {
         int userid;
-        List<string> product;
+        public string ProductID { get; set; }
 
-        public delegate void BuyNowClickedHandler(List<string> product);
+        public delegate void BuyNowClickedHandler(ProductDetail productdetail);
         public event BuyNowClickedHandler BuyNowClicked;
+        public event BuyNowClickedHandler AddedToCart;
 
         public ProductDetail(List<string> product, int userid)
         {
             InitializeComponent();
             try
             {
-                this.product = product;
+                ProductID = product[1];
                 this.userid = userid;
                 uiName.Text = product[2];
                 uiPrice.Text = "$" + product[3];
@@ -39,6 +40,16 @@ namespace MiniSAAS.Parts
             {
                 new Message(new StackFrame().GetMethod().Name + Environment.NewLine + ex).Show();
             }
+        }
+
+        public ProductDetail(ProductDetail productdetail)
+        {
+            InitializeComponent();
+            this.ProductID = productdetail.ProductID;
+            this.userid = productdetail.userid;
+            this.uiName.Text = productdetail.uiName.Text;
+            this.uiPrice.Text = productdetail.uiPrice.Text;
+            this.uiImage.Source = productdetail.uiImage.Source;
         }
 
         private void uiAddToCart_Click(object sender, RoutedEventArgs e)
@@ -55,9 +66,13 @@ namespace MiniSAAS.Parts
                         else
                         {
                             new Message("Product added to cart").Show();
+                            if (AddedToCart != null)
+                            {
+                                AddedToCart(this);
+                            }
                         }
                     };
-                client.AddToCartAsync(App.orgid, userid.ToString(), product[1]);
+                client.AddToCartAsync(App.orgid, userid.ToString(), ProductID);
             }
             catch (Exception ex)
             {
@@ -71,7 +86,7 @@ namespace MiniSAAS.Parts
             {
                 if (BuyNowClicked != null)
                 {
-                    BuyNowClicked(product);
+                    BuyNowClicked(this);
                 }
             }
             catch (Exception ex)

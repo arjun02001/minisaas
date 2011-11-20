@@ -23,10 +23,12 @@ namespace MiniSAAS.Parts
         UserType usertype;
         int userid;
         bool iscartflow = false;
+        List<ProductDetail> productsincart = new List<ProductDetail>();
 
         public AvailableProducts(UserType usertype, int userid)
         {
             InitializeComponent();
+            productsincart.Clear();
             this.usertype = usertype;
             this.userid = userid;
             uiStaticProducts.Visibility = System.Windows.Visibility.Collapsed;
@@ -114,9 +116,14 @@ namespace MiniSAAS.Parts
                 foreach (List<string> p in dd.Data)
                 {
                     ProductDetail pd = new ProductDetail(p, userid);
-                    pd.BuyNowClicked += (product) =>
+                    pd.BuyNowClicked += (productdetail) =>
                         {
-                            this.Content = new Checkout(product);
+                            uiProductsPanel.Children.Clear();
+                            this.Content = new Checkout(productdetail, userid);
+                        };
+                    pd.AddedToCart += (productdetail) =>
+                        {
+                            productsincart.Add(new ProductDetail(productdetail));
                         };
                     pd.uiAddToCart.Visibility = (iscartflow) ? Visibility.Visible : Visibility.Collapsed;
                     uiProductsPanel.Children.Add(pd);
@@ -131,7 +138,8 @@ namespace MiniSAAS.Parts
 
         private void uiCheckout_Click(object sender, RoutedEventArgs e)
         {
-
+            uiProductsPanel.Children.Clear();
+            this.Content = new Checkout(productsincart, userid);
         }
     }
 }

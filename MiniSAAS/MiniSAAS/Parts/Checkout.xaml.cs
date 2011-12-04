@@ -183,6 +183,11 @@ namespace MiniSAAS.Parts
                                 new Message("Invalid Card").Show();
                             }
                         };
+                    if (String.IsNullOrEmpty(uiCard.Text) || string.IsNullOrEmpty(uiExpiry.Text))
+                    {
+                        new Message("Please enter credit card information").Show();
+                        return;
+                    }
                     client.VerifyCreditCardAsync(uiCard.Text.Trim(), new DateTime(Convert.ToInt32(uiExpiry.Text.Split('/')[1]), Convert.ToInt32(uiExpiry.Text.Split('/')[0]), 1));
                 }
                 if (methods.Contains("validatezip"))
